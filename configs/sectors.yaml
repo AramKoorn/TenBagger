@@ -1,0 +1,13 @@
+# Key is ticker. Value is the country code
+weed: {"HITIF": 'USA',
+       "SNDL": "USA",
+       "ACB": "USA",
+       "HEXO": "USA",
+       "FFLWF": "USA",
+       "TRSSF": "USA",
+       "OGI": "USA",
+       "ZBISF": "USA",
+       "VLNCF": "USA",
+       "APHA": "USA",
+       "CGC": "USA"
+       }

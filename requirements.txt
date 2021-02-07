@@ -1,0 +1,11 @@
+yfinance
+pandas
+numpy
+matplotlib
+seaborn
+pyyaml
+pyfiglet
+yahoo_earnings_calendar
+urllib3
+beautifulsoup4
+html5lib

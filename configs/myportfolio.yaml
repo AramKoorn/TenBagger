@@ -1,0 +1,11 @@
+portfolio:
+  stocks: { "SONO": 100,
+             "T": 132,
+             "F": 7,
+             "GILT": 50,
+             "IBM": 56,
+             "NVDA": 10,
+             "GSAT": 1050,
+             "BLOK": 5.31
+              }
+  crypto: {"ETH-USD": 0.16}
