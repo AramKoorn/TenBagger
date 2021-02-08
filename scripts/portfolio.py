@@ -17,7 +17,15 @@ def portfolio_value(config):
         df = pd.DataFrame()
         df['date'] = [day]
         df['ticker'] = [ticker]
-        df['price'] = [t.info['ask']]
+
+        info = t.info
+
+        if info['ask'] is not None:
+            df['price'] = [info['ask']]
+            df["PoT"] = 'ask'
+        else:
+            df['price'] = [(info['dayHigh'] + info['dayLow']) / 2]
+            df["PoT"] = 'H div L'
         df['amount'] = [port[ticker]]
 
         res.append(df)

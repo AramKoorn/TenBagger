@@ -17,7 +17,6 @@ def print_overview(config):
         print(f'Ticker: {ticker} \n Share Ownerschip \n {t.get_major_holders()}')
 
 
-
 if __name__ == "__main__":
 
     with open(r'configs/myportfolio.yaml') as file:

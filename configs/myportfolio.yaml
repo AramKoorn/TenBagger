@@ -1,7 +1,8 @@
 portfolio:
-  stocks: { "SONO": 100,
+  stocks: {
+            "HITIF": 4310,
+            "SONO": 100,
              "T": 132,
-             "HITIF": 4310,
              "GILT": 50,
              "IBM": 56,
              "NVDA": 8,
