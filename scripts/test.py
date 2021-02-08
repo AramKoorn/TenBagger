@@ -4,8 +4,8 @@ from yahoo_earnings_calendar import YahooEarningsCalendar
 import pandas as pd
 import datetime
 
-# yf.Ticker('DDD').get_major_holders()
-#
+print(yf.Ticker('HITIF').history(period="5d"))
+print(yf.Ticker('HITIF').info)
 # yec = YahooEarningsCalendar()
 # report_date = datetime.datetime.now().date() - 2
 # earnings_list = yec.earnings_on(report_date)
