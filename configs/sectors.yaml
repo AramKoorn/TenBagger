@@ -10,5 +10,9 @@ weed: {"HITIF": 'USA',
        "VLNCF": "USA",
        "APHA": "USA",
        "CGC": "USA",
-       "MJNA": "USA"
+       "MJNA": "USA",
+       "TLRY": "USA",
+       "GRWG": "USA",
+       #    "PLTH": "USA",
+       "VFF": "USA"
        }

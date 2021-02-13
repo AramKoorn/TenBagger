@@ -5,7 +5,6 @@ import yfinance as yf
 
 parser = argparse.ArgumentParser(description='Query Information of a Ticker.')
 parser.add_argument('Ticker', metavar='T', help='Ticker Symbol')
-
 args = parser.parse_args()
 print(yf.Ticker(args.Ticker).info['ask'])
 

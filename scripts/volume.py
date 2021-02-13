@@ -16,9 +16,11 @@ def volume(ticker="HITIF"):
     info = t.info
     hist = t.history(period='10d')
     hist = hist.reset_index()
+    hist["Date"] = hist["Date"].apply(lambda x: x.strftime("%m/%d/%Y"))
 
     fig, ax = plt.subplots()
     sns.barplot(data=hist, x='Date', y='Volume', ax=ax)
+    # plt.xticks(rotation=45)
     ax.axhline(info['averageDailyVolume10Day'], color='red')
 
     fmt = '{x:,.0f}'
