@@ -15,7 +15,7 @@ def candlestick(ticker="HITIF", period="365d"):
 
 
     t = yf.Ticker(ticker)
-    # x`info = t.info
+    # x`    info = t.info
     hist = t.history(period=period)
     hist = hist.reset_index()
     hist["Date"] = hist["Date"].apply(lambda x: x.strftime("%m/%d/%Y"))

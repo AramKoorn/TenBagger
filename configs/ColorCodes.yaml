@@ -1,0 +1,5 @@
+PriceColors: {
+  green: "\u001b[32m",
+  red:  "\u001b[31m"
+
+}
