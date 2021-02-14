@@ -3,39 +3,82 @@ import yaml
 import pandas as pd
 import datetime
 from pyfiglet import Figlet
+from scripts.crypto import CoinMarketCap
 
 
-def portfolio_value(config):
+class Portfolio:
+    def __init__(self):
+        self.crypto = None
+        self.stocls = None
 
-    port = config['portfolio']['stocks']
 
-    res = []
-    day = datetime.date.today()
+    def stocks_portfolio(self):
 
-    for ticker in port:
-        t = yf.Ticker(ticker)
-        df = pd.DataFrame()
-        df['date'] = [day]
-        df['ticker'] = [ticker]
+        port = config['portfolio']['stocks']
 
-        info = t.info
+        res = []
+        day = datetime.date.today()
 
-        if info['ask'] is not None:
-            df['price'] = [info['ask']]
+        for ticker in port:
+            t = yf.Ticker(ticker)
+            df = pd.DataFrame()
+            df['date'] = [day]
+            df['ticker'] = [ticker]
+
+            info = t.info
+
+            if info['ask'] is not None:
+                df['price'] = [info['ask']]
+                df["PoT"] = 'ask'
+            else:
+                df['price'] = [(info['dayHigh'] + info['dayLow']) / 2]
+                df["PoT"] = 'H div L'
+            df['amount'] = [port[ticker]]
+
+            res.append(df)
+
+        df = pd.concat(res)
+        df['value'] = df.price * df.amount
+
+        # Query from object
+        self.stocks = df
+
+        return df
+
+    def crypto_portfolio(self):
+
+        port = config['portfolio']['crypto']
+
+        if len(port.keys()) == 0:
+            return pd.DataFrame()
+
+        for symbol, amount in port.items():
+            cma = CoinMarketCap()
+            info = cma.get_coin_data(symbol=symbol)
+
+            df = pd.DataFrame()
+            df['date'] = [datetime.date.today()]
+            df['ticker'] = [symbol]
+            df['price'] = [info[0]['quote']['USD']['price']]
             df["PoT"] = 'ask'
-        else:
-            df['price'] = [(info['dayHigh'] + info['dayLow']) / 2]
-            df["PoT"] = 'H div L'
-        df['amount'] = [port[ticker]]
+            df['amount'] = [amount]
+            df['value'] = df.price * df.amount
 
-        res.append(df)
+            self.crypto = df
 
-    df = pd.concat(res)
-    df['value'] = df.price * df.amount
-    df['percentage'] = df.value / df.value.sum()
-    df = df.sort_values('value', ascending=False)
+    def unification(self):
 
-    return df
+        self.stocks_portfolio()
+        self.crypto_portfolio()
+
+        df = pd.concat([self.stocks, self.crypto])
+        df['percentage'] = df.value / df.value.sum()
+
+        # Formatting
+        df['percentage'] = df.percentage.apply(lambda x: "{:.2%}".format(x))
+        df = df.sort_values('value', ascending=False)
+
+        return df
 
 
 if __name__ == "__main__":
@@ -48,6 +91,7 @@ if __name__ == "__main__":
 
     pd.set_option("expand_frame_repr", False)
 
-    df = portfolio_value(config)
+    port = Portfolio()
+    df = port.unification()
     print(df)
-    print(f'Total value: {df.value.sum()}')
+    print(f'Total Value Portfolio: {df.value.sum()}')
