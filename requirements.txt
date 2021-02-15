@@ -1,4 +1,5 @@
 yfinance
+pytest
 pandas
 numpy
 matplotlib

@@ -3,7 +3,7 @@ import yaml
 import pandas as pd
 import datetime
 from pyfiglet import Figlet
-from scripts.crypto import CoinMarketCap
+from crypto import CoinMarketCap
 
 
 class Portfolio:

@@ -40,3 +40,7 @@ class CoinMarketCap:
         info = [x for x in data['data'] if symbol in x.values()]
 
         return info
+
+
+if __name__ == "__main__":
+    x = 2

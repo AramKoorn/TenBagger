@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib.ticker as ticker
 import matplotlib.ticker as mtick
+import argparse
 
 
 def volume(ticker="HITIF"):
@@ -37,9 +38,14 @@ if __name__ == "__main__":
     f = Figlet(font='slant')
     print(f.renderText('Trading Volume'))
 
+    parser = argparse.ArgumentParser(description='Query Information of a Ticker.')
+    parser.add_argument('Ticker', metavar='T', help='Ticker Symbol')
+    args = parser.parse_args()
     # with open(r'configs/myportfolio.yaml') as file:
     #     config = yaml.load(file, Loader=yaml.FullLoader)
 
+    
+
     pd.set_option("expand_frame_repr", False)
 
-    volume()
+    volume(args.Ticker)

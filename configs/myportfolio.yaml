@@ -1,13 +1,13 @@
 portfolio:
   stocks: {
-            "ABBV": 17,
-            "HITIF": 7810,
-            "SONO": 100,
+             "ABBV": 17,
+             "SONO": 100,
              "T": 132,
              "GILT": 50,
              "IBM": 56,
              "NVDA": 8,
              "BLOK": 5.31,
+             "HITIF": 7810
               }
 
   crypto: {"ETH": 2.16}
