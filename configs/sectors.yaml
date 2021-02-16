@@ -16,3 +16,13 @@ weed: {"HITIF": 'USA',
        #    "PLTH": "USA",
        "VFF": "USA"
        }
+
+audio: {
+  "SONO": "USA",
+  "NINOY": "USA",
+  "GPRO": "USA",
+  "UEIC": "USA",
+  "VUZI": "USA",
+  "HEAR": "USA"
+
+}

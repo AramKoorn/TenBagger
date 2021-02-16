@@ -46,6 +46,8 @@ if __name__ == '__main__':
         config = yaml.load(file, Loader=yaml.FullLoader)
 
     pd.set_option("expand_frame_repr", False)
-    print(print_overview(config['weed']))
+
+    for sector in config.keys():
+        print(print_overview(config[sector]))
 
 
