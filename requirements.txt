@@ -11,3 +11,5 @@ urllib3
 beautifulsoup4
 html5lib
 plotly
+pycurl
+pyscopg2
