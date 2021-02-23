@@ -1,0 +1,13 @@
+commodities: {"Gold": "GC=F",
+              "Silver": "SI=F",
+              "Natual Gas": "NG=F",
+              "Crude Oil": "CL=F",
+              "Copper": "HG=F",
+              "Platinum": "PL=F",
+              "Aluminium": "ALI=F"
+}
+
+indices: {"AEX": "^AEX",
+          "S&P 500": "^GSPC"}
+              
+
