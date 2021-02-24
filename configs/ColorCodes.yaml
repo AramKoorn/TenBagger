@@ -1,5 +1,10 @@
-PriceColors: {
+PriceColors:
+  {
   green: "\u001b[32m",
   red:  "\u001b[31m"
+}
 
+colors: {
+          "red":  '#FF4136',
+          "green" : '#008000'
 }

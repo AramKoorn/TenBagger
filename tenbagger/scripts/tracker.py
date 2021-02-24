@@ -4,7 +4,7 @@ import yfinance as yf
 import yaml
 
 
-def main(config):
+def track(config):
 
     total = []
 
@@ -33,5 +33,5 @@ if __name__ == "__main__":
     with open(r'configs/trackers.yaml') as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
 
-    df = main(config)
+    df = track(config)
     print(df)

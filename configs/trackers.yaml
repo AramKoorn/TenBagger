@@ -4,10 +4,21 @@ commodities: {"Gold": "GC=F",
               "Crude Oil": "CL=F",
               "Copper": "HG=F",
               "Platinum": "PL=F",
-              "Aluminium": "ALI=F"
+              "Aluminium": "ALI=F",
+              "Wheat": "ZW=F",
+              "Corn": "ZC=F",
+              "Coffee": "KC=F",
+              "Sugar": "SF=F"
 }
 
 indices: {"AEX": "^AEX",
           "S&P 500": "^GSPC"}
               
+Region: {"Europe": "VGK",
+          "China": "CHIX"}
 
+Crypto: {"Bitcoin": "BTC-USD",
+          "Ethereum": "ETH-USD",
+          "Dogecoin": "DOGE-USD"}
+
+Industries: {"Online retail": "ONLN"}
