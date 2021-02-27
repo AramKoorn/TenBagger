@@ -17,4 +17,6 @@ indices: {"AEX": "^AEX",
 Region: {"Europe": "VGK",
           "China": "CHIX"}
 
-Industries: {"Online retail": "ONLN"}
+Industries: {"Online retail": "ONLN",
+              "Blockchain": "BLOK", 
+              "Global X Internet of Things": "SNSR"}
