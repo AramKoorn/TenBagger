@@ -1,6 +1,10 @@
 # TenBagger
 A Command Line Interface (CLI) to follow your portfolio. Currently supports stock data and crypto data. 
 
+## Installation
+python3 setup.py install
+pip3 install .
+
 ## Features
 - Check price
 - check portfolio
@@ -18,5 +22,7 @@ coinmarketcap API you need create an account and generate an API key.
 - Key Metrics
 - Update portfolio using CLI
 - Hide CMA API key 
+- Nice terminal colors for printing
+- Import the configs
 
 

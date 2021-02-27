@@ -19,7 +19,9 @@ df = track(config)
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-app.layout = html.Div(children=[
+
+app.layout = html.Div(
+    children=[
     html.H1(children='Tracking sectors '),
     html.H2(children=f''),
     dash_table.DataTable(

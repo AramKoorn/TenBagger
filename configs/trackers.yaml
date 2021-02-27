@@ -17,8 +17,4 @@ indices: {"AEX": "^AEX",
 Region: {"Europe": "VGK",
           "China": "CHIX"}
 
-Crypto: {"Bitcoin": "BTC-USD",
-          "Ethereum": "ETH-USD",
-          "Dogecoin": "DOGE-USD"}
-
 Industries: {"Online retail": "ONLN"}

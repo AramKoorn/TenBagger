@@ -1,28 +1,48 @@
-import yfinance as yf
-import yaml
 import pandas as pd
 import datetime
+import yaml
+
+def prGreen(skk):
+    print("\033[92m {}\033[00m" .format(skk))
 
 
-def print_overview(config):
+# # Python program to print
+# # colored text and background
+# def print_format_table():
+#     """
+#     prints table of formatted text format options
+#     """
+#     for style in range(8):
+#         for fg in range(10, 38):
+#             s1 = ''
+#             for bg in range(40, 48):
+#                 format = ';'.join([str(style), str(fg), str(bg)])
+#                 s1 += '\x1b[%sm %s \x1b[0m' % (format, format)
+#             print(s1)
+#         print('\n')
+#
+#
+# print_format_table()
 
-    port = config['portfolio']['stocks']
 
-    res = []
-    day = datetime.date.today()
-    print(f"Date: {day}")
+def format_insiders(ticker):
 
-    for ticker in port:
-        t = yf.Ticker(ticker)
-        print(f'Ticker: {ticker} \n Share Ownerschip \n {t.get_major_holders()}')
+    url = f'http://openinsider.com/search?q={ticker}'
+    df = pd.read_html(url)[11]
+
+    remove_col = ['X', '1d', '1w', '1m', '6m']
+    df = df.drop(columns=remove_col)
+
+    # df['Price'] = color_config['PriceColors']['green'] + df['Price'] + color_config['PriceColors']['green']
+    # df['Trade Type'].unique()
+
+    return df
 
 
 if __name__ == "__main__":
 
-    with open(r'configs/myportfolio.yaml') as file:
-        config = yaml.load(file, Loader=yaml.FullLoader)
+    with open(r'configs/ColorCodes.yaml') as file:
+        color_config = yaml.load(file, Loader=yaml.FullLoader)
 
-    pd.set_option("expand_frame_repr", False)
-    print(config)
-
-    print(print_overview(config))
+    ticker = 'IBM'
+    df = format_insiders(ticker)
