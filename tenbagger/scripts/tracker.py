@@ -16,9 +16,12 @@ def track(config):
             t = yf.Ticker(ticker)
             info = t.info
 
-            close = t.history(period='1d', interval='1m')["Close"].tail(1)[0]
-            prev_close = info["previousClose"]
-            change = round((close - prev_close) / prev_close * 100, 2)
+            try:
+                close = t.history(period='1d', interval='1m')["Close"].tail(1)[0]
+                prev_close = info["previousClose"]
+                change = round((close - prev_close) / prev_close * 100, 2)
+            except:
+                change = None
             val = [ind, change]
             res.append(val)
 

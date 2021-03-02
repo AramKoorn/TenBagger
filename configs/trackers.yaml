@@ -11,8 +11,17 @@ commodities: {"Gold": "GC=F",
               "Sugar": "SF=F"
 }
 
-indices: {"AEX": "^AEX",
-          "S&P 500": "^GSPC"}
+indices: {"Netherlands AEX": "^AEX",
+          "S&P 500": "^GSPC",
+          "Dow Jones": "^DJI",
+          "NASDAQ": "^IXIC",
+          "EURONEXT 100": "^N100",
+          "German DAX": "^GDAXI",
+          "London 100": "^FTSE",
+          "France CAC": "^FCHI",
+          "Japan Nikkei 225": "^N225",
+          "Hong Kong Hang Seng": "^HSI"}
+
               
 Region: {"Europe": "VGK",
           "China": "CHIX"}
