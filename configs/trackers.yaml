@@ -4,11 +4,19 @@ commodities: {"Gold": "GC=F",
               "Crude Oil": "CL=F",
               "Copper": "HG=F",
               "Platinum": "PL=F",
+              "Palladium": "PA=F",
               "Aluminium": "ALI=F",
               "Wheat": "ZW=F",
               "Corn": "ZC=F",
               "Coffee": "KC=F",
               "Sugar": "SF=F"
+}
+
+HedgeFunds: {
+  "Berkshire Hathaway": "BRK-B",
+  "Blackrock Inc": "BLK",
+  "Morgan Stanley": "MS"
+
 }
 
 indices: {"Netherlands AEX": "^AEX",
@@ -26,6 +34,16 @@ indices: {"Netherlands AEX": "^AEX",
 Region: {"Europe": "VGK",
           "China": "CHIX"}
 
+ETF: {"Ark Innovation": "ARKK",
+"Ark Genomic": "ARKG",
+"Ark Fintech": "ARKF",
+"Ark Next internet": "ARKW",
+"ARK AT & Robotics": "ARKQ"}
+
+
 Industries: {"Online retail": "ONLN",
               "Blockchain": "BLOK", 
-              "Global X Internet of Things": "SNSR"}
+              "Global X Internet of Things": "SNSR",
+              "Weed MJ": "MJ",
+              "Weed Canada": "HMMJ.TO",
+}
