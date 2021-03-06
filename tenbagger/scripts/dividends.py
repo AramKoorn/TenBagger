@@ -2,14 +2,13 @@ import yfinance as yf
 import pandas as pd
 import yaml
 
-def run(config):
+def process_dividends(config):
 
     df = pd.DataFrame()
 
     for ticker in config['stocks'].keys():
 
         data = {}
-        print(ticker)
 
         t = yf.Ticker(ticker)
         info = t.info
@@ -34,4 +33,4 @@ if __name__ == "__main__":
     with open(r'configs/dividends.yaml') as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
 
-    df = run(config)
+    df = process_dividends(config)
