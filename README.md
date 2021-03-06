@@ -1,5 +1,5 @@
 # TenBagger
-A Command Line Interface (CLI) to follow your portfolio. Currently supports stock data and crypto data. 
+A Command Line Interface (CLI) to follow your portfolio. Currently supports stock data and crypto data. This library uses the Yahoo finance API so you need to use the same ticker symbols as on Yahoo Finance.
 
 ## Installation
 python3 setup.py install
