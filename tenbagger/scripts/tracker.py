@@ -17,7 +17,11 @@ def track(config):
             info = t.info
 
             try:
-                close = t.history(period='1d', interval='1m')["Close"].tail(1)[0]
+                try:
+                    close = t.history(period='1d', interval='1m')["Close"].tail(1)[0]
+                except:
+                    close = t.history().tail(1)["Close"][0]
+
                 prev_close = info["previousClose"]
                 change = round((close - prev_close) / prev_close * 100, 2)
             except:

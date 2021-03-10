@@ -24,5 +24,6 @@ coinmarketcap API you need create an account and generate an API key.
 - Hide CMA API key 
 - Nice terminal colors for printing
 - Import the configs
+- No need for the cma API anymore
 
 

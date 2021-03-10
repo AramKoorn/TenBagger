@@ -19,7 +19,7 @@ HedgeFunds: {
 
 }
 
-indices: {"Netherlands AEX": "^AEX",
+indices: {"Netherlands  AEX": "^AEX",
           "S&P 500": "^GSPC",
           "Dow Jones": "^DJI",
           "NASDAQ": "^IXIC",

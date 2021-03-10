@@ -4,12 +4,13 @@ import pandas as pd
 import datetime
 from pyfiglet import Figlet
 from crypto import CoinMarketCap
+from tenbagger.scripts.utilities import Ticker
 
 
 class Portfolio:
     def __init__(self):
         self.crypto = None
-        self.stocls = None
+        self.stocks = None
 
 
     def stocks_portfolio(self):
@@ -26,15 +27,9 @@ class Portfolio:
             df['ticker'] = [ticker]
 
             info = t.info
-
-            if info['ask'] is not None:
-                df['price'] = [info['ask']]
-                df["PoT"] = 'ask'
-            else:
-                df['price'] = [(info['dayHigh'] + info['dayLow']) / 2]
-                df["PoT"] = 'H div L'
+            df['price'] = Ticker(ticker).last_price() 
             df['amount'] = [port[ticker]]
-
+            df["currency"] = t.info["currency"]
             res.append(df)
 
         df = pd.concat(res)
@@ -45,31 +40,10 @@ class Portfolio:
 
         return df
 
-    def crypto_portfolio(self):
-
-        port = config['portfolio']['crypto']
-
-        if len(port.keys()) == 0:
-            return pd.DataFrame()
-
-        for symbol, amount in port.items():
-            cma = CoinMarketCap()
-            info = cma.get_coin_data(symbol=symbol)
-
-            df = pd.DataFrame()
-            df['date'] = [datetime.date.today()]
-            df['ticker'] = [symbol]
-            df['price'] = [info[0]['quote']['USD']['price']]
-            df["PoT"] = 'ask'
-            df['amount'] = [amount]
-            df['value'] = df.price * df.amount
-
-            self.crypto = df
 
     def unification(self):
 
         self.stocks_portfolio()
-        self.crypto_portfolio()
 
         df = pd.concat([self.stocks, self.crypto])
         df['percentage'] = df.value / df.value.sum()
