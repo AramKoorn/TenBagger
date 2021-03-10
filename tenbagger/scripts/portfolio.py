@@ -29,7 +29,13 @@ class Portfolio:
             info = t.info
             df['price'] = Ticker(ticker).last_price() 
             df['amount'] = [port[ticker]]
-            df["currency"] = t.info["currency"]
+            df["currency"] = info["currency"]
+
+            if info["dividendYield"]:
+                df["yield"] = info["dividendYield"]
+            else:
+                df["yield"] = None
+
             res.append(df)
 
         df = pd.concat(res)
