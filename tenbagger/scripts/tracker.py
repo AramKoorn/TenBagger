@@ -15,7 +15,6 @@ def track(config):
         res = []
         for ind, ticker in tqdm(s.items()):
             t = yf.Ticker(ticker)
-            info = t.info
 
             try:
                 try:
@@ -23,7 +22,7 @@ def track(config):
                 except:
                     close = t.history().tail(1)["Close"][0]
 
-                prev_close = info["previousClose"]
+                prev_close = t.history("2d").Close[0] 
                 change = round((close - prev_close) / prev_close * 100, 2)
             except:
                 change = None
