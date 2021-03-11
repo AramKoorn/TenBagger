@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np 
 import yfinance as yf
 import yaml
+from tqdm import tqdm
 
 
 def track(config):
@@ -12,7 +13,7 @@ def track(config):
         s = config[sector]
 
         res = []
-        for ind, ticker in s.items():
+        for ind, ticker in tqdm(s.items()):
             t = yf.Ticker(ticker)
             info = t.info
 
@@ -35,10 +36,10 @@ def track(config):
     return pd.concat(total, axis=1)
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     
-    with open(r'configs/trackers.yaml') as file:
-        config = yaml.load(file, Loader=yaml.FullLoader)
+#     with open(r'configs/trackers.yaml') as file:
+#         config = yaml.load(file, Loader=yaml.FullLoader)
 
-    df = track(config)
-    print(df)
+#     df = track(config)
+#     print(df)

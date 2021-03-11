@@ -1,13 +1,14 @@
 portfolio:
   stocks: {
              "ABBV": 17,
-             "SONO": 50,
              "T": 132,
              "IBM": 56,
              "BLOK": 5.31,
              "2LY.F": 11600, 
              "U": 16,
              "ETH-USD": 2.26,
-             "MRK": 3
+             "MRK": 3,
+             "KMI": 80,
+             "SPCE": 25
               }
 

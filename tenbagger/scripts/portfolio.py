@@ -58,6 +58,10 @@ class Portfolio:
         df['percentage'] = df.percentage.apply(lambda x: "{:.2%}".format(x))
         df = df.sort_values('value', ascending=False)
 
+        df["dividends"] = df["yield"] * df.price * df.amount
+
+
+
         return df
 
 
@@ -75,3 +79,5 @@ if __name__ == "__main__":
     df = port.unification()
     print(df)
     print(f'Total Value Portfolio: {df.value.sum()}')
+    print(f'Yearly Dividends: {df.dividends.sum()}')
+    

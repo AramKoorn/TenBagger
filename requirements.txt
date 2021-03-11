@@ -13,3 +13,4 @@ html5lib
 plotly
 dash
 dash-bootstrap-components
+tqdm
