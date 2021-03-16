@@ -14,6 +14,7 @@ def track(config):
 
         res = []
         for ind, ticker in tqdm(s.items()):
+            print(ticker)
             t = yf.Ticker(ticker)
 
             try:
