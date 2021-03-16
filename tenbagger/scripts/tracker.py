@@ -14,7 +14,6 @@ def track(config):
 
         res = []
         for ind, ticker in tqdm(s.items()):
-            print(ticker)
             t = yf.Ticker(ticker)
 
             try:
@@ -36,10 +35,3 @@ def track(config):
     return pd.concat(total, axis=1)
 
 
-# if __name__ == "__main__":
-    
-#     with open(r'configs/trackers.yaml') as file:
-#         config = yaml.load(file, Loader=yaml.FullLoader)
-
-#     df = track(config)
-#     print(df)
