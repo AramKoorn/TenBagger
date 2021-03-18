@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from tenbagger.scripts.utilities import Ticker
 
 
 def clean_insider(df, col):
@@ -23,9 +24,26 @@ def overview():
     for col in clean_cols:
         df = clean_insider(df, col)
 
-    pass
+    rm_col = ['1d', '1w', '1m', '6m']
+    df = df.drop(columns=rm_col)
+
+    dates = ['7d', '1mo', '2mo', '6mo', '1y']
+    data = {ticker: Ticker(ticker).history_prices(dates) for i, ticker in enumerate(set(df.Ticker))}
+
+    for t, dat in data.items():
+        last_price = Ticker(t).last_price()
+        for dt, price in dat.items():
+            df.loc[df.Ticker == t, dt] = round((last_price - price) / price * 100, 2)
+
+    # Make it percentage
+    for date in dates:
+        df[date] = df[date].astype('str') + "%"
+
+    df = df.sort_values('Value', ascending=False)
+
+    return df
 
 
 if __name__ == '__main__':
-    overview()
+    df = overview()
     x = 2

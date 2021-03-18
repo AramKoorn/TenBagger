@@ -21,9 +21,7 @@ coinmarketcap API you need create an account and generate an API key.
 - Portfolio over time
 - Key Metrics
 - Update portfolio using CLI
-- Hide CMA API key 
 - Nice terminal colors for printing
 - Import the configs
 - No need for the cma API anymore
-
-
+- Automatically send notification
