@@ -1,5 +1,5 @@
-portfolio:
-  stocks: {
+portfolio_aram: 
+          {
              "ABBV": 17,
              "T": 132,
              "IBM": 56,
@@ -11,5 +11,5 @@ portfolio:
              "KMI": 80,
              "SPCE": 25,
              "DOT1-USD": 16.51
-              }
+          }
 
