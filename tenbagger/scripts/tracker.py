@@ -1,31 +1,38 @@
-import pandas as pd
-import numpy as np 
 import yfinance as yf
 import yaml
 from tqdm import tqdm
+import pandas as pd
+import datetime
 
 
 def track(config):
 
     total = []
+    date = pd.to_datetime(datetime.datetime.now().date())
+    weekday = datetime.datetime.today().weekday()
+
+    # If it's weekend set day to Friday
+    if (weekday == 6):
+        date -= datetime.timedelta(2)
+    if (weekday == 5):
+        date -= datetime.timedelta(1)
+
+    prev_date = date - datetime.timedelta(1)
 
     for sector in config:
         s = config[sector]
 
         res = []
         for ind, ticker in tqdm(s.items()):
-            t = yf.Ticker(ticker)
+            history = yf.Ticker(ticker).history(period='7d')
 
             try:
-                try:
-                    close = t.history(period='1d', interval='1m')["Close"].tail(1)[0]
-                except:
-                    close = t.history().tail(1)["Close"][0]
-
-                prev_close = t.history("2d").Close[0] 
+                close = history.Close[-1]
+                prev_close = history.query('Date == @prev_date').Close[0]
                 change = round((close - prev_close) / prev_close * 100, 2)
             except:
                 change = None
+
             val = [ind, change]
             res.append(val)
 
@@ -35,3 +42,8 @@ def track(config):
     return pd.concat(total, axis=1)
 
 
+if __name__ == '__main__':
+    with open(r'configs/trackers.yaml') as file:
+        config = yaml.load(file, Loader=yaml.FullLoader)
+
+    track(config)

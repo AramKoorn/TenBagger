@@ -6,8 +6,6 @@ from tenbagger.scripts.tracker import track
 import yaml
 
 
-
-
 def update_output(value):
     return f'You have selected {value}'
 

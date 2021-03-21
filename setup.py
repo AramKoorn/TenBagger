@@ -23,7 +23,7 @@ with open(os.path.join(directory, 'README.md'), encoding='utf-8') as f:
 #       )
 
 setup(name='tenbaggger',
-      version="0.0.5",
+      version="0.0.6",
       description='test',
       author='Aram Koorn',
       packages=find_packages(),
