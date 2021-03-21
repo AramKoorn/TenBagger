@@ -25,3 +25,4 @@ coinmarketcap API you need create an account and generate an API key.
 - Import the configs
 - No need for the cma API anymore
 - Automatically send notification
+- make test to run everything in CLI and just check if it works
