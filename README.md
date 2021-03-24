@@ -11,10 +11,6 @@ pip3 install .
 - Candlestick charts of historical price data
 - Volume daytrading past 10 days (check if this works for crypto)
 
-## Crypto 
-We use the coinmarketcap API to pull crypto data. In order to use the 
-coinmarketcap API you need create an account and generate an API key.
-
 ## Improvements
 - add unit tests
 - Portfolio should take <1 second
@@ -23,7 +19,12 @@ coinmarketcap API you need create an account and generate an API key.
 - Update portfolio using CLI
 - Nice terminal colors for printing
 - Import the configs
-- No need for the cma API anymore
-- Automatically send notification
 - make test to run everything in CLI and just check if it works
-- BUG fix --> tracker is not giving correct info for futures
+
+## Roadmap
+- Think about proper unit tests for Dash
+- SQL database to store portfolio over time
+- Automatic notification for a specific stock
+  - ?? Cloud
+  - ?? Raspberry PI
+- Dividend simulator
