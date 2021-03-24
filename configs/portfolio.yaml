@@ -5,11 +5,27 @@ portfolio_aram:
              "IBM": 56,
              "BLOK": 5.31,
              "2LY.F": 11600, 
+             "U": 21,
+             "ETH-USD": 2.26,
+             "MRK": 3,
+             "KMI": 80,
+             "SPCE": 25,
+             "DOT1-USD": 16.51,
+             "WPC": 10
+          }
+
+hyp: 
+          {
+             "ABBV": 17,
+             "T": 132,
+             "IBM": 56,
+             "BLOK": 5.31,
+             "2LY.F": 11600, 
              "U": 16,
              "ETH-USD": 2.26,
              "MRK": 3,
              "KMI": 80,
              "SPCE": 25,
-             "DOT1-USD": 16.51
+             "DOT1-USD": 16.51,
+             "WPC": 15
           }
-
