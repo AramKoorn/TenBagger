@@ -2,28 +2,19 @@
 
 import os
 from setuptools import setup, find_packages
+from tenbagger.version import __version__
+
 
 directory = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(directory, 'README.md'), encoding='utf-8') as f:
   long_description = f.read()
 
-# setup(name='TenBagger',
-#       version='0.0.1',
-#       description='CLI for finance',
-#       author='Aram Koorn',
-#       license='MIT',
-#       long_description=long_description,
-#       long_description_content_type='text/markdown',
-#       packages = ['tenbagger'],
-#       classifiers=[
-#         "Programming Language :: Python :: 3",
-#         "License :: OSI Approved :: MIT License"
-#       ],
-#       python_requires='>=3.8'
-#       )
 
 setup(name='tenbaggger',
-      version="0.0.6",
+      version=__version__,
+      url = "https://github.com/AramKoorn/TenBagger",
+      py_modules=["tenbagger"],
+      entry_points={"console_scripts" : ["tenbagger=tenbagger.cli:main"]},
       description='test',
       author='Aram Koorn',
       packages=find_packages(),
