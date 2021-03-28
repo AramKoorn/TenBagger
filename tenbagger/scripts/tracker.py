@@ -40,10 +40,3 @@ def track(config):
         total.append(df)
 
     return pd.concat(total, axis=1)
-
-
-if __name__ == '__main__':
-    with open(r'configs/trackers.yaml') as file:
-        config = yaml.load(file, Loader=yaml.FullLoader)
-
-    track(config)

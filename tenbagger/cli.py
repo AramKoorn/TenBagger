@@ -10,11 +10,15 @@ def main():
     parser.add_argument("--candle", action="store_true")
     parser.add_argument("--ticker")
     parser.add_argument("--period")
+    parser.add_argument("--tracker", action="store_true")
     parser.add_argument("--interval")
     parser.add_argument("--hoi", action="store_true")
     parser.add_argument("--version", action="version", version="%(prog)s {}".format(__version__))
     args = parser.parse_args()
 
+    if args.tracker:
+        from tenbagger.dashboard.trackerdash import main
+        main()
     
     if (args.candle):
         print(args.ticker)
