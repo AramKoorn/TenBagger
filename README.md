@@ -1,6 +1,17 @@
 # TenBagger
 A Command Line Interface (CLI) to follow your portfolio. Currently supports stock data and crypto data. This library uses the Yahoo finance API so you need to use the same ticker symbols as on Yahoo Finance.
 
+## Usage
+Run tracker dashboard
+```
+tenbagger --tracker
+```
+
+Candlestick chart 
+```
+tenbagger --candle --ticker IBM --period 700d --interval 1d
+```
+
 ## Installation
 python3 setup.py install
 pip3 install .
@@ -23,6 +34,8 @@ pip3 install .
 
 ## Roadmap
 - Think about proper unit tests for Dash
+- Create docker image
+- CI/CD pipeline
 - SQL database to store portfolio over time
 - Automatic notification for a specific stock
   - ?? Cloud
