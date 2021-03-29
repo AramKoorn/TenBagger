@@ -14,3 +14,4 @@ plotly
 dash
 dash-bootstrap-components
 tqdm
+python-telegram-bot
