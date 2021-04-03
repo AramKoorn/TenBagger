@@ -54,6 +54,7 @@ pip3 install .
 
 ## TODO
 - Fix tracking dashboard for the weekend
+- Utility function to import configs
 
 ## MVP
 - Automatic configuration
