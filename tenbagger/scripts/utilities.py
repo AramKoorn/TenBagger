@@ -1,4 +1,6 @@
 import yfinance as yf
+import pandas as pd
+from forex_python.converter import CurrencyRates
 
 
 class Ticker:
@@ -19,6 +21,14 @@ class Ticker:
         # Dictionary returning the dates
         return {date: self.ticker.history(date).Close[0] for i, date in enumerate(dates)}
 
+
+class Converter:
+    def __init__(self, df):
+        self.df = df
+        assert isinstance(df, pd.DataFrame)
+
+    def _convert(self, currency="EUR", col_ind=None, col_currency=None):
+        pass
 
 
 if __name__ == "__main__":

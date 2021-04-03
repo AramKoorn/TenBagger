@@ -4,6 +4,7 @@ import pandas as pd
 import datetime
 from pyfiglet import Figlet
 from tenbagger.scripts.utilities import Ticker
+from forex_python.converter import CurrencyRates
 
 
 class Portfolio:
