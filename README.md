@@ -50,6 +50,12 @@ pip3 install .
 - CI/CD pipeline
 - SQL database to store portfolio over time
 - Automatic notification for a specific stock
-  - ?? Cloud
-  - ?? Raspberry PI
 - Dividend simulator
+
+## TODO
+- Fix tracking dashboard for the weekend
+
+## MVP
+- Automatic configuration
+- CICD pipeline
+- Make sure that requirements file is correct

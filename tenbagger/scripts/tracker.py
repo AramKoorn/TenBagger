@@ -8,27 +8,19 @@ import datetime
 def track(config):
 
     total = []
-    date = pd.to_datetime(datetime.datetime.now().date())
-    weekday = datetime.datetime.today().weekday()
-
-    # If it's weekend set day to Friday
-    if (weekday == 6):
-        date -= datetime.timedelta(2)
-    if (weekday == 5):
-        date -= datetime.timedelta(1)
-
-    prev_date = date - datetime.timedelta(1)
 
     for sector in config:
+
+        # Get sector
         s = config[sector]
 
         res = []
         for ind, ticker in tqdm(s.items()):
-            history = yf.Ticker(ticker).history(period='7d')
+            history = yf.Ticker(ticker).history(period='2d')
 
             try:
                 close = history.Close[-1]
-                prev_close = history.query('Date == @prev_date').Close[0]
+                prev_close = history.Close[0]
                 change = round((close - prev_close) / prev_close * 100, 2)
             except:
                 change = None
@@ -40,3 +32,11 @@ def track(config):
         total.append(df)
 
     return pd.concat(total, axis=1)
+
+
+if __name__ == "__main__":
+    pd.set_option("expand_frame_repr", False)
+
+    with open(r'configs/trackers.yaml') as file:
+        config = yaml.load(file, Loader=yaml.FullLoader)
+    track(config)
