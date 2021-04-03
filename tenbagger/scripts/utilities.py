@@ -28,7 +28,12 @@ class Converter:
         assert isinstance(df, pd.DataFrame)
 
     def _convert(self, currency="EUR", col_ind=None, col_currency=None):
-        pass
+
+        c = CurrencyRates()
+        self.df['factor'] = self.df[col_ind].apply(lambda x: c.get_rate(x, currency))
+        self.df['value'] = self.df.factor * self.df[col_currency]
+        self.df[col_ind] = currency
+        del self.df['factor']
 
 
 if __name__ == "__main__":
