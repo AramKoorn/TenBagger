@@ -2,7 +2,6 @@ import yfinance as yf
 import yaml
 from tqdm import tqdm
 import pandas as pd
-import datetime
 
 
 def track(config):
@@ -34,9 +33,9 @@ def track(config):
     return pd.concat(total, axis=1)
 
 
-if __name__ == "__main__":
-    pd.set_option("expand_frame_repr", False)
-
-    with open(r'configs/trackers.yaml') as file:
-        config = yaml.load(file, Loader=yaml.FullLoader)
-    track(config)
+# if __name__ == "__main__":
+#     pd.set_option("expand_frame_repr", False)
+#
+#     with open(r'configs/trackers.yaml') as file:
+#         config = yaml.load(file, Loader=yaml.FullLoader)
+#     track(config)
