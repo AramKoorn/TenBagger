@@ -3,7 +3,7 @@ import yaml
 import pandas as pd
 import datetime
 from pyfiglet import Figlet
-from tenbagger.scripts.utilities import Ticker
+from tenbagger.scripts.utilities import Ticker, read_yaml, Converter
 from forex_python.converter import CurrencyRates
 
 
@@ -11,6 +11,8 @@ class Portfolio:
     def __init__(self, portfolio):
         self.portfolio = portfolio
         assert isinstance(self.portfolio, dict)
+        self.env = read_yaml('configs/environment.yaml')
+        self.df = None
 
     def _check_valid(self):
 
@@ -43,7 +45,6 @@ class Portfolio:
             res.append(df)
 
         df = pd.concat(res)
-        df['value'] = df.price * df.amount
 
         # Query from object
         self.stocks = df
@@ -56,6 +57,12 @@ class Portfolio:
         self._check_valid()
 
         df = pd.concat([self.stocks, None])
+
+        # Convert to desired currency
+        Converter(df)._convert(currency=self.env["CURRENCY"], col_ind='currency', col_currency='price')
+        df['value'] = df.price * df.amount
+
+        # Caclulate percentage
         df['percentage'] = df.value / df.value.sum()
 
         # Formatting
@@ -63,8 +70,18 @@ class Portfolio:
         df = df.sort_values('value', ascending=False)
 
         df["dividends"] = df["yield"] * df.price * df.amount
+        self.df = df
 
         return df
+
+    def _print_portfolio(self):
+        if self.df is None:
+            port = read_yaml('configs/portfolio.yaml')[f'{self.env["MAINPORTFOLIO"]}']
+            df = Portfolio(port).unification()
+
+        print(df)
+        print(f'Total Value Portfolio: {round(df.value.sum(), 2)} {self.env["CURRENCY"]}')
+        print(f'Yearly Dividends: {df.dividends.sum()} {self.env["CURRENCY"]}')
 
 
 if __name__ == "__main__":
@@ -75,10 +92,8 @@ if __name__ == "__main__":
     with open(r'configs/portfolio.yaml') as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
 
+    port = config['aram']
     pd.set_option("expand_frame_repr", False)
 
-    port = Portfolio(config['portfolio_aram'])
-    df = port.unification()
-    print(df)
-    print(f'Total Value Portfolio: {df.value.sum()}')
-    print(f'Yearly Dividends: {df.dividends.sum()}')
+    Portfolio(port)._print_portfolio()
+

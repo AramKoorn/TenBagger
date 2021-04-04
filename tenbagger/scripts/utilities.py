@@ -1,6 +1,7 @@
 import yfinance as yf
 import pandas as pd
 from forex_python.converter import CurrencyRates
+import yaml
 
 
 class Ticker:
@@ -31,9 +32,15 @@ class Converter:
 
         c = CurrencyRates()
         self.df['factor'] = self.df[col_ind].apply(lambda x: c.get_rate(x, currency))
-        self.df['value'] = self.df.factor * self.df[col_currency]
+        self.df[col_currency] = self.df.factor * self.df[col_currency]
         self.df[col_ind] = currency
         del self.df['factor']
+
+
+def read_yaml(loc):
+
+    with open(f'{loc}') as file:
+        return yaml.load(file, Loader=yaml.FullLoader)
 
 
 if __name__ == "__main__":
@@ -43,6 +50,3 @@ if __name__ == "__main__":
     #przint(t.info)
     t.history_prices(['7d', '1mo', '2mo', '6mo', '1y'])
     print(t.last_price())
-
-
-     
