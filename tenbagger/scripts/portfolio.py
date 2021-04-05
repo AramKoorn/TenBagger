@@ -76,6 +76,5 @@ class Portfolio:
 
 
 if __name__ == "__main__":
-
     Portfolio()._print_portfolio()
 

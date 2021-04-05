@@ -3,7 +3,6 @@ from tenbagger.version import __version__
 from tenbagger.scripts.candlestick import candlestick
 from tenbagger.scripts.utilities import read_yaml
 from pyfiglet import Figlet
-import yaml
 import pandas as pd
 
 
