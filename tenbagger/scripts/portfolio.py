@@ -1,25 +1,22 @@
 import yfinance as yf
-import yaml
 import pandas as pd
 import datetime
-from pyfiglet import Figlet
 from tenbagger.scripts.utilities import Ticker, read_yaml, Converter
-from forex_python.converter import CurrencyRates
 
 
 class Portfolio:
-    def __init__(self, portfolio):
-        self.portfolio = portfolio
-        assert isinstance(self.portfolio, dict)
+    def __init__(self, name_port=None):
+        self.name_port = name_port
+        self.portfolio = self._select()
         self.env = read_yaml('configs/environment.yaml')
-        self.df = None
 
-    def _check_valid(self):
+    def _select(self):
+        if self.name_port is None:
+            portfolio = None
+        else:
+            portfolio = read_yaml('configs/portfolio.yaml')[self.name_port]
 
-        for value in self.portfolio.values():
-            assert isinstance(value, (float, int))
-
-        pass
+        return portfolio
 
     def get_portfolio(self):
 
@@ -44,20 +41,13 @@ class Portfolio:
 
             res.append(df)
 
-        df = pd.concat(res)
-
-        # Query from object
-        self.stocks = df
-
-        return df
+        self.df = pd.concat(res)
 
     def unification(self):
 
         self.get_portfolio()
-        self._check_valid()
 
-        df = pd.concat([self.stocks, None])
-
+        df = self.df
         # Convert to desired currency
         Converter(df)._convert(currency=self.env["CURRENCY"], col_ind='currency', col_currency='price')
         df['value'] = df.price * df.amount
@@ -72,28 +62,20 @@ class Portfolio:
         df["dividends"] = df["yield"] * df.price * df.amount
         self.df = df
 
-        return df
-
     def _print_portfolio(self):
-        if self.df is None:
-            port = read_yaml('configs/portfolio.yaml')[f'{self.env["MAINPORTFOLIO"]}']
-            df = Portfolio(port).unification()
+        if self.name_port is None:
+            self.name_port = self.env["MAINPORTFOLIO"]
+            self.portfolio = self._select()
 
-        print(df)
-        print(f'Total Value Portfolio: {round(df.value.sum(), 2)} {self.env["CURRENCY"]}')
-        print(f'Yearly Dividends: {df.dividends.sum()} {self.env["CURRENCY"]}')
+        # Get portfolio
+        self.unification()
+
+        print(self.df)
+        print(f'Total Value Portfolio: {round(self.df.value.sum(), 2)} {self.env["CURRENCY"]}')
+        print(f'Yearly Dividends: {round(self.df.dividends.sum(), 2)} {self.env["CURRENCY"]}')
 
 
 if __name__ == "__main__":
 
-    f = Figlet(font='slant')
-    print(f.renderText('Portfolio'))
-
-    with open(r'configs/portfolio.yaml') as file:
-        config = yaml.load(file, Loader=yaml.FullLoader)
-
-    port = config['aram']
-    pd.set_option("expand_frame_repr", False)
-
-    Portfolio(port)._print_portfolio()
+    Portfolio()._print_portfolio()
 

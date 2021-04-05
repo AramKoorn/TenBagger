@@ -1,6 +1,7 @@
 import argparse
 from tenbagger.version import __version__
 from tenbagger.scripts.candlestick import candlestick
+from tenbagger.scripts.utilities import read_yaml
 from pyfiglet import Figlet
 import yaml
 import pandas as pd
@@ -32,17 +33,8 @@ def main():
         f = Figlet(font='slant')
         print(f.renderText('Portfolio'))
 
-        with open(r'configs/portfolio.yaml') as file:
-            config = yaml.load(file, Loader=yaml.FullLoader)
-
-        pd.set_option("expand_frame_repr", False)
-
-        port = Portfolio(config[args.portfolio])
-        df = port.unification()
-        print(df)
-        print(f'Total Value Portfolio: {df.value.sum()}')
-        print(f'Yearly Dividends: {df.dividends.sum()}')
-
+        # Print out portfolio
+        Portfolio(args.portfolio)._print_portfolio()
 
     if args.tracker:
         from tenbagger.dashboard.trackerdash import main
