@@ -1,5 +1,5 @@
 # TenBagger
-A Command Line Interface (CLI) to analyse your portfolio, stocks and crypto. This library uses the Yahoo finance API so you need to use the same ticker symbols as on Yahoo Finance.
+A Command Line Interface (CLI) to analyse your portfolio, stocks and crypto. Find your next TenBagger inside your terminal. This library uses the Yahoo finance API so you need to use the same ticker symbols as on Yahoo Finance.
 
 ## Usage
 Candlestick chart
@@ -34,14 +34,12 @@ pip3 install .
 
 ## Improvements
 - add unit tests
-- Fix dashboard for mondays
 - Portfolio should take <1 second
 - Portfolio over time
 - Key Metrics
 - Update portfolio using CLI
 - Nice terminal colors for printing
 - Import the configs
-- portfolio show per sector
 - make test to run everything in CLI and just check if it works
 
 ## Roadmap
@@ -51,12 +49,14 @@ pip3 install .
 - SQL database to store portfolio over time
 - Automatic notification for a specific stock
 - Dividend simulator
+- Mobile App
+- Be able to connect to your portfolio from different devices
 
 ## TODO
-- Fix tracking dashboard for the weekend
-- Utility function to import configs
+- telegram price alerts
 
 ## MVP
 - Automatic configuration
+- configuration file
 - CICD pipeline
 - Make sure that requirements file is correct
