@@ -6,7 +6,6 @@ def prGreen(skk):
     print("\033[92m {}\033[00m" .format(skk))
 
 
-
 def format_insiders(ticker):
 
     url = f'http://openinsider.com/search?q={ticker}'

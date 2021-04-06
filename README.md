@@ -73,3 +73,4 @@ pip3 install .
 - CICD pipeline
 - Make sure that requirements file is correct
   - Test from docker container
+- Config files should be moved to a hidden folder
