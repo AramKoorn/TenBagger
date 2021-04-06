@@ -4,6 +4,9 @@ from tenbagger.scripts.candlestick import candlestick
 from tenbagger.scripts.utilities import read_yaml
 from pyfiglet import Figlet
 import pandas as pd
+from tenbagger.notify.price_target import NotifyPriceTarget
+from tenbagger.notify.insider_activity import NotifyInsider
+from tenbagger.scripts.utilities import read_yaml
 
 
 def main():
@@ -22,7 +25,17 @@ def main():
     parser.add_argument("--tracker", action="store_true")
     parser.add_argument("--hoi", action="store_true")
     parser.add_argument('-v', "--version", action="version", version="%(prog)s {}".format(__version__))
+
+    # Notifier
+    parser.add_argument("--notify", action="store_true")
+
     args = parser.parse_args()
+
+    if args.notify:
+        port = list(read_yaml('configs/portfolio.yaml').keys())
+        NotifyInsider().notify_portfolio(port)
+        NotifyPriceTarget().notify_high()
+        NotifyPriceTarget().notify_low()
 
     if args.portfolio:
 
