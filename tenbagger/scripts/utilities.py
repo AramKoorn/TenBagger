@@ -2,6 +2,7 @@ import yfinance as yf
 import pandas as pd
 from forex_python.converter import CurrencyRates
 import yaml
+import numpy as np
 
 
 class Ticker:
@@ -21,6 +22,29 @@ class Ticker:
 
         # Dictionary returning the dates
         return {date: self.ticker.history(date).Close[0] for i, date in enumerate(dates)}
+
+    def overview(self):
+
+        info = self.ticker.info
+
+        overview = {'price': self.last_price(),
+         "MarketCap": info['marketCap'],
+         'Shares Outstanding': info['sharesOutstanding'],
+         'Dividend Yield': info['dividendYield'],
+         'trailingAnnualDividendYield': info['trailingAnnualDividendYield'],
+         'Short Percentage of Float': info["shortPercentOfFloat"],
+         "Trailing EPS": info['trailingEps'],
+         '52 week low': info['fiftyTwoWeekLow'],
+         '52 week High': info['fiftyTwoWeekHigh'],
+         'heldPercentInsiders': info['heldPercentInsiders'],
+         'earningsQuarterlyGrowth': info['earningsQuarterlyGrowth']
+         }
+
+        overview = pd.DataFrame(list(zip(overview.keys(), overview.values())), columns=['Description', 'Value'])
+        overview["Value"] = np.round(overview["Value"], 3)
+        overview["Value"] = overview.Value.apply(lambda x: "{:,}".format(x))
+
+        return overview
 
 
 class Converter:
@@ -50,3 +74,4 @@ if __name__ == "__main__":
     #przint(t.info)
     t.history_prices(['7d', '1mo', '2mo', '6mo', '1y'])
     print(t.last_price())
+    t.overview()

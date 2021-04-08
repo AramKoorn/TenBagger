@@ -4,9 +4,6 @@ from tenbagger.scripts.candlestick import candlestick
 from tenbagger.scripts.utilities import read_yaml
 from pyfiglet import Figlet
 import pandas as pd
-from tenbagger.notify.price_target import NotifyPriceTarget
-from tenbagger.notify.insider_activity import NotifyInsider
-from tenbagger.scripts.utilities import read_yaml
 
 
 def main():
@@ -29,9 +26,21 @@ def main():
     # Notifier
     parser.add_argument("--notify", action="store_true")
 
+    # Overview
+    parser.add_argument("--overview")
+
     args = parser.parse_args()
 
+    if args.overview:
+        from tenbagger.scripts.utilities import Ticker
+
+        print(Ticker(args.overview).overview())
+
     if args.notify:
+        from tenbagger.notify.price_target import NotifyPriceTarget
+        from tenbagger.notify.insider_activity import NotifyInsider
+        from tenbagger.scripts.utilities import read_yaml
+
         port = list(read_yaml('configs/portfolio.yaml').keys())
         NotifyInsider().notify_portfolio(port)
         NotifyPriceTarget().notify_high()

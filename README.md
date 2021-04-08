@@ -66,6 +66,7 @@ pip3 install .
   - Notify interesting insider buying
   - When there is insider activity for a stock that is in portfolio/watchlist
 - https://www.reddit.com/r/wallstreetbets/comments/mkpdr9/i_built_a_tool_for_us_to_track_us_representatives/ 
+- query summary (price, marketcap, yield, shared outstanding)
 
 ## MVP
 - Automatic configuration
