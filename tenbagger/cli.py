@@ -23,6 +23,9 @@ def main():
     parser.add_argument("--hoi", action="store_true")
     parser.add_argument('-v', "--version", action="version", version="%(prog)s {}".format(__version__))
 
+    # Dividends
+    parser.add_argument("--dividend")
+
     # Notifier
     parser.add_argument("--notify", action="store_true")
 
@@ -30,6 +33,14 @@ def main():
     parser.add_argument("--overview")
 
     args = parser.parse_args()
+
+    if args.dividend:
+        from tenbagger.dividends.div import DividendsPortfolio
+        from tenbagger.scripts.utilities import read_yaml
+        portfolio = read_yaml('configs/portfolio.yaml')[args.dividend]
+        df = DividendsPortfolio(portfolio).calculate()
+        print(df.groupby(['month', 'year']).Dividends.sum().reset_index())
+        print(f"Total dividends: {df.Dividens.sum()}")
 
     if args.overview:
         from tenbagger.scripts.utilities import Ticker

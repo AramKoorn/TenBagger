@@ -46,6 +46,10 @@ class Ticker:
 
         return overview
 
+    # This should be faster
+    def get_currency(self):
+        return self.ticker.info['currency']
+
 
 class Converter:
     def __init__(self, df):
