@@ -1,14 +1,14 @@
 import argparse
 from tenbagger.version import __version__
 from tenbagger.scripts.candlestick import candlestick
-from tenbagger.scripts.utilities import read_yaml
+from tenbagger.scripts.utilities import read_yaml, order_by_month
 from pyfiglet import Figlet
 import pandas as pd
 
 
 def main():
     parser = argparse.ArgumentParser(description="CLI interface for Stock Data",
-                                     epilog="Homepage: https://github.com/rahiel/telegram-send")
+                                     epilog="Homepage: https://github.com/AramKoorn/TenBagger")
 
     # Portfolio
     parser.add_argument("--portfolio")
@@ -39,8 +39,8 @@ def main():
         from tenbagger.scripts.utilities import read_yaml
         portfolio = read_yaml('configs/portfolio.yaml')[args.dividend]
         df = DividendsPortfolio(portfolio).calculate()
-        print(df.groupby(['month', 'year']).Dividends.sum().reset_index())
-        print(f"Total dividends: {df.Dividens.sum()}")
+        print(order_by_month(df.groupby(['month', 'year']).Dividends.sum().reset_index(), col='month'))
+        print(f"Total dividends: {df.Dividends.sum()}")
 
     if args.overview:
         from tenbagger.scripts.utilities import Ticker

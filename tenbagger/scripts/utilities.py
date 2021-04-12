@@ -3,6 +3,7 @@ import pandas as pd
 from forex_python.converter import CurrencyRates
 import yaml
 import numpy as np
+import datetime
 
 
 class Ticker:
@@ -69,6 +70,17 @@ def read_yaml(loc):
 
     with open(f'{loc}') as file:
         return yaml.load(file, Loader=yaml.FullLoader)
+
+
+def order_by_month(df, col):
+
+    # Create mapping dictionary
+    mp = {datetime.date(1900, month, 1).strftime('%B'): i for i, month in enumerate(range(1, 13))}
+    df['order'] = df[col].map(mp)
+    df = df.sort_values('order')
+    del df['order']
+
+    return df
 
 
 if __name__ == "__main__":
