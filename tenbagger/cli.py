@@ -40,7 +40,7 @@ def main():
         portfolio = read_yaml('configs/portfolio.yaml')[args.dividend]
         df = DividendsPortfolio(portfolio).calculate()
         print(df.groupby(['month', 'year']).Dividends.sum().reset_index())
-        print(f"Total dividends: {df.Dividens.sum()}")
+        print(f"Total dividends: {df.Dividends.sum()}")
 
     if args.overview:
         from tenbagger.scripts.utilities import Ticker

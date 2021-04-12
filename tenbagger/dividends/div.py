@@ -70,6 +70,7 @@ class DividendsPortfolio:
                 res[ticker] = df
 
         df = pd.concat(res).reset_index()
+        df = df.sort_values("month")
         df['month'] = df.month.apply(lambda x: datetime.date(1900, x, 1).strftime('%B'))
         df = df[['level_0', "Dividends", 'Date', 'month', 'year']].rename(columns={'level_0': 'ticker'}).copy()
 
