@@ -38,7 +38,8 @@ class Ticker:
          '52 week low': info['fiftyTwoWeekLow'],
          '52 week High': info['fiftyTwoWeekHigh'],
          'heldPercentInsiders': info['heldPercentInsiders'],
-         'earningsQuarterlyGrowth': info['earningsQuarterlyGrowth']
+         'earningsQuarterlyGrowth': info['earningsQuarterlyGrowth'],
+         'priceToSalesTrailing12Months': info['priceToSalesTrailing12Months']
          }
 
         overview = pd.DataFrame(list(zip(overview.keys(), overview.values())), columns=['Description', 'Value'])
