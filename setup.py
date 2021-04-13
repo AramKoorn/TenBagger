@@ -12,7 +12,7 @@ setup(name='tenbaggger',
       version=__version__,
       url="https://github.com/AramKoorn/TenBagger",
       py_modules=["tenbagger"],
-      entry_points={"console_scripts": ["tenbagger=tenbagger.terminal:main"]},
+      entry_points={"console_scripts": ["tenbagger=tenbagger.cli:main"]},
       description='test',
       install_requires=[
           "yfinance",
