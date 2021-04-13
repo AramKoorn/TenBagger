@@ -37,9 +37,13 @@ def main():
     if args.dividend:
         from tenbagger.dividends.div import DividendsPortfolio
         from tenbagger.scripts.utilities import read_yaml
+        from tenbagger.terminal.utils import TermPlots
+
         portfolio = read_yaml('configs/portfolio.yaml')[args.dividend]
         df = DividendsPortfolio(portfolio).calculate()
-        print(order_by_month(df.groupby(['month', 'year']).Dividends.sum().reset_index(), col='month'))
+        df = order_by_month(df.groupby(['month', 'year']).Dividends.sum().reset_index(), col='month')
+        del df['year']
+        TermPlots(df).plot_bar()
         print(f"Total dividends: {df.Dividends.sum()}")
 
     if args.overview:

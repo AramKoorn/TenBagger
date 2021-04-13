@@ -12,7 +12,7 @@ setup(name='tenbaggger',
       version=__version__,
       url="https://github.com/AramKoorn/TenBagger",
       py_modules=["tenbagger"],
-      entry_points={"console_scripts": ["tenbagger=tenbagger.cli:main"]},
+      entry_points={"console_scripts": ["tenbagger=tenbagger.terminal:main"]},
       description='test',
       install_requires=[
           "yfinance",
@@ -32,7 +32,8 @@ setup(name='tenbaggger',
           'dash-bootstrap-components',
           "tqdm==4.59.0",
           "forex-python==1.5",
-          "python-telegram-bot"],
+          "python-telegram-bot",
+          "termgraph"],  # Maybe fork and modify
       author='Aram Koorn',
       packages=find_packages(),
       zip_safe=False)

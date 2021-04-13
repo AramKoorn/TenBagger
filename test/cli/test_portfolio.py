@@ -3,6 +3,9 @@ import subprocess
 
 
 def test_portfolio():
+
+    args = {'portfolio': 'aram'}
+
     Portfolio()._print_portfolio()
     
 
