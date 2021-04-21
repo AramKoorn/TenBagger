@@ -2,6 +2,7 @@ import yfinance as yf
 import pandas as pd
 import datetime
 from tenbagger.scripts.utilities import Ticker, read_yaml, Converter
+from tqdm import tqdm
 
 
 class Portfolio:
@@ -23,7 +24,7 @@ class Portfolio:
         res = []
         day = datetime.date.today()
 
-        for ticker in self.portfolio:
+        for ticker in tqdm(self.portfolio):
             t = yf.Ticker(ticker)
             df = pd.DataFrame()
             df['date'] = [day]
