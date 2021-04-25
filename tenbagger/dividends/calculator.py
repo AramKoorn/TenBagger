@@ -62,7 +62,7 @@ class DividendCalculator:
 
             df['dripping'] = np.where(df.monthly_dividend > 0, df.monthly_dividend / df.price, 0)
             df['amount'] += df['adding_shares'] + df['dripping']
-            yearly_div += df['dripping'].sum()
+            yearly_div += df['monthly_dividend'].sum()
 
             if month == 12:
                 print(f'Yearly divdend: {yearly_div}')
@@ -79,7 +79,4 @@ if __name__ == "__main__":
     pd.set_option('expand_frame_repr', False)
 
     d = DividendCalculator(port='aram')
-    d.calulate_dividends(n=240, growth=0, monthly_payment=1000, only_dividend_stocks=False)
-    d.calulate_distribution()
-
-
+    d.calulate_dividends(n=120, growth=0, monthly_payment=1200, only_dividend_stocks=True)
