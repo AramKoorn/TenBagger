@@ -39,7 +39,8 @@ class Ticker:
          '52 week High': info['fiftyTwoWeekHigh'],
          'heldPercentInsiders': info['heldPercentInsiders'],
          'earningsQuarterlyGrowth': info['earningsQuarterlyGrowth'],
-         'priceToSalesTrailing12Months': info['priceToSalesTrailing12Months']
+         'priceToSalesTrailing12Months': info['priceToSalesTrailing12Months'],
+         "Fair Value": 100 * (info['dividendYield'] * self.last_price()) / info['fiveYearAvgDividendYield']
          }
 
         overview = pd.DataFrame(list(zip(overview.keys(), overview.values())), columns=['Description', 'Value'])
@@ -85,7 +86,7 @@ def order_by_month(df, col):
 
 
 if __name__ == "__main__":
-    ticker = "IBM"
+    ticker = "mo"
     t = Ticker(ticker)
 
     #przint(t.info)
