@@ -3,6 +3,7 @@ import yfinance as yf
 import datetime
 import pandas as pd
 from tqdm import tqdm
+import numpy as np
 
 
 class Portfolio:
@@ -64,11 +65,15 @@ class Portfolio:
         df['percentage'] = df.value / df.value.sum()
 
         # Formatting
-
         df['percentage'] = df.percentage.apply(lambda x: "{:.2%}".format(x))
         df = df.sort_values('value', ascending=False)
 
         df["dividends"] = df["yield"] * df.price * df.amount
+
+        # Is always true for now
+        if 'passive_income' not in list(df):
+            df['passive_income'] = df['dividends']
+
         self.df = df
 
 
