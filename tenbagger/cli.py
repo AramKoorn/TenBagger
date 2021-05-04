@@ -65,6 +65,8 @@ def main():
 
         # Clean this up
         from tenbagger.portfolio.crypto import Crypto
+        from tenbagger.terminal.utils import TermPlots
+
         pd.set_option("expand_frame_repr", False)
 
         f = Figlet(font='slant')
@@ -77,7 +79,8 @@ def main():
         print(port.df.drop(columns=['circulatingSupply', 'type']))
 
         # Print portfolio
-        print(make_percentage(port.df.groupby('sector').value.sum().reset_index(), 'value', 'sector'))
+        by_secor = make_percentage(port.df.groupby('sector').value.sum().reset_index(), 'value', 'sector')
+        TermPlots(by_secor[['sector', 'value']]).plot_bar()
 
         # Print total value
         print(f'Total value of portfolio: {port.df.value.sum()}')
