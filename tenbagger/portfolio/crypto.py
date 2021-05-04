@@ -2,6 +2,7 @@ from tenbagger.portfolio.core import Portfolio
 import pandas as pd
 from tenbagger.scripts.utilities import read_yaml
 import numpy as np
+from tenbagger.scripts.utilities import make_percentage
 
 
 class Crypto(Portfolio):
