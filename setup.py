@@ -33,6 +33,7 @@ setup(name='tenbaggger',
           "tqdm==4.59.0",
           "forex-python==1.5",
           "python-telegram-bot",
+          "typeguard==2.12.0",
           "termgraph"],  # Maybe fork and modify
       author='Aram Koorn',
       packages=find_packages(),

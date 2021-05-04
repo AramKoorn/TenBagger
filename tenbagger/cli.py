@@ -1,7 +1,7 @@
 import argparse
 from tenbagger.version import __version__
 from tenbagger.scripts.candlestick import candlestick
-from tenbagger.scripts.utilities import read_yaml, order_by_month
+from tenbagger.scripts.utilities import read_yaml, order_by_month, make_percentage
 from pyfiglet import Figlet
 import pandas as pd
 
@@ -64,13 +64,23 @@ def main():
     if args.portfolio:
 
         # Clean this up
-        from tenbagger.scripts.portfolio import Portfolio
+        from tenbagger.portfolio.crypto import Crypto
+        pd.set_option("expand_frame_repr", False)
 
         f = Figlet(font='slant')
         print(f.renderText('Portfolio'))
 
         # Print out portfolio
-        Portfolio(args.portfolio)._print_portfolio()
+        port = Crypto(args.portfolio)
+        port.unification()
+        port.staking_rewards()
+        print(port.df.drop(columns=['circulatingSupply', 'type']))
+
+        # Print portfolio
+        print(make_percentage(port.df.groupby('sector').value.sum().reset_index(), 'value', 'sector'))
+
+        # Print total value
+        print(f'Total value of portfolio: {port.df.value.sum()}')
 
     if args.tracker:
         from tenbagger.dashboard.trackerdash import main

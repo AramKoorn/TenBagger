@@ -8,27 +8,18 @@ aram:
              "MRK": 22,
              "KMI": 80,
              "SPCE": 25,
-             "DOT1-USD": 28.24,
+             "DOT1-USD": 40,
              "WPC": 30,
              "AHH": 20,
              "GNL": 15,
              "VZ": 30,
              "PFE": 20,
-             "MO": 1
+             "MO": 11,
+             "ALGO-EUR": 732
+             
           }
 
-hyp: 
-          {
-             "ABBV": 17,
-             "T": 132,
-             "IBM": 56,
-             "BLOK": 5.31,
-             "2LY.F": 11600, 
-             "U": 16,
-             "ETH-USD": 2.26,
-             "MRK": 3,
-             "KMI": 80,
-             "SPCE": 25,
-             "DOT1-USD": 16.51,
-             "WPC": 15
-          }
+testing:
+  "ETH-USD": 2.26
+  "ALGO-EUR": 280
+  "IBM": 56
