@@ -22,14 +22,7 @@ Candlestick chart
 ```
 tenbagger --candle --ticker IBM --period 700d --interval 1d
 ```
-Insider Purchases for a specific stock
-```
 
-```
-Insider selling
-```
-
-```
 ## Installation
 python3 setup.py install
 pip3 install .
@@ -51,14 +44,14 @@ pip3 install .
 - make test to run everything in CLI and just check if it works
 
 ## Roadmap
-- Think about proper unit tests for Dash
 - Create docker image
 - CI/CD pipeline
 - SQL database to store portfolio over time
-- Automatic notification for a specific stock
 - Dividend simulator
+  - In CLI
+  - downloable report 
 - Mobile App
-- Be able to connect to your portfolio from different devices
+- cross platform
 - WSB word cloud
 - twitter word cloud
 - Notifications
@@ -74,3 +67,4 @@ pip3 install .
 - Make sure that requirements file is correct
   - Test from docker container
 - Config files should be moved to a hidden folder
+- Documentation
