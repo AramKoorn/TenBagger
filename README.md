@@ -33,6 +33,9 @@ pip3 install .
 - Candlestick charts of historical price data
 - Volume daytrading past 10 days (check if this works for crypto)
 
+## FIXES
+- Fix traling dividend yield for non-dividend stocks
+
 ## Improvements
 - add unit tests
 - Portfolio should take <1 second
