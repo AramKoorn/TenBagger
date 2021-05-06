@@ -1,9 +1,8 @@
-from tenbagger.scripts.utilities import read_yaml, Ticker, Converter, make_percentage
 import yfinance as yf
-import datetime
 import pandas as pd
+import datetime
+from tenbagger.src.utils.utilities import Ticker, read_yaml, Converter
 from tqdm import tqdm
-import numpy as np
 
 
 class Portfolio:
@@ -32,21 +31,14 @@ class Portfolio:
             df['ticker'] = [ticker]
 
             info = t.info
-            df['price'] = Ticker(ticker).last_price()
+            df['price'] = Ticker(ticker).last_price() 
             df['amount'] = [self.portfolio[ticker]]
             df["currency"] = info["currency"]
-            df['circulatingSupply'] = info['circulatingSupply']
-            df['type'] = info['quoteType']
 
             if info["dividendYield"]:
                 df["yield"] = info["dividendYield"]
             else:
                 df["yield"] = None
-
-            try:
-                df['sector'] = info['sector']
-            except:
-                df['sector'] = 'Crypto'
 
             res.append(df)
 
@@ -69,17 +61,21 @@ class Portfolio:
         df = df.sort_values('value', ascending=False)
 
         df["dividends"] = df["yield"] * df.price * df.amount
-
-        # Is always true for now
-        if 'passive_income' not in list(df):
-            df['passive_income'] = df['dividends']
-
         self.df = df
+
+    def _print_portfolio(self):
+        if self.name_port is None:
+            self.name_port = self.env["MAINPORTFOLIO"]
+            self.portfolio = self._select()
+
+        # Get portfolio
+        self.unification()
+
+        print(self.df)
+        print(f'Total Value Portfolio: {round(self.df.value.sum(), 2)} {self.env["CURRENCY"]}')
+        print(f'Yearly Dividends: {round(self.df.dividends.sum(), 2)} {self.env["CURRENCY"]}')
 
 
 if __name__ == "__main__":
-    pd.set_option("expand_frame_repr", False)
-    d = Portfolio('aram')
-    d.unification()
-    print(d.df)
-    make_percentage(df=d.df, value='value', groupby='sector')
+    Portfolio()._print_portfolio()
+

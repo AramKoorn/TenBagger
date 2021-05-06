@@ -1,4 +1,4 @@
-from tenbagger.scripts.utilities import read_yaml
+from tenbagger.src.utils.utilities import read_yaml
 
 
 def test_read_yaml():

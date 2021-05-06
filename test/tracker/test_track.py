@@ -1,4 +1,4 @@
-from tenbagger.scripts.tracker import track
+from tenbagger.src.scripts.tracker import track
 
 
 def test_tracker():

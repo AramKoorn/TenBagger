@@ -33,23 +33,13 @@ def candlestick(ticker="HITIF", period="365d", interval='1d'):
                                              low=hist.Low,
                                              close=hist.Close)])
 
+    fig.update_layout(
+        title=f'Ticker: {ticker}'
+    )
+
     fig.show()
-
-
-    pass
 
 
 if __name__ == "__main__":
 
-    f = Figlet(font='slant')
-    print(f.renderText('CandleStick'))
-
-    parser = argparse.ArgumentParser(description='Query Information of a Ticker.')
-    parser.add_argument('Ticker', metavar='T', help='Ticker Symbol')
-    parser.add_argument('Period', metavar='period', nargs="?",  help='Time period')
-    parser.add_argument('Interval', metavar='interval', nargs="?",  help='Time interval')
-    args = parser.parse_args()
-
-    pd.set_option("expand_frame_repr", False)
-
-    candlestick(ticker=args.Ticker, period=args.Period, interval=args.Interval)
+    candlestick(ticker="HITIF", period="365d", interval='1d')

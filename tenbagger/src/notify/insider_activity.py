@@ -1,5 +1,5 @@
-from tenbagger.scripts.insiders import format_insiders
-from tenbagger.scripts.utilities import read_yaml
+from tenbagger.src.scripts.insiders import format_insiders
+from tenbagger.src.utils.utilities import read_yaml
 import pandas as pd
 import subprocess
 

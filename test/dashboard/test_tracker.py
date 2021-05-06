@@ -1,5 +1,5 @@
 import pytest
-from tenbagger.scripts.tracker import track 
+from tenbagger.src.scripts.tracker import track
 import yaml
 
 

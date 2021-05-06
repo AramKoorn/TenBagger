@@ -2,7 +2,7 @@ import dash
 import dash_html_components as html
 import pandas as pd
 import dash_table
-from tenbagger.scripts.tracker import track
+from tenbagger.src.scripts.tracker import track
 import yaml
 
 

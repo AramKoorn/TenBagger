@@ -33,9 +33,6 @@ pip3 install .
 - Candlestick charts of historical price data
 - Volume daytrading past 10 days (check if this works for crypto)
 
-## FIXES
-- Fix traling dividend yield for non-dividend stocks
-
 ## Improvements
 - add unit tests
 - Portfolio should take <1 second
@@ -57,11 +54,6 @@ pip3 install .
 - cross platform
 - WSB word cloud
 - twitter word cloud
-- Notifications
-  - Notify when reaching price target
-  - Notify interesting insider buying
-  - When there is insider activity for a stock that is in portfolio/watchlist
-- https://www.reddit.com/r/wallstreetbets/comments/mkpdr9/i_built_a_tool_for_us_to_track_us_representatives/ 
 
 ## MVP
 - Automatic configuration

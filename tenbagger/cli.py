@@ -1,7 +1,6 @@
 import argparse
 from tenbagger.version import __version__
-from tenbagger.scripts.candlestick import candlestick
-from tenbagger.scripts.utilities import read_yaml, order_by_month, make_percentage
+from tenbagger.src.utils.utilities import order_by_month, make_percentage
 from pyfiglet import Figlet
 import pandas as pd
 
@@ -35,9 +34,9 @@ def main():
     args = parser.parse_args()
 
     if args.dividend:
-        from tenbagger.dividends.div import DividendsPortfolio
-        from tenbagger.scripts.utilities import read_yaml
-        from tenbagger.terminal.utils import TermPlots
+        from tenbagger.src.dividends.div import DividendsPortfolio
+        from tenbagger.src.utils.utilities import read_yaml
+        from tenbagger.src.terminal.utils import TermPlots
 
         portfolio = read_yaml('configs/portfolio.yaml')[args.dividend]
         df = DividendsPortfolio(portfolio).calculate()
@@ -47,14 +46,14 @@ def main():
         print(f"Total dividends: {df.Dividends.sum()}")
 
     if args.overview:
-        from tenbagger.scripts.utilities import Ticker
+        from tenbagger.src.utils.utilities import Ticker
 
         print(Ticker(args.overview).overview())
 
     if args.notify:
-        from tenbagger.notify.price_target import NotifyPriceTarget
-        from tenbagger.notify.insider_activity import NotifyInsider
-        from tenbagger.scripts.utilities import read_yaml
+        from tenbagger.src.notify.price_target import NotifyPriceTarget
+        from tenbagger.src.notify.insider_activity import NotifyInsider
+        from tenbagger.src.utils.utilities import read_yaml
 
         port = list(read_yaml('configs/portfolio.yaml').keys())
         NotifyInsider().notify_portfolio(port)
@@ -64,8 +63,8 @@ def main():
     if args.portfolio:
 
         # Clean this up
-        from tenbagger.portfolio.crypto import Crypto
-        from tenbagger.terminal.utils import TermPlots
+        from tenbagger.src.portfolio.crypto import Crypto
+        from tenbagger.src.terminal import TermPlots
 
         pd.set_option("expand_frame_repr", False)
 
@@ -86,11 +85,11 @@ def main():
         print(f'Total value of portfolio: {port.df.value.sum()}')
 
     if args.tracker:
-        from tenbagger.dashboard.trackerdash import main
+        from tenbagger.src.dashboard.trackerdash import main
         main()
     
     if (args.candle):
-        print(args.ticker)
+        from tenbagger.src.interactive.candlestick import candlestick
         candlestick(ticker=args.ticker, period=args.period, interval=args.interval)
 
     return

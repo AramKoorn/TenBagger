@@ -1,5 +1,5 @@
-from tenbagger.scripts.utilities import read_yaml
-from tenbagger.scripts.utilities import Ticker
+from tenbagger.src.utils.utilities import read_yaml
+from tenbagger.src.utils.utilities import Ticker
 import subprocess
 
 

@@ -1,6 +1,5 @@
 import pandas as pd
-import numpy as np
-from tenbagger.scripts.utilities import Ticker
+from tenbagger.src.utils.utilities import Ticker
 
 
 def clean_insider(df, col):

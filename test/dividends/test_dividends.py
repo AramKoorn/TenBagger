@@ -1,5 +1,5 @@
-from tenbagger.dividends.div import DividendsPortfolio
-from tenbagger.scripts.utilities import order_by_month
+from tenbagger.src.dividends.div import DividendsPortfolio
+from tenbagger.src.utils.utilities import order_by_month
 
 def test_month_order():
     port = {'IBM': 2}

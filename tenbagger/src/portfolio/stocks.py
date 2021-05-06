@@ -1,7 +1,7 @@
 import yfinance as yf
 import pandas as pd
 import datetime
-from tenbagger.scripts.utilities import Ticker, read_yaml, Converter
+from tenbagger.src.utils.utilities import Ticker, read_yaml, Converter
 from tqdm import tqdm
 
 

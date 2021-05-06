@@ -1,9 +1,8 @@
-from tenbagger.scripts.portfolio import Portfolio
-from tenbagger.scripts.utilities import read_yaml
-from tenbagger.dividends.div import Dividends, DividendsPortfolio
+from tenbagger.src.scripts.portfolio import Portfolio
+from tenbagger.src.utils.utilities import read_yaml
+from tenbagger.src.dividends.div import Dividends
 import numpy as np
 from tqdm import tqdm
-import pandas as pd
 
 
 class DividendCalculator:

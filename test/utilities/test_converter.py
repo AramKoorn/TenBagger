@@ -1,5 +1,18 @@
-from tenbagger.scripts.utilities import Converter
+from tenbagger.src.utils.utilities import Converter, Ticker
 import pandas as pd
+import numpy as np
+
+
+def test_fair_value_no_div():
+    ticker = 'sono'
+    overview = Ticker(ticker).overview()
+    assert list(overview.loc[overview.Description == 'fair_value', 'Value'])[0] == 'nan'
+
+
+def test_fair_value_div():
+    ticker = 'ibm'
+    overview = Ticker(ticker).overview()
+    assert list(overview.loc[overview.Description == 'fair_value', 'Value'])[0] != 'nan'
 
 
 def test_converter():

@@ -51,9 +51,16 @@ class Ticker:
          '52 week High': info['fiftyTwoWeekHigh'],
          'heldPercentInsiders': info['heldPercentInsiders'],
          'earningsQuarterlyGrowth': info['earningsQuarterlyGrowth'],
-         'priceToSalesTrailing12Months': info['priceToSalesTrailing12Months'],
-         "Fair Value": 100 * (info['dividendYield'] * self.last_price()) / info['fiveYearAvgDividendYield']
+         'priceToSalesTrailing12Months': info['priceToSalesTrailing12Months']
          }
+
+        # Determine fair value based on dividend
+        try:
+            fair_value = 100 * (info['dividendYield'] * self.last_price()) / info['fiveYearAvgDividendYield']
+        except:
+            fair_value = None
+
+        overview['fair_value'] = fair_value
 
         overview = pd.DataFrame(list(zip(overview.keys(), overview.values())), columns=['Description', 'Value'])
         overview["Value"] = np.round(overview["Value"], 3)

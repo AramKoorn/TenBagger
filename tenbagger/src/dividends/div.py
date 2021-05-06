@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from tenbagger.scripts.utilities import Ticker, Converter, read_yaml
+from tenbagger.src.utils.utilities import Ticker, Converter, read_yaml
 import datetime
 from tqdm import tqdm
 
