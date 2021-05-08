@@ -64,7 +64,7 @@ def main():
 
         # Clean this up
         from tenbagger.src.portfolio.crypto import Crypto
-        from tenbagger.src.terminal import TermPlots
+        from tenbagger.src.terminal.utils import TermPlots
 
         pd.set_option("expand_frame_repr", False)
 
