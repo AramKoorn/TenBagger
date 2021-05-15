@@ -45,6 +45,7 @@ pip3 install .
 
 ## Roadmap
 - Create docker image
+- Make simulation reports
 - CI/CD pipeline
 - SQL database to store portfolio over time
 - Dividend simulator
