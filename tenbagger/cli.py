@@ -77,6 +77,9 @@ def main():
         port.staking_rewards()
         print(port.df.drop(columns=['circulatingSupply', 'type']))
 
+        # Print passive income
+        print(f'\n Total passive income: {port.df.passive_income.sum()} \n')
+
         # Print portfolio
         by_secor = make_percentage(port.df.groupby('sector').value.sum().reset_index(), 'value', 'sector')
         TermPlots(by_secor[['sector', 'value']]).plot_bar()

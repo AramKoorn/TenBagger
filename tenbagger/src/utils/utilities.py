@@ -27,7 +27,7 @@ class Ticker:
         try:
             price = self.ticker.history(period='1d', interval='1m')["Close"].tail(1)[0]
         except:
-            price = self.ticker().tail(1)["Close"][0]
+            price = self.ticker.history().tail(1)["Close"][0]
 
         return price
 
