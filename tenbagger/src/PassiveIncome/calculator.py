@@ -3,6 +3,7 @@ from tenbagger.src.utils.utilities import read_yaml
 from tenbagger.src.dividends.div import Dividends
 import numpy as np
 from tqdm import tqdm
+import os
 
 
 class DividendCalculator:
@@ -32,6 +33,8 @@ class DividendCalculator:
         :return:
         """
 
+        df_report = pd.DataFrame()
+
         df = self.dist.df.copy()
         rate = 1 + growth_stock
         rate_dividend = 1 + growth_dividend
@@ -49,6 +52,7 @@ class DividendCalculator:
 
         yearly_div = 0
         for m in range(0, n + 1):
+
             month = (m % 12) + 1
 
             # add the dividends
@@ -64,8 +68,17 @@ class DividendCalculator:
             df['dripping'] = np.where(df.monthly_dividend > 0, df.monthly_dividend / df.price, 0)
             df['amount'] += df['adding_shares'] + df['dripping']
             yearly_div += df['monthly_dividend'].sum()
+            df['value'] = df.amount * df.price
+
+            data = {'month': [m],
+                    'paid_dividends': [df.monthly_dividend.sum()],
+                    'portfolio_value': [df.value.sum()],
+                    'growth_stock': [growth_stock],
+                    'dividend_growth': [growth_dividend]}
+            df_report = pd.concat([df_report, pd.DataFrame.from_dict(data)], axis=0)
 
             if month == 12:
+                self.payout['Dividends'] = self.payout['Dividends'] * rate_dividend
                 print(f'Yearly divdend: {yearly_div}')
                 df['price'] *= rate
                 yearly_div = 0  # reset
@@ -73,11 +86,20 @@ class DividendCalculator:
         yearly_div = np.sum(df.price * df.amount * df['yield'])
         print(f'Yearly divdend: {yearly_div}')
 
+        if generate_report:
+            date = pd.to_datetime('now')
+            file_name = f'{date} method: {method}.csv'
+
+            # set directory
+            path = os.getcwd() + '/data/'
+            df_report.to_csv(path + file_name)
+
         return df
 
 if __name__ == "__main__":
     import pandas as pd
     pd.set_option('expand_frame_repr', False)
 
-    d = DividendCalculator(port='test_calculator')
-    d.calulate_dividends(n=120, growth_stock=0, growth_dividend=0, monthly_payment=1000, only_dividend_stocks=True)
+    d = DividendCalculator(port='aram')
+    d.calulate_dividends(n=120, growth_stock=0.3, growth_dividend=0.3, monthly_payment=1000, only_dividend_stocks=True,
+                         generate_report=True)
