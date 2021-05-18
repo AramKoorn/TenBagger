@@ -24,7 +24,8 @@ class DividendCalculator:
         self.res = pd.concat(res)
         self.payout = pd.concat({month: self.res.query(f'month == {month}') for month in set(self.res.month)}).reset_index(drop=True)
 
-    def calulate_dividends(self, n, growth, monthly_payment, only_dividend_stocks=False):
+    def calulate_dividends(self, n: int, growth_stock, growth_dividend, monthly_payment, method='proportional', only_dividend_stocks=False,
+                           generate_report: bool = False):
         """
 
         :param n: number of months
@@ -32,9 +33,10 @@ class DividendCalculator:
         """
 
         df = self.dist.df.copy()
-        rate = 1 + growth
+        rate = 1 + growth_stock
+        rate_dividend = 1 + growth_dividend
 
-        if growth < 0 or growth > 1:
+        if growth_stock < 0 or growth_stock > 1:
             raise ValueError("Growth should ben between [0, 1]")
 
         if only_dividend_stocks:
@@ -77,5 +79,5 @@ if __name__ == "__main__":
     import pandas as pd
     pd.set_option('expand_frame_repr', False)
 
-    d = DividendCalculator(port='testing')
-    d.calulate_dividends(n=120, growth=0, monthly_payment=1000, only_dividend_stocks=True)
+    d = DividendCalculator(port='test_calculator')
+    d.calulate_dividends(n=120, growth_stock=0, growth_dividend=0, monthly_payment=1000, only_dividend_stocks=True)

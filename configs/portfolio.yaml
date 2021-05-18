@@ -23,3 +23,7 @@ testing:
   "ETH-USD": 2.26
   "ALGO-EUR": 280
   "IBM": 56
+
+test_calculator:
+  "aapl": 50
+  "ibm": 10
