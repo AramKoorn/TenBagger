@@ -33,8 +33,10 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest --cov=./
+        pytest --cov=tenbagger
     - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v1
       with:
         fail_ci_if_error: true
+      env:
+        TOKEN: c6a1c091-8068-4676-b9ae-9deb0e85f18c
