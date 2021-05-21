@@ -4,6 +4,7 @@ from forex_python.converter import CurrencyRates
 import yaml
 import numpy as np
 import datetime
+import pandas as pd
 
 
 def make_percentage(df: pd.DataFrame, value: str, groupby: str):
@@ -19,10 +20,21 @@ def make_percentage(df: pd.DataFrame, value: str, groupby: str):
 
 
 class Ticker:
-    def __init__(self, ticker):
+    '''
+    Get Ticker information
+    '''
+    def __init__(self, ticker : str):
+        '''
+
+        :param ticker: Ticker symbol. E.g. aapl, ibm, tsla
+        '''
         self.ticker = yf.Ticker(ticker)
 
     def last_price(self):
+        '''
+
+        :return: Get latest tradable ticker price
+        '''
 
         try:
             price = self.ticker.history(period='1d', interval='1m')["Close"].tail(1)[0]
@@ -37,6 +49,10 @@ class Ticker:
         return {date: self.ticker.history(date).Close[0] for i, date in enumerate(dates)}
 
     def overview(self):
+        '''
+
+        :return: Dictionary of key metrics
+        '''
 
         info = self.ticker.info
 
@@ -70,15 +86,36 @@ class Ticker:
 
     # This should be faster
     def get_currency(self):
+        """
+
+        :return: Currency that the ticker shows
+        """
         return self.ticker.info['currency']
 
 
 class Converter:
-    def __init__(self, df):
-        self.df = df
-        assert isinstance(df, pd.DataFrame)
+    '''
+    Class to convert to value to different currencies
+    '''
 
-    def _convert(self, currency="EUR", col_ind=None, col_currency=None):
+    def __init__(self, df : pd.DataFrame):
+        '''
+
+        :param df: DataFrame
+
+        '''
+
+        self.df = df
+
+    def _convert(self, currency : str = "EUR", col_ind=None, col_currency=None):
+
+        '''
+
+        :param currency: The currency to convert to
+        :param col_ind: The column that gets to be converted
+        :param col_currency: The currency that the current column is in
+        :return:
+        '''
 
         c = CurrencyRates()
         self.df['factor'] = self.df[col_ind].apply(lambda x: c.get_rate(x, currency))
@@ -87,7 +124,12 @@ class Converter:
         del self.df['factor']
 
 
-def read_yaml(loc):
+def read_yaml(loc : str):
+    '''
+
+    :param loc: path to file
+    :return: yaml converted to a dictionary
+    '''
 
     with open(f'{loc}') as file:
         return yaml.load(file, Loader=yaml.FullLoader)
