@@ -1,4 +1,3 @@
-![Unit Tests](https://github.com/geohot/tinygrad/workflows/Unit%20Tests/badge.svg)
 ![Unit Tests](https://github.com/AramKoorn/TenBagger/actions/workflows/test.yml/badge.svg)
 
 
