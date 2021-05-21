@@ -1,6 +1,7 @@
 from tenbagger.src.utils.utilities import Converter, Ticker
 import pandas as pd
 import numpy as np
+import pytest
 
 
 def test_fair_value_no_div():
@@ -15,6 +16,7 @@ def test_fair_value_div():
     assert list(overview.loc[overview.Description == 'fair_value', 'Value'])[0] != 'nan'
 
 
+@pytest.mark.skip(reason="Need to kill the server. Otherwise will run forever.")
 def test_converter():
 
     df = pd.DataFrame([[1, "USD"], [2, 'USD']], columns=['value', 'currency'])
