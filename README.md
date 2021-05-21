@@ -1,4 +1,5 @@
 ![Unit Tests](https://github.com/geohot/tinygrad/workflows/Unit%20Tests/badge.svg)
+![Unit Tests](https://github.com/AramKoorn/TenBagger/workflows/TenBagger/badge.svg)
 
 # TenBagger
 A Command Line Interface (CLI) to analyse your portfolio, stocks and crypto. Find your next TenBagger inside your terminal. This library uses the Yahoo finance API so you need to use the same ticker symbols as on Yahoo Finance.
