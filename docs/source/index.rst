@@ -9,6 +9,10 @@ Welcome to TenBagger's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :titlesonly:
+
+   readme_link 
+
 
 
 
