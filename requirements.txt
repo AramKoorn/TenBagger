@@ -1,5 +1,5 @@
 yfinance
-pytest
+pytest-cov
 pandas
 numpy
 matplotlib
