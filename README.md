@@ -34,33 +34,20 @@ pip3 install .
 - Volume daytrading past 10 days (check if this works for crypto)
 
 ## Improvements
-- add unit tests
+- add unit tests. Increase that coverage 
 - Portfolio should take <1 second
 - Portfolio over time
-- Key Metrics
 - Update portfolio using CLI
 - Nice terminal colors for printing
-- Import the configs
 - make test to run everything in CLI and just check if it works
 
-## Roadmap
-- Create docker image
-- Make simulation reports
-- CI/CD pipeline
-- SQL database to store portfolio over time
+## TODO
+- Implement badges
+- Implement CI/CD pipeline
+- host docs 
+- Add coverage report 
 - Dividend simulator
   - In CLI
   - downloable report 
-- Mobile App
-- cross platform
-- WSB word cloud
-- twitter word cloud
+- Make simulation reports
 
-## MVP
-- Automatic configuration
-- configuration file
-- CICD pipeline
-- Make sure that requirements file is correct
-  - Test from docker container
-- Config files should be moved to a hidden folder
-- Documentation
