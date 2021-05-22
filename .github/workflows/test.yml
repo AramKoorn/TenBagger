@@ -34,10 +34,9 @@ jobs:
     - name: Test with pytest
       run: |
         pytest 
+        coverage run -m pytest --cov=tenbagger/src
     - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v1
-      run: |
-        coverage run -m pytest --cov=tenbagger/src
       with:
         fail_ci_if_error: true
       env:

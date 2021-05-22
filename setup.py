@@ -11,7 +11,6 @@ with open(os.path.join(directory, 'README.md'), encoding='utf-8') as f:
 setup(name='tenbaggger',
       version=__version__,
       url="https://github.com/AramKoorn/TenBagger",
-      py_modules=["tenbagger"],
       entry_points={"console_scripts": ["tenbagger=tenbagger.cli:main"]},
       description='test',
       install_requires=[
