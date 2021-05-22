@@ -1,8 +1,10 @@
-from tenbagger.src.utils.utilities import read_yaml
-import pytest
+from tenbagger.src.utils.utilities import read_yaml, add
 
 
-@pytest.mark.skip(reason="Need to kill the server. Otherwise will run forever.")
+def test_add():
+    assert add(2, 3) == 5
+
+
 def test_read_yaml():
     cfg = read_yaml('configs/environment.yaml')
     assert "CURRENCY" in cfg.keys()
