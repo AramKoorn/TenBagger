@@ -1,8 +1,9 @@
 import pandas as pd
 import numpy as np
-from tenbagger.src.utils.utilities import Ticker, Converter, read_yaml
+from tenbagger.src.utils.utilities import Ticker, read_yaml
 import datetime
 from tqdm import tqdm
+from currency_converter import CurrencyConverter
 
 
 class Dividends:
@@ -32,7 +33,8 @@ class Dividends:
 
         # Convert to correct currency
         df['currency'] = Ticker(self.ticker).get_currency()
-        Converter(df)._convert(currency=self.env['CURRENCY'], col_ind='currency', col_currency='Dividends')
+        c = CurrencyConverter()
+        df['Dividends'] = df.apply(lambda x: c.convert(x.Dividends, x.currency, self.env["CURRENCY"]), axis=1)
 
         return df
 
@@ -82,10 +84,9 @@ if __name__ == '__main__':
     pd.set_option("expand_frame_repr", False)
     port = read_yaml('configs/portfolio.yaml')
 
-    d = DividendsPortfolio(port['aram'])
+    d = DividendsPortfolio(port['testing'])
     d.calculate()
 
     d = Dividends('ibm')
     d._clean()
     d.df
-    x = 2

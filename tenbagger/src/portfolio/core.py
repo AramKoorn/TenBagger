@@ -1,4 +1,5 @@
-from tenbagger.src.utils.utilities import read_yaml, Ticker, Converter, make_percentage
+from tenbagger.src.utils.utilities import read_yaml, Ticker, make_percentage
+from currency_converter import CurrencyConverter
 import yfinance as yf
 import datetime
 import pandas as pd
@@ -57,7 +58,8 @@ class Portfolio:
 
         df = self.df
         # Convert to desired currency
-        Converter(df)._convert(currency=self.env["CURRENCY"], col_ind='currency', col_currency='price')
+        c = CurrencyConverter()
+        df['price'] = df.apply(lambda x: c.convert(x.price, x.currency, self.env["CURRENCY"]), axis=1)
         df['value'] = df.price * df.amount
 
         # Caclulate percentage
@@ -78,7 +80,7 @@ class Portfolio:
 
 if __name__ == "__main__":
     pd.set_option("expand_frame_repr", False)
-    d = Portfolio('aram')
+    d = Portfolio('testing')
     d.unification()
     print(d.df)
     make_percentage(df=d.df, value='value', groupby='sector')

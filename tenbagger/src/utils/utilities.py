@@ -1,6 +1,6 @@
 import yfinance as yf
 import pandas as pd
-from forex_python.converter import CurrencyRates
+from currency_converter import CurrencyConverter
 import yaml
 import numpy as np
 import datetime
@@ -93,35 +93,36 @@ class Ticker:
         return self.ticker.info['currency']
 
 
-class Converter:
-    '''
-    Class to convert to value to different currencies
-    '''
-
-    def __init__(self, df : pd.DataFrame):
-        '''
-
-        :param df: DataFrame
-
-        '''
-
-        self.df = df
-
-    def _convert(self, currency : str = "EUR", col_ind=None, col_currency=None):
-
-        '''
-
-        :param currency: The currency to convert to
-        :param col_ind: The column that gets to be converted
-        :param col_currency: The currency that the current column is in
-        :return:
-        '''
-
-        c = CurrencyRates()
-        self.df['factor'] = self.df[col_ind].apply(lambda x: c.get_rate(x, currency))
-        self.df[col_currency] = self.df.factor * self.df[col_currency]
-        self.df[col_ind] = currency
-        del self.df['factor']
+# class Converter:
+#     '''
+#     Class to convert to value to different currencies
+#     '''
+#
+#     def __init__(self, df : pd.DataFrame):
+#         '''
+#
+#         :param df: DataFrame
+#
+#         '''
+#
+#         self.df = df
+#
+#     def _convert(self, currency : str = "EUR", col_ind=None, col_currency=None):
+#
+#         '''
+#
+#         :param currency: The currency to convert to
+#         :param col_ind: The column that gets to be converted
+#         :param col_currency: The currency that the current column is in
+#         :return:
+#         '''
+#
+#         c = CurrencyConverter()
+#
+#         self.df['factor'] = self.df[col_ind].apply(lambda x: c.get_rate(x, currency))
+#         self.df[col_currency] = self.df.factor * self.df[col_currency]
+#         self.df[col_ind] = currency
+#         del self.df['factor']
 
 
 def read_yaml(loc : str):
