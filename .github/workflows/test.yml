@@ -34,7 +34,7 @@ jobs:
     - name: Test with pytest
       run: |
         pytest 
-        coverage run -m pytest --cov=tenbagger/src
+        coverage run -m pytest --cov=tenbagger/src --cov-report html
     - name: "Upload coverage to Codecov"
       uses: codecov/codecov-action@v1
       with:
