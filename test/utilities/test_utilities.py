@@ -16,6 +16,23 @@ class TestTicker:
         price = self.ticker.last_price()
         assert isinstance(price, np.float64)
 
+    def test_overview(self):
+        overview = self.ticker.overview()
+        overview = list(overview.Description)
+        assert overview == ['price',
+                            'MarketCap',
+                            'Shares Outstanding',
+                            'Dividend Yield',
+                            'trailingAnnualDividendYield',
+                            'Short Percentage of Float',
+                            'Trailing EPS',
+                            '52 week low',
+                            '52 week High',
+                            'heldPercentInsiders',
+                            'earningsQuarterlyGrowth',
+                            'priceToSalesTrailing12Months',
+                            'fair_value']
+
 
 if __name__ == '__main__':
     test_read_yaml()
