@@ -35,5 +35,5 @@ setup(name='tenbaggger',
           "typeguard==2.12.0",
           "termgraph"],  # Maybe fork and modify
       author='Aram Koorn',
-      packages=find_packages(),
-      zip_safe=False)
+      packages=find_packages()
+      )

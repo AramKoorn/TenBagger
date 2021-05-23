@@ -1,8 +1,4 @@
-from tenbagger.src.utils.utilities import read_yaml, add
-
-
-def test_add():
-    assert add(2, 3) == 5
+from tenbagger.src.utils.utilities import read_yaml
 
 
 def test_read_yaml():
