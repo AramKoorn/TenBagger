@@ -36,8 +36,14 @@ jobs:
         pytest 
         coverage run -m pytest --cov=tenbagger/src --cov-report html
     - name: "Upload coverage to Codecov"
-      uses: codecov/codecov-action@v1
-      with:
-        fail_ci_if_error: true
       env:
         CODECOV_TOKEN: 'c6a1c091-8068-4676-b9ae-9deb0e85f18c'
+    - uses: actions/checkout@master
+    - uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        files: ./coverage1.xml,./coverage2.xml # optional
+        flags: unittests # optional
+        name: codecov-umbrella # optional
+        fail_ci_if_error: true # optional (default = false)
+        verbose: true # optional (default = false)
