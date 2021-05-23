@@ -34,7 +34,7 @@ jobs:
     - name: Test with pytest
       run: |
         pytest 
-        coverage run -m pytest --cov=tenbagger/src --cov-report html
+        coverage run -m pytest --cov=tenbagger/src --cov-report xml
     - name: "Upload coverage to Codecov"
       env:
         CODECOV_TOKEN: 'c6a1c091-8068-4676-b9ae-9deb0e85f18c'
