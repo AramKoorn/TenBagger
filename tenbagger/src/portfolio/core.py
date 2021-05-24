@@ -1,13 +1,16 @@
 from tenbagger.src.utils.utilities import read_yaml, Ticker, make_percentage
+from tenbagger.src.portfolio.crypto import PortfolioCrypto
 from currency_converter import CurrencyConverter
 import yfinance as yf
 import datetime
 import pandas as pd
 from tqdm import tqdm
+import numpy as np
 
 
-class Portfolio:
-    def __init__(self, name_port=None):
+class Portfolio(PortfolioCrypto):
+    def __init__(self, name_port):
+        super().__init__()
         self.name_port = name_port
         self.portfolio = self._select()
         self.env = read_yaml('configs/environment.yaml')
@@ -62,6 +65,9 @@ class Portfolio:
         df['price'] = df.apply(lambda x: c.convert(x.price, x.currency, self.env["CURRENCY"]), axis=1)
         df['value'] = df.price * df.amount
 
+        # Get staking rewards
+        df = self.staking_rewards(self.df)
+
         # Caclulate percentage
         df['percentage'] = df.value / df.value.sum()
 
@@ -70,10 +76,10 @@ class Portfolio:
         df = df.sort_values('value', ascending=False)
 
         df["dividends"] = df["yield"] * df.price * df.amount
+        df[['dividends', 'passive_income']] = df[['dividends', 'staking_rewards']].fillna(0)
 
-        # Is always true for now
-        if 'passive_income' not in list(df):
-            df['passive_income'] = df['dividends']
+        # Passive income
+        df['passive_income'] = df[['dividends', 'passive_income']].max(axis=1)
 
         self.df = df
 

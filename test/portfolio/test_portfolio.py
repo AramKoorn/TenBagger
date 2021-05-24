@@ -1,5 +1,4 @@
 from tenbagger.src.portfolio.core import Portfolio
-import numpy as np
 
 
 def test_portfolio_stocks_only():
@@ -18,4 +17,5 @@ def test_mix_crypto_stonks():
     port.unification()
     df = port.df
 
+    assert df.passive_income.isna().sum() == 0
     assert df.shape[0] == 3
