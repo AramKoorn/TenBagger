@@ -63,7 +63,7 @@ def main():
     if args.portfolio:
 
         # Clean this up
-        from tenbagger.src.portfolio.crypto import Crypto
+        from tenbagger.src.portfolio.core import Portfolio
         from tenbagger.src.terminal.utils import TermPlots
 
         pd.set_option("expand_frame_repr", False)
@@ -72,9 +72,8 @@ def main():
         print(f.renderText('Portfolio'))
 
         # Print out portfolio
-        port = Crypto(args.portfolio)
+        port = Portfolio(args.portfolio)
         port.unification()
-        port.staking_rewards()
         print(port.df.drop(columns=['circulatingSupply', 'type']))
 
         # Print passive income
