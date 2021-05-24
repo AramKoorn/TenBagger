@@ -1,14 +1,5 @@
 import yfinance as yf
-import yaml
-import pandas as pd
-import datetime
-from pyfiglet import Figlet
-import matplotlib.pyplot as plt
-import seaborn as sns
-import matplotlib.ticker as ticker
-import matplotlib.ticker as mtick
 import plotly.graph_objects as go
-import argparse
 
 
 def candlestick(ticker="HITIF", period="365d", interval='1d'):
@@ -38,8 +29,3 @@ def candlestick(ticker="HITIF", period="365d", interval='1d'):
     )
 
     fig.show()
-
-
-if __name__ == "__main__":
-
-    candlestick(ticker="HITIF", period="365d", interval='1d')
