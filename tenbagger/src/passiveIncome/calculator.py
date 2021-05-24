@@ -1,7 +1,8 @@
-from tenbagger.src.scripts.portfolio import Portfolio
+from tenbagger.src.portfolio.core import Portfolio
 from tenbagger.src.utils.utilities import read_yaml
 from tenbagger.src.dividends.div import Dividends
 import numpy as np
+import pandas as pd
 from tqdm import tqdm
 import os
 
@@ -88,18 +89,21 @@ class DividendCalculator:
 
         if generate_report:
             date = pd.to_datetime('now')
-            file_name = f'{date} method: {method}.csv'
+            file_name = f'method: {method}.csv'
 
             # set directory
             path = os.getcwd() + '/data/'
-            df_report.to_csv(path + file_name)
+
+            # Create data directory if not exist already
+            if not os.path.exists(path):
+                os.mkdir(path)
+
+            path = path + "/" + str(pd.to_datetime('today'))
+
+            # Create data directory if not exist already
+            if not os.path.exists(path):
+                os.mkdir(path)
+
+            df_report.to_csv(path + '/' + file_name)
 
         return df
-
-if __name__ == "__main__":
-    import pandas as pd
-    pd.set_option('expand_frame_repr', False)
-
-    d = DividendCalculator(port='aram')
-    d.calulate_dividends(n=120, growth_stock=0.3, growth_dividend=0.3, monthly_payment=1000, only_dividend_stocks=True,
-                         generate_report=True)

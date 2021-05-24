@@ -23,5 +23,5 @@ testing:
   "IBM": 56
 
 test_calculator:
-  "aapl": 50
-  "ibm": 10
+  aapl: 50
+  eth-usd: 10  
