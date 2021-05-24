@@ -1,23 +1,21 @@
 aram: 
-          {
-             "ABBV": 17,
-             "IBM": 56,
-             'TSM': 10,
-             "U": 21,
-             "ETH-USD": 2.26,
-             "MRK": 22,
-             "KMI": 80,
-             "SPCE": 25,
-             "DOT1-USD": 40,
-             "WPC": 30,
-             "AHH": 20,
-             "GNL": 15,
-             "VZ": 30,
-             "PFE": 20,
-             "MO": 11,
-             "ALGO-EUR": 732
-             
-          }
+  "ABBV": 17
+  "IBM": 56
+  'TSM': 10
+  "U": 21
+  "ETH-USD": 2.26
+  "MRK": 22
+  "KMI": 80
+  "SPCE": 25
+  "DOT1-USD": 40
+  "WPC": 30
+  "AHH": 20
+  "GNL": 15
+  "VZ": 30
+  "PFE": 20
+  "MO": 11
+  "ALGO-EUR": 3380 
+               
 
 testing:
   "ETH-USD": 2.26

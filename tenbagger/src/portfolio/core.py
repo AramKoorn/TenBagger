@@ -13,8 +13,8 @@ class Portfolio:
         self.env = read_yaml('configs/environment.yaml')
 
     def _select(self):
-        if self.name_port is None:
-            portfolio = None
+        if isinstance(self.name_port, dict):
+            portfolio = self.name_port
         else:
             portfolio = read_yaml('configs/portfolio.yaml')[self.name_port]
 
@@ -80,7 +80,7 @@ class Portfolio:
 
 if __name__ == "__main__":
     pd.set_option("expand_frame_repr", False)
-    d = Portfolio('testing')
+    d = Portfolio('test_calculator')
     d.unification()
     print(d.df)
     make_percentage(df=d.df, value='value', groupby='sector')
