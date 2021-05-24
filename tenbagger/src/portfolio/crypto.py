@@ -9,5 +9,6 @@ class PortfolioCrypto:
 
     def staking_rewards(self, df : pd.DataFrame):
         df['staking_rewards'] = df.ticker.str.lower().map(self.apy) * df['value']
+        df['apy'] = df.ticker.str.lower().map(self.apy)
 
         return df

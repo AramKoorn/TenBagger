@@ -24,9 +24,11 @@ class DividendCalculator:
                 res.append(projected)
 
         self.res = pd.concat(res)
-        self.payout = pd.concat({month: self.res.query(f'month == {month}') for month in set(self.res.month)}).reset_index(drop=True)
+        self.payout = pd.concat(
+            {month: self.res.query(f'month == {month}') for month in set(self.res.month)}).reset_index(drop=True)
 
-    def calulate_dividends(self, n: int, growth_stock, growth_dividend, monthly_payment, method='proportional', only_dividend_stocks=False,
+    def calulate_dividends(self, n: int, growth_stock, growth_dividend, monthly_payment, method='proportional',
+                           only_dividend_stocks=False,
                            generate_report: bool = False):
         """
 
@@ -61,7 +63,6 @@ class DividendCalculator:
             df['monthly_dividend'] = 0
             df['dripping'] = 0
             for ticker in set(tmp.ticker):
-
                 amount = df.loc[df.ticker == ticker, 'amount'].values[0]
                 div = tmp.loc[tmp.ticker == ticker, 'Dividends'].values[0]
                 df.loc[df.ticker == ticker, 'monthly_dividend'] = amount * div

@@ -18,3 +18,8 @@ class TestCalculator:
         df = self.calc.calulate_dividends(n=120, growth_stock=0.03, growth_dividend=0.03, monthly_payment=1000,
                                           generate_report=False, only_dividend_stocks=False)
         assert set(df.ticker) == set(['eth-usd', 'aapl'])
+
+    def test_passive_mixed(self):
+        df = self.calc.calulate_dividends(n=120, growth_stock=0.03, growth_dividend=0.03, monthly_payment=1000,
+                                          generate_report=False, only_dividend_stocks=False)
+        x = 2
