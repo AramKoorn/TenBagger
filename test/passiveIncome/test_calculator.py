@@ -1,12 +1,12 @@
 import pandas as pd
-from tenbagger.src.passiveIncome.calculator import DividendCalculator
+from tenbagger.src.passiveIncome.calculator import PassiveIncomeCalculator
 
 
 class TestCalculator:
     def setup(self):
 
         pd.set_option('expand_frame_repr', False)
-        self.calc = DividendCalculator(port='test_calculator')
+        self.calc = PassiveIncomeCalculator(port='test_calculator')
 
     def test_calculator_only_div(self):
         # df = self.ca
@@ -22,4 +22,3 @@ class TestCalculator:
     def test_passive_mixed(self):
         df = self.calc.calulate_dividends(n=120, growth_stock=0.03, growth_dividend=0.03, monthly_payment=1000,
                                           generate_report=False, only_dividend_stocks=False)
-        x = 2

@@ -1,18 +1,22 @@
 from tenbagger.src.portfolio.core import Portfolio
 from tenbagger.src.utils.utilities import read_yaml
 from tenbagger.src.dividends.div import Dividends
+from tenbagger.src.passiveIncome.dividends import PassiveDividends
+from tenbagger.src.passiveIncome.crypto import StakingRewards
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
 import os
 
 
-class DividendCalculator:
+class PassiveIncomeCalculator(PassiveDividends, StakingRewards):
     def __init__(self, port):
+        super().__init__()
         self.port = read_yaml('configs/portfolio.yaml')[port]
 
         self.dist = Portfolio(port)
         self.dist.unification()
+        self.df_report = None
 
         res = []
         for ticker in tqdm(self.port):
