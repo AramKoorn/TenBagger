@@ -14,7 +14,7 @@ aram:
   "VZ": 30
   "PFE": 20
   "MO": 11
-  "ALGO-EUR": 3380 
+  "ALGO-EUR": 7730 
                
 
 testing:
@@ -25,3 +25,9 @@ testing:
 test_calculator:
   aapl: 50
   eth-usd: 10  
+
+test_calculator2:
+  aapl: 1
+  ibm: 1
+  eth-usd: 1
+  algo-eur: 1
