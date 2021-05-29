@@ -31,7 +31,22 @@ def main():
     # Overview
     parser.add_argument("--overview")
 
+    # Calculator
+    parser.add_argument('-s', "--scenario", action="store_true")
+    parser.add_argument("-dg", "--dividendgrowth", help="rate of dividend growth")
+    parser.add_argument("-n", help="Number of months to simulate")
+    parser.add_argument("-sg", "--stonkgrowth", help="rate of stonks growth")
+    parser.add_argument("-m", "--monthly", help="monthly payment")
+    parser.add_argument("-c", "--crypto", action='store_true', help="Include crypto")
+    parser.add_argument("-r", "--report", action='store_true', help="Generate report to data folder")
+
     args = parser.parse_args()
+
+    if args.scenario:
+        from tenbagger.src.passiveIncome.calculator import PassiveIncomeCalculator
+        scenario = PassiveIncomeCalculator('aram')
+        scenario.calulate(n=args.n, growth_stock=args.sg, growth_dividend=args.dg, monthly_payment=args.m,
+                   generate_report=args.r, only_dividend_stocks=args.c)
 
     if args.dividend:
         from tenbagger.src.dividends.div import DividendsPortfolio
