@@ -28,7 +28,7 @@ class PassiveIncomeCalculator:
         self.payout = pd.concat(
             {month: self.res.query(f'month == {month}') for month in set(self.res.month)}).reset_index(drop=True)
 
-        self.crypto  = self.dist.df.query('type == "CRYPTOCURRENCY"').copy()
+        self.crypto = self.dist.df.query('type == "CRYPTOCURRENCY"').copy()
         self.crypto_payout = pd.DataFrame()
 
         # For now we only look at monthly crypto rewards
@@ -83,7 +83,7 @@ class PassiveIncomeCalculator:
             for ticker in set(self.crypto_payout.ticker):
                 if not only_dividend_stocks:
                     amount = df.loc[df.ticker == ticker, 'amount'].values[0]
-                    sr = tmp.loc[tmp.ticker == ticker, 'staking_rewards'].values[0]
+                    sr = (df.loc[df.ticker == ticker, 'apy'].values[0] * df.loc[df.ticker == ticker, 'price'].values[0]) / 12
                     df.loc[df.ticker == ticker, 'monthly_staking_rewards'] = amount * sr
                 else:
                     df['monthly_staking_rewards'] = 0
