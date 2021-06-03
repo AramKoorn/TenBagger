@@ -10,6 +10,7 @@ Inspired by the legend DeepFuckingValue aka Roarking Kitty.
 Simulate passive income of dividend payouts and staking rewards
 
 ```
+# portfolio: Name of portfolio specified in config/portfolio.yaml
 # n: number of months
 # stockgrowth: yearly Stock growth rate 
 # dividendgrowth: yearly dividend growth
