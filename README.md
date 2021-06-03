@@ -47,6 +47,11 @@ tenbagger --candle --ticker IBM --period 700d --interval 1d
 git clone https://github.com/AramKoorn/TenBagger && cd TenBagger
 python3 setup.py install && pip3 install .
 ```
+Check if installation worked:
+```
+tenbagger -v
+```
+
 
 ## Features
 - Check price
