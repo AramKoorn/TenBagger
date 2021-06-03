@@ -6,6 +6,21 @@ A Command Line Interface (CLI) to analyse your portfolio, stocks and crypto. Fin
 
 Inspired by the legend DeepFuckingValue aka Roarking Kitty.
 ## Usage
+
+Simulate passive income of dividend payouts and staking rewards
+
+```
+# n: number of months
+# stockgrowth: yearly Stock growth rate 
+# dividendgrowth: yearly dividend growth
+# m: montlhy payment
+# crypto: boolean to include crypto in simulation
+# report: Boolean to generate csv report of simulation
+
+tenbagger --scenario -n 120 --stockgrowth 0.03 --dividendgrowth 0.03 -m 1000 --crypto --report --portfolio aram
+
+```
+
 Candlestick chart
 ```
 tenbagger --candle --ticker ibm  --period 700d --interval 1d

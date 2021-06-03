@@ -33,20 +33,21 @@ def main():
 
     # Calculator
     parser.add_argument('-s', "--scenario", action="store_true")
-    parser.add_argument("-dg", "--dividendgrowth", help="rate of dividend growth")
-    parser.add_argument("-n", help="Number of months to simulate")
-    parser.add_argument("-sg", "--stonkgrowth", help="rate of stonks growth")
-    parser.add_argument("-m", "--monthly", help="monthly payment")
-    parser.add_argument("-c", "--crypto", action='store_true', help="Include crypto")
+    parser.add_argument("-dg", "--dividendgrowth", help="rate of dividend growth", type=float)
+    parser.add_argument("-n", help="Number of months to simulate", type=int)
+    parser.add_argument("-sg", "--stockgrowth", help="rate of stonks growth", type=float)
+    parser.add_argument("-m", "--monthly", help="monthly payment", type=int)
+    parser.add_argument("-c", "--crypto", action='store_false', help="Include crypto")
     parser.add_argument("-r", "--report", action='store_true', help="Generate report to data folder")
 
     args = parser.parse_args()
 
     if args.scenario:
         from tenbagger.src.passiveIncome.calculator import PassiveIncomeCalculator
-        scenario = PassiveIncomeCalculator('aram')
-        scenario.calulate(n=args.n, growth_stock=args.sg, growth_dividend=args.dg, monthly_payment=args.m,
-                   generate_report=args.r, only_dividend_stocks=args.c)
+
+        scenario = PassiveIncomeCalculator(args.portfolio)
+        scenario.calulate(n=args.n, growth_stock=args.stockgrowth, growth_dividend=args.dividendgrowth,
+                          monthly_payment=args.monthly, generate_report=args.report, only_dividend_stocks=args.crypto)
 
     if args.dividend:
         from tenbagger.src.dividends.div import DividendsPortfolio
@@ -75,7 +76,7 @@ def main():
         NotifyPriceTarget().notify_high()
         NotifyPriceTarget().notify_low()
 
-    if args.portfolio:
+    if args.portfolio and not args.scenario:
 
         # Clean this up
         from tenbagger.src.portfolio.core import Portfolio
