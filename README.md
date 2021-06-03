@@ -26,10 +26,11 @@ Candlestick chart
 ```
 tenbagger --candle --ticker ibm  --period 700d --interval 1d
 ```
-Or you can do the same thing using abbreviations
+
+Get overview of latest ticker information
 
 ```
-tenbagger --candle --ticker ibm  -p 700d -i 1d
+tenbagger --overview IBM 
 ```
 
 Run tracker dashboard
