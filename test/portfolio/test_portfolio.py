@@ -8,7 +8,7 @@ def test_portfolio_stocks_only():
     df = port.df
 
     assert df.shape[0] == 2
-    assert list(df.ticker.values) == ['ibm', 'aapl']
+    assert set(df.ticker.values) == {'ibm', 'aapl'}
 
 
 def test_mix_crypto_stonks():

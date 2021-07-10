@@ -18,11 +18,12 @@ class PassiveIncomeCalculator:
         res = []
         for ticker in tqdm(self.port):
             div = Dividends(ticker)
-            if div.df.shape[0] != 0:
-                projected = div.projected_dividends()
-                projected['ticker'] = ticker
-                projected = projected[['ticker', 'Dividends', 'month']]
-                res.append(projected)
+            if div.df is not None:
+                if div.df.shape[0] != 0:
+                    projected = div.projected_dividends()
+                    projected['ticker'] = ticker
+                    projected = projected[['ticker', 'Dividends', 'month']]
+                    res.append(projected)
 
         self.res = pd.concat(res)
         self.payout = pd.concat(

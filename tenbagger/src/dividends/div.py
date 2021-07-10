@@ -1,5 +1,5 @@
 import pandas as pd
-import numpy as np
+
 from tenbagger.src.utils.utilities import Ticker, read_yaml
 import datetime
 from tqdm import tqdm
@@ -17,24 +17,23 @@ class Dividends:
             self.df = None
 
     def request(self):
-        return pd.read_html(
-            f'https://finance.yahoo.com/quote/{self.ticker}/history?period1=1460332800&period2=1618099200&interval=div%7Csplit&filter=div&frequency=1d&includeAdjustedClose=true')[0]
+
+        df = Ticker(self.ticker).ticker.actions.tail(10).reset_index()
+
+        return df
 
     def _clean(self):
+
         df = self.request()
-        df = df[:-1]
 
         # We only need these 2 columns
         df = df[['Date', 'Dividends']]
-
-        # Make it a datetime column
-        df['Date'] = pd.to_datetime(df['Date'])
-        df['Dividends'] = np.float32(df['Dividends'].apply(lambda x: x.replace('Dividend', "")))
 
         # Convert to correct currency
         df['currency'] = Ticker(self.ticker).get_currency()
         c = CurrencyConverter()
         df['Dividends'] = df.apply(lambda x: c.convert(x.Dividends, x.currency, self.env["CURRENCY"]), axis=1)
+        df['currency'] = self.env["CURRENCY"]
 
         return df
 
@@ -42,6 +41,7 @@ class Dividends:
         this_year = pd.Timestamp.now().year
         prev_year = this_year - 1
 
+        # Last payout
         last_div = self.df.Dividends[0]
 
         # Get year
@@ -84,9 +84,10 @@ if __name__ == '__main__':
     pd.set_option("expand_frame_repr", False)
     port = read_yaml('configs/portfolio.yaml')
 
-    d = DividendsPortfolio(port['testing'])
+    d = DividendsPortfolio(port['test_calculator'])
     d.calculate()
 
     d = Dividends('ibm')
     d._clean()
     d.df
+    d.projected_dividends()

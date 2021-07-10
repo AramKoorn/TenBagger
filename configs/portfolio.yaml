@@ -2,7 +2,6 @@ aram:
   "ABBV": 17
   "IBM": 56
   'TSM': 10
-  "U": 21
   "ETH-USD": 2.26
   "MRK": 33 
   "KMI": 80
@@ -11,9 +10,9 @@ aram:
   "AHH": 20
   "GNL": 15
   "VZ": 30
-  "PFE": 20
+  "PFE": 40 
   "MO": 11
-  "ALGO-EUR": 7730 
+  "ALGO-EUR": 8184
                
 
 testing:
