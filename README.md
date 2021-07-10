@@ -69,12 +69,8 @@ tenbagger -v
 - make test to run everything in CLI and just check if it works
 
 ## TODO
-- Implement badges
-- Implement CI/CD pipeline
 - host docs 
 - Add coverage report 
-- Dividend simulator
-  - In CLI
-  - downloable report 
-- Make simulation reports
+- make anonymous
+
 

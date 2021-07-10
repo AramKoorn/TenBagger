@@ -5,7 +5,6 @@ import yfinance as yf
 import datetime
 import pandas as pd
 from tqdm import tqdm
-import numpy as np
 
 
 class Portfolio(PortfolioCrypto):
