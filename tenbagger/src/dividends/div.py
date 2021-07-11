@@ -9,7 +9,7 @@ from currency_converter import CurrencyConverter
 class Dividends:
     def __init__(self, ticker):
         self.ticker = ticker
-        self.env = read_yaml('configs/environment.yaml')
+        self.env = read_yaml('user_data/env/environment.yaml')
 
         try:
             self.df = self._clean()

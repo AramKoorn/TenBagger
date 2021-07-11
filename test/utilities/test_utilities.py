@@ -4,7 +4,7 @@ import numpy as np
 
 
 def test_read_yaml():
-    cfg = read_yaml('configs/environment.yaml')
+    cfg = read_yaml('user_data/env/environment.yaml')
     assert "CURRENCY" in cfg.keys()
 
 

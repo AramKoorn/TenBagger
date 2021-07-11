@@ -6,7 +6,7 @@ import subprocess
 
 class NotifyInsider:
     def __init__(self):
-        self.env = read_yaml('configs/environment.yaml')
+        self.env = read_yaml('user_data/env/environment.yaml')
         self.today = pd.Timestamp.today()
 
     def notify_portfolio(self, symbols):

@@ -12,7 +12,7 @@ class Portfolio(PortfolioCrypto):
         super().__init__()
         self.name_port = name_port
         self.portfolio = self._select()
-        self.env = read_yaml('configs/environment.yaml')
+        self.env = read_yaml('user_data/env/environment.yaml')
 
     def _select(self):
         if isinstance(self.name_port, dict):
