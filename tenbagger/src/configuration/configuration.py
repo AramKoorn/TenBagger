@@ -23,41 +23,39 @@ class Configuration:
 
         return ticker, amount
 
-
     def add_entry(self):
         print('You can add an entry by specifying <TICKER_SYMBOL #> E.g. IBM 50 if you own 50 IBM shares')
         inp = input()
         ticker, amount = self._validate_input(inp)
         return ticker, amount
 
-
     def create_portfolio(self, name_portfolio):
 
-            # Check if portfolio already exists
-            if os.path.exists('user_data/portfolio/portfolio/yaml'):
-                porto = read_yaml('user_data/portfolio/portfolio/yaml')
+        # Check if portfolio already exists
+        if os.path.exists('user_data/portfolio/portfolio/yaml'):
+            porto = read_yaml('user_data/portfolio/portfolio/yaml')
+        else:
+            porto = {}
+
+        portfolio = {}
+
+        while True:
+            ticker, amount = self.add_entry()
+            portfolio[ticker] = amount
+            print('Record has successfully been added. \n Do you want to add another record to your portfolio? yes/no')
+            inp = input()
+            if inp == 'yes':
+                continue
             else:
-                porto = {}
+                if len(portfolio) > 0:
+                    save_loc = 'user_data/portfolio/portfolio.yaml'
+                    with open(f'{save_loc}', 'w') as yaml_file:
+                        porto[name_portfolio] = portfolio
+                        yaml.dump(porto, yaml_file, default_flow_style=False)
 
-            portfolio = {}
-
-            while True:
-                ticker, amount = self.add_entry()
-                portfolio[ticker] = amount
-                print('Record has successfully been added. \n Do you want to add another record to your portfolio? yes/no')
-                inp = input()
-                if inp == 'yes':
-                    continue
-                else:
-                    if len(portfolio) > 0:
-                        save_loc = 'user_data/portfolio/portfolio.yaml'
-                        with open(f'{save_loc}', 'w') as yaml_file:
-                            porto[name_portfolio] = portfolio
-                            yaml.dump(porto, yaml_file, default_flow_style=False)
-
-                        print(
-                            f'Successfully recorded your portfolio and is saved to: {save_loc} \n Portfolio: \n {portfolio}')
-                    break
+                    print(
+                        f'Successfully recorded your portfolio and is saved to: {save_loc} \n Portfolio: \n {portfolio}')
+                break
 
     def run_configuration(self):
 

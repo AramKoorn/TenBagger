@@ -9,7 +9,10 @@ import os
 
 class PassiveIncomeCalculator:
     def __init__(self, port):
-        self.port = read_yaml('configs/portfolio.yaml')[port]
+        if isinstance(port, str):
+            self.port = read_yaml('user_data/portfolio/portfolio.yaml')[port]
+        else:
+            self.port = port
 
         self.dist = Portfolio(port)
         self.dist.unification()

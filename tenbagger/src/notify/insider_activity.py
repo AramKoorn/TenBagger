@@ -37,6 +37,6 @@ class NotifyInsider:
 if __name__ == "__main__":
     pd.set_option("expand_frame_repr", False)
 
-    port = read_yaml('configs/portfolio.yaml')['aram']
+    port = read_yaml('user_data/portfolio/portfolio.yaml')['aram']
     n = NotifyInsider()
     n.notify_portfolio(port)

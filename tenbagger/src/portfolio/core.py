@@ -18,7 +18,7 @@ class Portfolio(PortfolioCrypto):
         if isinstance(self.name_port, dict):
             portfolio = self.name_port
         else:
-            portfolio = read_yaml('configs/portfolio.yaml')[self.name_port]
+            portfolio = read_yaml('user_data/portfolio/portfolio.yaml')[self.name_port]
 
         return portfolio
 

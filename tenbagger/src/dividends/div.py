@@ -82,7 +82,7 @@ class DividendsPortfolio:
 if __name__ == '__main__':
 
     pd.set_option("expand_frame_repr", False)
-    port = read_yaml('configs/portfolio.yaml')
+    port = read_yaml('user_data/portfolio/portfolio.yaml')
 
     d = DividendsPortfolio(port['test_calculator'])
     d.calculate()

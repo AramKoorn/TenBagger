@@ -54,7 +54,7 @@ def main():
         from tenbagger.src.utils.utilities import read_yaml
         from tenbagger.src.terminal.utils import TermPlots
 
-        portfolio = read_yaml('configs/portfolio.yaml')[args.dividend]
+        portfolio = read_yaml('user_data/portfolio/portfolio.yaml')[args.dividend]
         df = DividendsPortfolio(portfolio).calculate()
         df = order_by_month(df.groupby(['month', 'year']).Dividends.sum().reset_index(), col='month')
         del df['year']
@@ -71,7 +71,7 @@ def main():
         from tenbagger.src.notify.insider_activity import NotifyInsider
         from tenbagger.src.utils.utilities import read_yaml
 
-        port = list(read_yaml('configs/portfolio.yaml').keys())
+        port = list(read_yaml('user_data/portfolio/portfolio.yaml').keys())
         NotifyInsider().notify_portfolio(port)
         NotifyPriceTarget().notify_high()
         NotifyPriceTarget().notify_low()
