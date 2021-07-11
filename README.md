@@ -18,7 +18,7 @@ Simulate passive income of dividend payouts and staking rewards
 # crypto: boolean to include crypto in simulation
 # report: Boolean to generate csv report of simulation
 
-tenbagger --scenario -n 120 --stockgrowth 0.03 --dividendgrowth 0.03 -m 1000 --crypto --report --portfolio aram
+tenbagger --scenario -n 120 --stockgrowth 0.03 --dividendgrowth 0.03 -m 1000 --crypto --report --portfolio my_portfolio
 
 ```
 
