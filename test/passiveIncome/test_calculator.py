@@ -6,7 +6,8 @@ class TestCalculator:
     def setup(self):
 
         pd.set_option('expand_frame_repr', False)
-        self.calc = PassiveIncomeCalculator(port='test_calculator')
+        portfolio = {'aapl': 50, 'eth-usd': 10}
+        self.calc = PassiveIncomeCalculator(port=portfolio)
 
     def test_calculator_only_div(self):
         # df = self.ca

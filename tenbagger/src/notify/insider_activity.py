@@ -6,7 +6,7 @@ import subprocess
 
 class NotifyInsider:
     def __init__(self):
-        self.env = read_yaml('configs/environment.yaml')
+        self.env = read_yaml('user_data/env/environment.yaml')
         self.today = pd.Timestamp.today()
 
     def notify_portfolio(self, symbols):
@@ -37,6 +37,6 @@ class NotifyInsider:
 if __name__ == "__main__":
     pd.set_option("expand_frame_repr", False)
 
-    port = read_yaml('configs/portfolio.yaml')['aram']
+    port = read_yaml('user_data/portfolio/portfolio.yaml')['aram']
     n = NotifyInsider()
     n.notify_portfolio(port)

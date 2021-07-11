@@ -9,7 +9,7 @@ from currency_converter import CurrencyConverter
 class Dividends:
     def __init__(self, ticker):
         self.ticker = ticker
-        self.env = read_yaml('configs/environment.yaml')
+        self.env = read_yaml('user_data/env/environment.yaml')
 
         try:
             self.df = self._clean()
@@ -82,7 +82,7 @@ class DividendsPortfolio:
 if __name__ == '__main__':
 
     pd.set_option("expand_frame_repr", False)
-    port = read_yaml('configs/portfolio.yaml')
+    port = read_yaml('user_data/portfolio/portfolio.yaml')
 
     d = DividendsPortfolio(port['test_calculator'])
     d.calculate()

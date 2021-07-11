@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 class DividendCalculator:
     def __init__(self, port):
-        self.port = read_yaml('configs/portfolio.yaml')[port]
+        self.port = read_yaml('user_data/portfolio/portfolio.yaml')[port]
 
         self.dist = Portfolio(port)
         self.dist.unification()

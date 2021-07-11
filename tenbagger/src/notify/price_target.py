@@ -5,7 +5,7 @@ import subprocess
 
 class NotifyPriceTarget:
     def __init__(self):
-        self.env = read_yaml('configs/environment.yaml')
+        self.env = read_yaml('user_data/env/environment.yaml')
         self.pt = read_yaml('configs/notifications.yaml')
 
     def notify_high(self):
