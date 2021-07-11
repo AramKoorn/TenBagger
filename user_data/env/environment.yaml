@@ -1,0 +1,8 @@
+# Here you can specify your preferred environment.
+# E.G. CURRENCY: "EUR"
+
+CURRENCY: "USD"
+MAINPORTFOLIO: "my_portfolio"
+TELEGRAMID: ""
+TELEGRAMTOKEN: 1639239608:AAEpLe2b9QRa8vhmCQK30wxwcHBE7d4N8fg
+
