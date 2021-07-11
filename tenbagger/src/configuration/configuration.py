@@ -1,6 +1,7 @@
 import os
 import yfinance as yf
 import yaml
+from tenbagger.src.utils.utilities import read_yaml
 
 
 class Configuration:
@@ -30,7 +31,13 @@ class Configuration:
         return ticker, amount
 
 
-    def create_portfolio(self):
+    def create_portfolio(self, name_portfolio):
+
+            # Check if portfolio already exists
+            if os.path.exists('user_data/portfolio/portfolio/yaml'):
+                porto = read_yaml('user_data/portfolio/portfolio/yaml')
+            else:
+                porto = {}
 
             portfolio = {}
 
@@ -45,7 +52,8 @@ class Configuration:
                     if len(portfolio) > 0:
                         save_loc = 'user_data/portfolio/portfolio.yaml'
                         with open(f'{save_loc}', 'w') as yaml_file:
-                            yaml.dump(portfolio, yaml_file, default_flow_style=False)
+                            porto[name_portfolio] = portfolio
+                            yaml.dump(porto, yaml_file, default_flow_style=False)
 
                         print(
                             f'Successfully recorded your portfolio and is saved to: {save_loc} \n Portfolio: \n {portfolio}')
@@ -56,7 +64,10 @@ class Configuration:
         print('Do you want to create your portfolio? yes/no')
         inp = input()
         if inp == 'yes':
-            self.create_portfolio()
+
+            print('How do you want to name your portfolio? e.g. my_portfolio')
+            name_portfolio = input()
+            self.create_portfolio(name_portfolio)
         else:
             print(
                 'No portfolio created. Alternatively you can create your portfolio manually by adding/modifying the user_data/portfolio/portfolio.yaml file')
