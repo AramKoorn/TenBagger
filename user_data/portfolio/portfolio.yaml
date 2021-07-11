@@ -2,6 +2,7 @@
 # and 2 ethereum tokens. 
 #
 # This is an example. You can delete/modify this portfolio if you want.
+my_portfolio:
   aapl: 20
   ibm: 20
   ETH-USD: 2
