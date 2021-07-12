@@ -8,13 +8,22 @@ Inspired by the legend DeepFuckingValue aka Roarking Kitty.
 
 ## Installation
 ```
-git clone https://github.com/AramKoorn/TenBagger && cd TenBagger
+git clone https://github.com/AramKoorn/TenBagger 
+cd TenBagger
 python3 setup.py install && pip3 install .
 ```
 Check if installation worked:
 ```
 tenbagger -v
 ```
+## Getting Started
+
+Add/modify a portfolio with
+
+```
+tenbagger --configure
+```
+Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
 
 ## Usage
 Simulate passive income of dividend payouts and staking rewards
@@ -57,7 +66,7 @@ tenbagger --candle --ticker IBM --period 700d --interval 1d
 - Check price
 - check portfolio
 - Candlestick charts of historical price data
-- Volume daytrading past 10 days (check if this works for crypto)
+- Volume daytrading past 10 days 
 
 ## Improvements
 - add unit tests. Increase that coverage 
@@ -69,5 +78,3 @@ tenbagger --candle --ticker IBM --period 700d --interval 1d
 
 ## TODO
 - host docs 
-- Add coverage report 
-- make anonymous
