@@ -1,0 +1,14 @@
+# This is an example of a portfolio that contains 10 ibm shares 20 appple shares
+# and 2 ethereum tokens. 
+#
+# This is an example. You can delete/modify this portfolio if you want.
+my_portfolio:
+  aapl: 20
+  ibm: 20
+  ETH-USD: 2
+
+# You can modify the current portfolio or add a new portfolio. Make sure that you use ticker 
+# symbols as listed on yahoo finance. for instance, if you want to add a portfolio called household_portfolio that contains 5 tesla shares:
+# 
+# household_portfolio:
+#   TSLA : 5

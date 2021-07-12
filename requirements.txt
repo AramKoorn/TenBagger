@@ -1,0 +1,17 @@
+yfinance
+pytest-cov
+pandas
+numpy
+matplotlib
+seaborn
+pyyaml
+pyfiglet
+yahoo_earnings_calendar
+urllib3
+beautifulsoup4
+html5lib
+plotly
+dash
+dash-bootstrap-components
+tqdm
+python-telegram-bot

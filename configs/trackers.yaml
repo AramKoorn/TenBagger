@@ -1,0 +1,77 @@
+Futures: {"Gold": "GC=F",
+              "Silver": "SI=F",
+              "Natual Gas": "NG=F",
+              "Crude Oil": "CL=F",
+              "Copper": "HG=F",
+              "Platinum": "PL=F",
+              "Palladium": "PA=F",
+              "Aluminium": "ALI=F",
+              "Wheat": "ZW=F",
+              "Corn": "ZC=F",
+              "Coffee": "KC=F",
+              "Sugar": "SF=F",
+              "Heating Oil": "HO=F",
+              "RBOB Gasoline": "RB=F",
+              "Brent Crude Oil": "BZ=F",
+              "Propane": "OPIS",
+              "Corn": "ZC=F",
+              "Oat": "ZO=F",
+              "Wheat": "KE=F",
+              "Soybean Oil": "ZL=F",
+              "Feeder Cattle": "GF=F",
+              "Lean Hogs": "HE=F",
+              "Cotton": "CT=F",
+              "Lumber": "LBK21.CME",
+              "Sugar": "SB=F"
+}
+
+USTreasuryBondsRates: {
+  "13 week Treasury Bill": "^IRX",
+  "Treasury Yield 5 Years": "^FVX",
+  "Treasury Yield 10 Years": "^TNX",
+  "Treasury Yield 15 Years": "^TYX"
+}
+
+HedgeFunds: {
+  "Berkshire Hathaway": "BRK-B",
+  "Blackrock Inc": "BLK",
+  "Morgan Stanley": "MS"
+
+}
+
+indices: {"Netherlands  AEX": "^AEX",
+          "S&P 500": "^GSPC",
+          "Dow 30": "^DJI",
+          "NASDAQ": "^IXIC",
+          "NASDAG 100": "NQ=F",
+          "EURONEXT 100": "^N100",
+          "German DAX": "^GDAXI",
+          "London 100": "^FTSE",
+          "France CAC": "^FCHI",
+          "Japan Nikkei 225": "^N225",
+          "Hong Kong Hang Seng": "^HSI",
+           "Cboe UK 100": "^BUK100P",
+          "Russell 2000": "^RUT",
+          "MOEX Russia Index": "IMOEX.ME",
+          "Belgium 20": "^BFX",
+          "Jakara Composite": "^JKSE"}
+
+              
+Region: {"Europe": "VGK",
+          "China": "CHIX"}
+
+ETF: {"Ark Innovation": "ARKK",
+"Ark Genomic": "ARKG",
+"Ark Fintech": "ARKF",
+"Ark Next internet": "ARKW",
+"ARK AT & Robotics": "ARKQ",
+"Emerging Markets": "EEM",
+"Invesco QQQ Trust": "QQQ" }
+
+
+Industries: {"Online retail": "ONLN",
+              "Blockchain": "BLOK", 
+              "Global X Internet of Things": "SNSR",
+              "Weed MJ": "MJ",
+              "Weed Canada": "HMMJ.TO",
+}
