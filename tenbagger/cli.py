@@ -3,6 +3,7 @@ from tenbagger.version import __version__
 from tenbagger.src.utils.utilities import order_by_month, make_percentage
 from pyfiglet import Figlet
 from tenbagger.src.configuration.configuration import Configuration
+import pandas as pd
 
 
 def main():
