@@ -2,12 +2,15 @@ import argparse
 from tenbagger.version import __version__
 from tenbagger.src.utils.utilities import order_by_month, make_percentage
 from pyfiglet import Figlet
-import pandas as pd
+from tenbagger.src.configuration.configuration import Configuration
 
 
 def main():
     parser = argparse.ArgumentParser(description="CLI interface for Stock Data",
                                      epilog="Homepage: https://github.com/AramKoorn/TenBagger")
+
+    # Configure
+    parser.add_argument("--configure", action="store_true")
 
     # Portfolio
     parser.add_argument("--portfolio")
@@ -41,6 +44,10 @@ def main():
     parser.add_argument("-r", "--report", action='store_true', help="Generate report to data folder")
 
     args = parser.parse_args()
+
+    if args.configure:
+        c = Configuration()
+        c.run_configuration()
 
     if args.scenario:
         from tenbagger.src.passiveIncome.calculator import PassiveIncomeCalculator

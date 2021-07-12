@@ -5,8 +5,18 @@
 A Command Line Interface (CLI) to analyse your portfolio, stocks and crypto. Find your next TenBagger inside your terminal. This library uses the Yahoo finance API so you need to use the same ticker symbols as on Yahoo Finance.
 
 Inspired by the legend DeepFuckingValue aka Roarking Kitty.
-## Usage
 
+## Installation
+```
+git clone https://github.com/AramKoorn/TenBagger && cd TenBagger
+python3 setup.py install && pip3 install .
+```
+Check if installation worked:
+```
+tenbagger -v
+```
+
+## Usage
 Simulate passive income of dividend payouts and staking rewards
 
 ```
@@ -43,17 +53,6 @@ Candlestick chart
 tenbagger --candle --ticker IBM --period 700d --interval 1d
 ```
 
-## Installation
-```
-git clone https://github.com/AramKoorn/TenBagger && cd TenBagger
-python3 setup.py install && pip3 install .
-```
-Check if installation worked:
-```
-tenbagger -v
-```
-
-
 ## Features
 - Check price
 - check portfolio
@@ -72,5 +71,3 @@ tenbagger -v
 - host docs 
 - Add coverage report 
 - make anonymous
-
-
