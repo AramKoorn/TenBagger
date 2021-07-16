@@ -9,6 +9,8 @@ with open(os.path.join(directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 INSTALL_REQUIRES = [
+  'requests==2.23.0',
+  'urllib3==1.25.11',
   "yfinance==0.1.62",
   "pytest",
   "pandas==1.3.0",
@@ -18,8 +20,7 @@ INSTALL_REQUIRES = [
   "pyyaml==5.4.1",
   "pyfiglet",
   "yahoo_earnings_calendar",
-  "urllib3",
-  "beautifulsoup4",
+  "beautifulsoup4==4.9.3",
   "html5lib",
   "plotly==5.1.0",
   "dash==1.20.0",
