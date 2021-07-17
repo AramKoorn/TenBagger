@@ -26,6 +26,11 @@ tenbagger --configure
 Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
 
 ## Usage
+Portfolio overview
+```
+tenbagger --portfolio my_portfolio
+```
+
 Simulate passive income of dividend payouts and staking rewards
 
 ```

@@ -9,9 +9,9 @@ with open(os.path.join(directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 INSTALL_REQUIRES = [
-  'requests==2.23.0',
-  'urllib3==1.25.11',
-  "yfinance==0.1.62",
+  'requests==2.26.0',
+  'urllib3==1.26.6',
+  "yfinance==0.1.63",
   "pytest",
   "pandas==1.3.0",
   "numpy==1.21.0",
