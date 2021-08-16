@@ -79,7 +79,10 @@ def main():
         from tenbagger.src.notify.insider_activity import NotifyInsider
         from tenbagger.src.utils.utilities import read_yaml
 
+        # Read configs
         port = list(read_yaml('user_data/portfolio/portfolio.yaml').keys())
+        env = read_yaml('user_data/env/environment.yaml')
+
         NotifyInsider().notify_portfolio(port)
         NotifyPriceTarget().notify_high()
         NotifyPriceTarget().notify_low()
@@ -89,11 +92,15 @@ def main():
         # Clean this up
         from tenbagger.src.portfolio.core import Portfolio
         from tenbagger.src.terminal.utils import TermPlots
+        from tenbagger.src.utils.utilities import read_yaml
 
         pd.set_option("expand_frame_repr", False)
 
         f = Figlet(font='slant')
         print(f.renderText('Portfolio'))
+
+        # Read in ENV settings
+        env = read_yaml('user_data/env/environment.yaml')
 
         # Print out portfolio
         port = Portfolio(args.portfolio)
@@ -101,14 +108,14 @@ def main():
         print(port.df.drop(columns=['circulatingSupply', 'type']))
 
         # Print passive income
-        print(f'\n Total passive income: {port.df.passive_income.sum()} \n')
+        print(f'\n Total passive income: {port.df.passive_income.sum()} {env["CURRENCY"]} \n')
 
         # Print portfolio
         by_secor = make_percentage(port.df.groupby('sector').value.sum().reset_index(), 'value', 'sector')
         TermPlots(by_secor[['sector', 'value']]).plot_bar()
 
         # Print total value
-        print(f'Total value of portfolio: {port.df.value.sum()}')
+        print(f'Total value of portfolio: {round(port.df.value.sum(), 2) } {env["CURRENCY"]}')
 
     if args.tracker:
         from tenbagger.src.dashboard.trackerdash import main

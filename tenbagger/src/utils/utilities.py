@@ -48,13 +48,21 @@ class Ticker:
         # Dictionary returning the dates
         return {date: self.ticker.history(date).Close[0] for i, date in enumerate(dates)}
 
-    def overview(self):
-        '''
+    def overview_crypto(self, info):
 
-        :return: Dictionary of key metrics
-        '''
+        overview = {'price': self.last_price(),
+         "MarketCap": info['marketCap'],
+         '52 week low': info['fiftyTwoWeekLow'],
+         '52 week High': info['fiftyTwoWeekHigh'],
+         }
 
-        info = self.ticker.info
+        overview = pd.DataFrame(list(zip(overview.keys(), overview.values())), columns=['Description', 'Value'])
+        overview["Value"] = np.round(overview["Value"], 3)
+        overview["Value"] = overview.Value.apply(lambda x: "{:,}".format(x))
+
+        return overview
+
+    def overview_stonks(self, info):
 
         overview = {'price': self.last_price(),
          "MarketCap": info['marketCap'],
@@ -81,6 +89,21 @@ class Ticker:
         overview = pd.DataFrame(list(zip(overview.keys(), overview.values())), columns=['Description', 'Value'])
         overview["Value"] = np.round(overview["Value"], 3)
         overview["Value"] = overview.Value.apply(lambda x: "{:,}".format(x))
+
+        return overview
+
+    def overview(self):
+        '''
+
+        :return: Dictionary of key metrics
+        '''
+
+        info = self.ticker.info
+
+        if info['quoteType'] == "CRYPTOCURRENCY":
+            overview = self.overview_crypto(info)
+        else:
+            overview = self.overview_stonks(info)
 
         return overview
 

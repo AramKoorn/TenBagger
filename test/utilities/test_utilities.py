@@ -8,7 +8,7 @@ def test_read_yaml():
     assert "CURRENCY" in cfg.keys()
 
 
-class TestTicker:
+class TestTickerStonk:
     def setup(self):
         self.ticker = Ticker('ibm')
 
@@ -34,5 +34,16 @@ class TestTicker:
                             'fair_value']
 
 
-if __name__ == '__main__':
-    test_read_yaml()
+class TestTickerCrypto:
+    def setup(self):
+        self.ticker = Ticker('eth-usd')
+
+    def test_last_price(self):
+        price = self.ticker.last_price()
+        assert isinstance(price, np.float64)
+
+    def test_overview(self):
+        overview = self.ticker.overview()
+        overview = list(overview.Description)
+        assert overview == ['price', 'MarketCap', '52 week low', '52 week High']
+
