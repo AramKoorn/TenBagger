@@ -35,6 +35,9 @@ def main():
     # Overview
     parser.add_argument("--overview")
 
+    # Algorand checkecker
+    parser.add_argument("--algo", action="store_true")
+
     # Calculator
     parser.add_argument('-s', "--scenario", action="store_true")
     parser.add_argument("-dg", "--dividendgrowth", help="rate of dividend growth", type=float)
@@ -45,6 +48,16 @@ def main():
     parser.add_argument("-r", "--report", action='store_true', help="Generate report to data folder")
 
     args = parser.parse_args()
+
+    if args.algo:
+        from tenbagger.src.crypto.algorand import Algorand
+
+        algo = Algorand()
+        
+        # This should be an argument
+        address = 'WKMYA6PXWIM6L3TO2T3VPR5AJUGRZXJZDU2A2TPLTT7O44YG2N3M4XUH7Y'
+        account = algo.get_account_data(address=address)
+        print(account)
 
     if args.configure:
         c = Configuration()
