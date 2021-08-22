@@ -7,6 +7,11 @@ Welcome to TenBagger's documentation!
 =====================================
 
 .. toctree::
+   :maxdepth: 1
+
+   getting_started
+
+.. toctree::
    :maxdepth: 2
    :caption: Contents:
    :titlesonly:

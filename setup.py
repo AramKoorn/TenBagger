@@ -32,12 +32,15 @@ INSTALL_REQUIRES = [
   "termgraph==0.5.1"
 ]
 
+EXTRAS_REQUIRE = {"doc": ['nbsphinx>=0.8.5']}
+
 setup(name='tenbaggger',
       version=__version__,
       url="https://github.com/AramKoorn/TenBagger",
       entry_points={"console_scripts": ["tenbagger=tenbagger.cli:main"]},
       description='test',
       install_requires=INSTALL_REQUIRES,
+      extras_require=EXTRAS_REQUIRE,
       author='Aram Koorn',
       packages=find_packages()
       )
