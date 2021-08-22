@@ -3,12 +3,30 @@
 #
 # This is an example. You can delete/modify this portfolio if you want.
 my_portfolio:
-  aapl: 20
-  ibm: 20
-  ETH-USD: 2
+  abbv: 17
+  
+
 
 # You can modify the current portfolio or add a new portfolio. Make sure that you use ticker 
 # symbols as listed on yahoo finance. for instance, if you want to add a portfolio called household_portfolio that contains 5 tesla shares:
 # 
 # household_portfolio:
 #   TSLA : 5
+#
+
+aram:
+  abbv: 17
+  mo: 11
+  ahh: 20
+  gnl: 15
+  ibm: 56
+  kmi: 80
+  mrk: 33
+  pfe: 40
+  pg: 3
+  tsm: 15
+  vz: 30
+  wpc: 30
+  eth-eur: 2.26
+  dot1-eur: 42
+  algo-eur: 9500
