@@ -35,7 +35,7 @@ INSTALL_REQUIRES = [
 EXTRAS_REQUIRE = {"doc": ['nbsphinx>=0.8.5',
                           'm2r2']}
 
-setup(name='tenbaggger',
+setup(name='tenbagger',
       version=__version__,
       url="https://github.com/AramKoorn/TenBagger",
       entry_points={"console_scripts": ["tenbagger=tenbagger.cli:main"]},
