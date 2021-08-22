@@ -4,8 +4,9 @@ sphinx:
   builder: html
   configuration: conf.py
   fail_on_warning: true
-
+  
 python:
+  version: "3.8"
   install:
-    extra_requirements:
-      - doc
+      extra_requirements:
+        - doc
