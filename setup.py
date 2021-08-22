@@ -33,7 +33,9 @@ INSTALL_REQUIRES = [
 ]
 
 EXTRAS_REQUIRE = {"doc": ['nbsphinx>=0.8.5',
-                          'm2r2']}
+                          'm2r2',
+                          'sphinx-gallery',
+                          'readthedocs-sphinx-search']}
 
 setup(name='tenbagger',
       version=__version__,

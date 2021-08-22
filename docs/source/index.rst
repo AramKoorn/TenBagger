@@ -12,11 +12,18 @@ Welcome to TenBagger's documentation!
    getting_started
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
    :titlesonly:
 
-   readme_link 
+   readme_link
+
+.. nbgallery::
+   :maxdepth: 1
+   :caption: Introductory Tutorials
+   :name: introductory-tutorials
+
+   examples/portfolio
 
 Indices and tables
 ==================

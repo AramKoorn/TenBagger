@@ -30,11 +30,26 @@ author = 'Aram Koorn'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
+
 extensions = [
     "nbsphinx",
-    'sphinx.ext.autodoc',
-    "sphinx_rtd_theme",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.doctest",
+    "sphinx.ext.imgconverter",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.mathjax",
+    "sphinx.ext.viewcode",
+    "sphinx_gallery.gen_gallery",
+    "sphinx_search.extension",
     "m2r2"
+]
+
+
+exclude_patterns = [
+    ".ipynb_checkpoints",
+    "tutorials/logistic_regression.ipynb",
+    "examples/*ipynb",
+    "examples/*py",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -71,3 +86,14 @@ with open("../../README.md", "rt") as f:
 
 with open("getting_started.rst", "wt") as f:
     f.write(nbsphinx.markdown2rst(text))
+
+
+sphinx_gallery_conf = {
+    "examples_dirs": ["../../examples"],
+    "gallery_dirs": ["examples"],
+    # only execute files beginning with plot_
+    "filename_pattern": "/plot_",
+    "ignore_pattern": "__init__",
+    # not display Total running time of the script because we do not execute it
+    "min_reported_time": 1,
+}
