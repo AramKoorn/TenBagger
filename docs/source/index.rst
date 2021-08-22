@@ -17,10 +17,6 @@ Welcome to TenBagger's documentation!
    :titlesonly:
 
    readme_link 
-   utils
-
-
-
 
 Indices and tables
 ==================
