@@ -32,7 +32,8 @@ INSTALL_REQUIRES = [
   "termgraph==0.5.1"
 ]
 
-EXTRAS_REQUIRE = {"doc": ['nbsphinx>=0.8.5']}
+EXTRAS_REQUIRE = {"doc": ['nbsphinx>=0.8.5',
+                          'm2r2']}
 
 setup(name='tenbaggger',
       version=__version__,
