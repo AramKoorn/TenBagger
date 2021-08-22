@@ -13,4 +13,4 @@ python:
       extra_requirements:
         - doc
     - method: setuptools
-      path: TenBagger
+      path: tenbagger
