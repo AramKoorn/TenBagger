@@ -28,9 +28,6 @@ Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
 
 ## Usage
 Portfolio overview
-```
-tenbagger --portfolio my_portfolio
-```
 ```sh
 $ tenbagger --portfolio hypothetical_portfolio 
 
