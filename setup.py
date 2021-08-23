@@ -34,6 +34,7 @@ INSTALL_REQUIRES = [
 
 EXTRAS_REQUIRE = {"doc": ['nbsphinx>=0.8.5',
                           'm2r2',
+                          'sphinx_rtd_theme',
                           'sphinx-gallery',
                           'readthedocs-sphinx-search']}
 
