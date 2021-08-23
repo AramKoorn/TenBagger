@@ -72,6 +72,30 @@ tenbagger --scenario -n 120 --stockgrowth 0.03 --dividendgrowth 0.03 -m 1000 --c
 
 ```
 
+Get latest ticker information
+
+```sh
+$ tenbagger overview -- ibm
+
+
+                     Description              Value
+0                          price             139.62
+1                      MarketCap  125,144,195,072.0
+2             Shares Outstanding      896,320,000.0
+3                 Dividend Yield              0.047
+4    trailingAnnualDividendYield              0.047
+5      Short Percentage of Float              0.029
+6                   Trailing EPS              5.917
+7                    52 week low             105.92
+8                   52 week High             152.84
+9            heldPercentInsiders              0.001
+10       earningsQuarterlyGrowth             -0.026
+11  priceToSalesTrailing12Months              1.682
+12                    fair_value             148.76
+
+```
+
+
 Candlestick chart
 ```
 tenbagger --candle --ticker ibm  --period 700d --interval 1d
@@ -79,9 +103,6 @@ tenbagger --candle --ticker ibm  --period 700d --interval 1d
 
 Get overview of latest ticker information
 
-```
-tenbagger --overview IBM 
-```
 
 Run tracker dashboard
 ```
