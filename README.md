@@ -128,5 +128,3 @@ tenbagger --candle --ticker IBM --period 700d --interval 1d
 - Nice terminal colors for printing
 - make test to run everything in CLI and just check if it works
 
-## TODO
-- host docs 
