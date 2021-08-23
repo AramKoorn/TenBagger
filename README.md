@@ -75,7 +75,7 @@ tenbagger --scenario -n 120 --stockgrowth 0.03 --dividendgrowth 0.03 -m 1000 --c
 Get latest ticker information
 
 ```sh
-$ tenbagger overview -- ibm
+$ tenbagger --overview ibm
 
 
                      Description              Value
