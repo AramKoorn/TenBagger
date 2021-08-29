@@ -14,7 +14,8 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 import nbsphinx
-
+import glob
+import shutil
 import sphinx_rtd_theme
 import m2r2
 
@@ -48,7 +49,6 @@ extensions = [
 exclude_patterns = [
     ".ipynb_checkpoints",
     "tutorials/logistic_regression.ipynb",
-    "examples/*ipynb",
     "examples/*py",
 ]
 
@@ -87,6 +87,22 @@ with open("../../README.md", "rt") as f:
 with open("getting_started.rst", "wt") as f:
     f.write(nbsphinx.markdown2rst(text))
 
+
+# -- Copy notebook files
+
+if not os.path.exists("tutorials"):
+    os.makedirs("tutorials")
+
+for src_file in glob.glob("../../notebooks/source/*.ipynb"):
+    dst_file = os.path.join("tutorials", src_file.split("/")[-1])
+    shutil.copy(src_file, "tutorials/")
+
+# add index file to `tutorials` path, `:orphan:` is used to
+# tell sphinx that this rst file needs not to be appeared in toctree
+with open("../../notebooks/source/index.rst", "rt") as f1:
+    with open("tutorials/index.rst", "wt") as f2:
+        f2.write(":orphan:\n\n")
+        f2.write(f1.read())
 
 sphinx_gallery_conf = {
     "examples_dirs": ["../../examples"],

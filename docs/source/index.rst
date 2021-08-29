@@ -24,7 +24,7 @@ Welcome to TenBagger's documentation!
    :name: introductory-tutorials
 
    examples/portfolio
-   examples/scenario
+   tutorials/scenario
 
 Indices and tables
 ==================
