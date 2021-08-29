@@ -28,8 +28,33 @@ Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
 
 ## Usage
 Portfolio overview
-```
-tenbagger --portfolio my_portfolio
+```sh
+$ tenbagger --portfolio hypothetical_portfolio 
+
+    ____             __  ____      ___     
+   / __ \____  _____/ /_/ __/___  / (_)___ 
+  / /_/ / __ \/ ___/ __/ /_/ __ \/ / / __ \
+ / ____/ /_/ / /  / /_/ __/ /_/ / / / /_/ /
+/_/    \____/_/   \__/_/  \____/_/_/\____/ 
+                                           
+
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 6/6 [00:16<00:00,  2.74s/it]
+         date    ticker         price  amount currency   yield             sector         value  staking_rewards     apy percentage  dividends  passive_income
+0  2021-08-23   BTC-USD  49286.179688     0.5      USD     NaN             Crypto  24643.089844              NaN     NaN     57.39%   0.000000        0.000000
+0  2021-08-23      TSLA    706.299988    10.0      USD     NaN  Consumer Cyclical   7062.999878              NaN     NaN     16.45%   0.000000        0.000000
+0  2021-08-23   ETH-USD   3314.813721     2.0      USD     NaN             Crypto   6629.627441       487.277617  0.0735     15.44%   0.000000      487.277617
+0  2021-08-23  algo-eur      1.163734  2500.0      EUR     NaN             Crypto   2909.335448       162.049984  0.0557      6.78%   0.000000      162.049984
+0  2021-08-23       IBM    139.619995    10.0      USD  0.0472         Technology   1396.199951              NaN     NaN      3.25%  65.900635       65.900635
+0  2021-08-23      AAPl    149.710007     2.0      USD  0.0059         Technology    299.420013              NaN     NaN      0.70%   1.766578        1.766578
+
+ Total passive income: 716.9948143439361 USD 
+
+
+Crypto           : ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 34.18K
+Consumer Cyclical: ▇▇▇▇▇▇▇▇▇▇ 7.06 K
+Technology       : ▇▇ 1.70 K
+
+Total value of portfolio: 42940.67 USD
 ```
 
 Simulate passive income of dividend payouts and staking rewards
@@ -47,6 +72,30 @@ tenbagger --scenario -n 120 --stockgrowth 0.03 --dividendgrowth 0.03 -m 1000 --c
 
 ```
 
+Get latest ticker information
+
+```sh
+$ tenbagger --overview ibm
+
+
+                     Description              Value
+0                          price             139.62
+1                      MarketCap  125,144,195,072.0
+2             Shares Outstanding      896,320,000.0
+3                 Dividend Yield              0.047
+4    trailingAnnualDividendYield              0.047
+5      Short Percentage of Float              0.029
+6                   Trailing EPS              5.917
+7                    52 week low             105.92
+8                   52 week High             152.84
+9            heldPercentInsiders              0.001
+10       earningsQuarterlyGrowth             -0.026
+11  priceToSalesTrailing12Months              1.682
+12                    fair_value             148.76
+
+```
+
+
 Candlestick chart
 ```
 tenbagger --candle --ticker ibm  --period 700d --interval 1d
@@ -54,9 +103,6 @@ tenbagger --candle --ticker ibm  --period 700d --interval 1d
 
 Get overview of latest ticker information
 
-```
-tenbagger --overview IBM 
-```
 
 Run tracker dashboard
 ```
@@ -82,5 +128,3 @@ tenbagger --candle --ticker IBM --period 700d --interval 1d
 - Nice terminal colors for printing
 - make test to run everything in CLI and just check if it works
 
-## TODO
-- host docs 
