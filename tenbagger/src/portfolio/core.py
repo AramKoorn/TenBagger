@@ -28,25 +28,25 @@ class Portfolio(PortfolioCrypto):
         day = datetime.date.today()
 
         for ticker in tqdm(self.portfolio):
-            t = yf.Ticker(ticker)
+            t = Ticker(ticker)
             df = pd.DataFrame()
             df['date'] = [day]
             df['ticker'] = [ticker]
 
-            info = t.info
-            df['price'] = Ticker(ticker).last_price()
+            info = t.get_info()
+            df['price'] = t.last_price()
             df['amount'] = [self.portfolio[ticker]]
-            df["currency"] = info["currency"]
-            df['circulatingSupply'] = info['circulatingSupply']
-            df['type'] = info['quoteType']
+            df["currency"] = info['summaryDetail']["currency"]
+            df['circulatingSupply'] = info['summaryDetail']['circulatingSupply']
+            df['type'] = info['quoteType']['quoteType']
 
-            if info["dividendYield"]:
-                df["yield"] = info["dividendYield"]
+            if info['summaryDetail']["dividendYield"]:
+                df["yield"] = info['summaryDetail']["dividendYield"]
             else:
                 df["yield"] = None
 
             try:
-                df['sector'] = info['sector']
+                df['sector'] = info['summaryProfile']['sector']
             except:
                 df['sector'] = 'Crypto'
 
@@ -81,11 +81,3 @@ class Portfolio(PortfolioCrypto):
         df['passive_income'] = df[['dividends', 'passive_income']].max(axis=1)
 
         self.df = df
-
-
-if __name__ == "__main__":
-    pd.set_option("expand_frame_repr", False)
-    d = Portfolio('test_calculator')
-    d.unification()
-    print(d.df)
-    make_percentage(df=d.df, value='value', groupby='sector')

@@ -1,7 +1,16 @@
-from tenbagger.src.utils.utilities import read_yaml, order_by_month, Ticker
+from tenbagger.src.utils.utilities import read_yaml, order_by_month, Ticker, make_percentage
 import pandas as pd
 import numpy as np
+from pandas._testing import assert_frame_equal
 
+
+def test_make_percentage():
+    df = pd.DataFrame.from_dict({'sector': ['crypto', 'technology'], 'value': [150, 200]})
+
+    desired = pd.DataFrame.from_dict({'sector': ['technology', 'crypto'], 'value': [200, 150], 'percentage': ['57.14%', '42.86%']})
+    res = make_percentage(df, value='value', groupby='sector')
+
+    assert_frame_equal(left=desired.reset_index(drop=True), right=res.reset_index(drop=True))
 
 def test_read_yaml():
     cfg = read_yaml('user_data/env/environment.yaml')
@@ -14,17 +23,11 @@ class TestTickerInfo:
         desired = {'defaultKeyStatistics', 'details', 'summaryProfile', 'recommendationTrend', 'financialsTemplate',
                    'earnings', 'price', 'financialData', 'quoteType', 'calendarEvents', 'summaryDetail', 'symbol',
                    'esgScores', 'upgradeDowngradeHistory', 'pageViews'}
-        info['summaryDetail']
+
         assert info.keys() == desired
 
     def test_info_crypto(self):
         info = Ticker('eth-usd').get_info()
-
-        desired = {'defaultKeyStatistics', 'details', 'summaryProfile', 'recommendationTrend', 'financialsTemplate',
-                   'earnings', 'price', 'financialData', 'quoteType', 'calendarEvents', 'summaryDetail', 'symbol',
-                   'esgScores', 'upgradeDowngradeHistory', 'pageViews'}
-        info['summaryDetail']
-        assert info.keys() == desired
         assert info['quoteType']['quoteType'] == 'CRYPTOCURRENCY'
 
 class TestTickerStonk:

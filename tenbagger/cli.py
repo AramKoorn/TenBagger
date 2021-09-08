@@ -124,8 +124,8 @@ def main():
         print(f'\n Total passive income: {port.df.passive_income.sum()} {env["CURRENCY"]} \n')
 
         # Print portfolio
-        by_secor = make_percentage(port.df.groupby('sector').value.sum().reset_index(), 'value', 'sector')
-        TermPlots(by_secor[['sector', 'value']]).plot_bar()
+        by_sector = make_percentage(port.df.groupby('sector').value.sum().reset_index(), 'value', 'sector')
+        TermPlots(by_sector[['sector', 'value']]).plot_bar()
 
         # Print total value
         print(f'Total value of portfolio: {round(port.df.value.sum(), 2) } {env["CURRENCY"]}')

@@ -10,13 +10,12 @@ import re
 
 
 def make_percentage(df: pd.DataFrame, value: str, groupby: str):
-    df = df.groupby(groupby).value.sum().reset_index().sort_values(value, ascending=False).copy()
+    df = df.groupby(groupby)['value'].sum().reset_index().sort_values(value, ascending=False).copy()
 
     # Caclulate percentage
-    df['percentage'] = df.value / df.value.sum()
+    df['percentage'] = df['value'] / df['value'].sum()
 
     # Formatting
-    df['percentage'] = df.percentage.apply(lambda x: "{:.2%}".format(x))
     df['percentage'] = df.percentage.apply(lambda x: "{:.2%}".format(x))
 
     return df
