@@ -1,7 +1,10 @@
 from tenbagger.src.portfolio.core import Portfolio
+import os
+from tenbagger.src.utils.utilities import order_by_month, make_percentage
 
 
 def test_portfolio_stocks_only():
+
     portfolio = {'ibm': 50, 'aapl': 50}
     port = Portfolio(portfolio)
     port.unification()
@@ -12,6 +15,7 @@ def test_portfolio_stocks_only():
 
 
 def test_mix_crypto_stonks():
+
     portfolio = {'ibm': 50, 'aapl': 50, 'ETH-USD': 100}
     port = Portfolio(portfolio)
     port.unification()
