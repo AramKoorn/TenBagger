@@ -1,10 +1,12 @@
 import yfinance as yf
-import pandas as pd
-from currency_converter import CurrencyConverter
 import yaml
 import numpy as np
 import datetime
 import pandas as pd
+from bs4 import BeautifulSoup
+from requests import get
+import json
+import re
 
 
 def make_percentage(df: pd.DataFrame, value: str, groupby: str):
@@ -15,6 +17,7 @@ def make_percentage(df: pd.DataFrame, value: str, groupby: str):
 
     # Formatting
     df['percentage'] = df.percentage.apply(lambda x: "{:.2%}".format(x))
+    df['percentage'] = df.percentage.apply(lambda x: "{:.2%}".format(x))
 
     return df
 
@@ -23,12 +26,40 @@ class Ticker:
     '''
     Get Ticker information
     '''
-    def __init__(self, ticker : str):
+    def __init__(self, ticker: str):
         '''
 
         :param ticker: Ticker symbol. E.g. aapl, ibm, tsla
         '''
+        self.ticker_name = ticker
         self.ticker = yf.Ticker(ticker)
+
+    def get_info(self):
+        """
+        Scrapes General company info from Yahoo finance. Copy pasted this from yfinance but is 3x faster.
+
+        @return:
+        """
+
+        base_url = 'https://finance.yahoo.com/quote/'
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+
+        response = get(base_url + self.ticker_name, headers=headers)
+        html = response.text
+        json_str = html.split('root.App.main =')[1].split(
+            '(this)')[0].split(';\n}')[0].strip()
+        data = json.loads(json_str)[
+            'context']['dispatcher']['stores']['QuoteSummaryStore']
+
+        # return data
+        new_data = json.dumps(data).replace('{}', 'null')
+        new_data = re.sub(
+            r'\{[\'|\"]raw[\'|\"]:(.*?),(.*?)\}', r'\1', new_data)
+        info = json.loads(new_data)
+        info['summaryDetail']['dividendYield']
+
+        return info
 
     def last_price(self):
         '''
@@ -139,10 +170,27 @@ def order_by_month(df, col):
 
 
 if __name__ == "__main__":
-    ticker = "mo"
-    t = Ticker(ticker)
 
-    #przint(t.info)
-    t.history_prices(['7d', '1mo', '2mo', '6mo', '1y'])
-    print(t.last_price())
-    t.overview()
+    import time
+    start_time = time.time()
+    url = 'https://finance.yahoo.com/quote/MSFT'
+    response = get(url, headers={'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'})
+    html = response.text
+    json_str = html.split('root.App.main =')[1].split(
+        '(this)')[0].split(';\n}')[0].strip()
+    data = json.loads(json_str)[
+        'context']['dispatcher']['stores']['QuoteSummaryStore']
+
+    # return data
+    new_data = json.dumps(data).replace('{}', 'null')
+    import re
+    new_data = re.sub(
+        r'\{[\'|\"]raw[\'|\"]:(.*?),(.*?)\}', r'\1', new_data)
+
+    hoi = json.loads(new_data)
+    hoi['summaryDetail']['dividendYield']
+    print(hoi)
+
+    yf.Ticker('msft').info
+    print("--- %s seconds ---" % (time.time() - start_time))
+

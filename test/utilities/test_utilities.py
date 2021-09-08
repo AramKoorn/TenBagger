@@ -7,6 +7,25 @@ def test_read_yaml():
     cfg = read_yaml('user_data/env/environment.yaml')
     assert "CURRENCY" in cfg.keys()
 
+class TestTickerInfo:
+    def test_stonk_info(self):
+        info = Ticker('IBM').get_info()
+
+        desired = {'defaultKeyStatistics', 'details', 'summaryProfile', 'recommendationTrend', 'financialsTemplate',
+                   'earnings', 'price', 'financialData', 'quoteType', 'calendarEvents', 'summaryDetail', 'symbol',
+                   'esgScores', 'upgradeDowngradeHistory', 'pageViews'}
+        info['summaryDetail']
+        assert info.keys() == desired
+
+    def test_info_crypto(self):
+        info = Ticker('eth-usd').get_info()
+
+        desired = {'defaultKeyStatistics', 'details', 'summaryProfile', 'recommendationTrend', 'financialsTemplate',
+                   'earnings', 'price', 'financialData', 'quoteType', 'calendarEvents', 'summaryDetail', 'symbol',
+                   'esgScores', 'upgradeDowngradeHistory', 'pageViews'}
+        info['summaryDetail']
+        assert info.keys() == desired
+        assert info['quoteType']['quoteType'] == 'CRYPTOCURRENCY'
 
 class TestTickerStonk:
     def setup(self):
@@ -15,6 +34,9 @@ class TestTickerStonk:
     def test_last_price(self):
         price = self.ticker.last_price()
         assert isinstance(price, np.float64)
+
+    def test_info(self):
+        self.ticker.get_info()
 
     def test_overview(self):
         overview = self.ticker.overview()

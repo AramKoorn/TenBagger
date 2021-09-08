@@ -1,7 +1,11 @@
 from tenbagger.src.portfolio.core import Portfolio
+import os
 
 
 def test_portfolio_stocks_only():
+
+    os.chdir('../..')
+
     portfolio = {'ibm': 50, 'aapl': 50}
     port = Portfolio(portfolio)
     port.unification()
