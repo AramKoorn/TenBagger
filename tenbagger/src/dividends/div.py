@@ -3,7 +3,7 @@ import pandas as pd
 from tenbagger.src.utils.utilities import Ticker, read_yaml
 import datetime
 from tqdm import tqdm
-from currency_converter import CurrencyConverter
+from forex_python.converter import CurrencyRates
 
 
 class Dividends:
@@ -31,8 +31,8 @@ class Dividends:
 
         # Convert to correct currency
         df['currency'] = Ticker(self.ticker).get_currency()
-        c = CurrencyConverter()
-        df['Dividends'] = df.apply(lambda x: c.convert(x.Dividends, x.currency, self.env["CURRENCY"]), axis=1)
+        c = CurrencyRates()
+        df['Dividends'] = df.apply(lambda x: c.convert(x.currency, self.env["CURRENCY"], x.Dividends), axis=1)
         df['currency'] = self.env["CURRENCY"]
 
         return df

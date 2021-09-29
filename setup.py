@@ -27,7 +27,7 @@ INSTALL_REQUIRES = [
   'dash-bootstrap-components==0.12.2',
   "tqdm==4.59.0",
   "python-telegram-bot==13.7",
-  'CurrencyConverter==0.16.1',
+  'forex-python==1.6',
   "typeguard==2.12.0",
   "termgraph==0.5.1"
 ]

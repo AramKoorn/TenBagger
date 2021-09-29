@@ -1,7 +1,7 @@
 # Here you can specify your preferred environment.
 # E.G. CURRENCY: "EUR"
 
-CURRENCY: "USD"
+CURRENCY: "EUR"
 MAINPORTFOLIO: "my_portfolio"
 TELEGRAMID: ""
 TELEGRAMTOKEN: ""

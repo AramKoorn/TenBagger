@@ -122,6 +122,8 @@ def main():
 
         # Print passive income
         print(f'\n Total passive income: {port.df.passive_income.sum()} {env["CURRENCY"]} \n')
+        print(f'\n Total value stonks: {port.df[port.df.sector != "Crypto"].value.sum()} {env["CURRENCY"]} \n')
+        print(f'\n Total value crypto: {port.df[port.df.sector == "Crypto"].value.sum()} {env["CURRENCY"]} \n')
 
         # Print portfolio
         by_sector = make_percentage(port.df.groupby('sector').value.sum().reset_index(), 'value', 'sector')

@@ -23,3 +23,9 @@ def test_mix_crypto_stonks():
 
     assert df.passive_income.isna().sum() == 0
     assert df.shape[0] == 3
+
+
+def test_currency_coverter():
+    portfolio = {'mrk': 1}
+    port = Portfolio(portfolio)
+    port.unification()
