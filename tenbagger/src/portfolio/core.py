@@ -4,6 +4,8 @@ import datetime
 import pandas as pd
 from tqdm import tqdm
 from forex_python.converter import CurrencyRates
+from tenbagger.src.crypto.blockchains import AllChains
+from tenbagger.src.crypto.algorand import Algorand
 
 
 class Portfolio(PortfolioCrypto):
@@ -34,7 +36,17 @@ class Portfolio(PortfolioCrypto):
 
             info = t.get_info()
             df['price'] = t.last_price()
-            df['amount'] = [self.portfolio[ticker]]
+
+            #TODO: Make this nicer
+            if isinstance(self.portfolio[ticker], str):
+                token_symbol = ticker.split('-')[0]
+                chain = AllChains(token_symbol).select_class()
+                account = chain.get_account_data(self.portfolio[ticker])
+                amount = account['amount']
+                df['amount'] = amount
+            else:
+                df['amount'] = [self.portfolio[ticker]]
+
             df["currency"] = info['summaryDetail']["currency"]
             df['circulatingSupply'] = info['summaryDetail']['circulatingSupply']
             df['type'] = info['quoteType']['quoteType']

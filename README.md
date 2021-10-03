@@ -114,17 +114,17 @@ Candlestick chart
 tenbagger --candle --ticker IBM --period 700d --interval 1d
 ```
 
-## Features
-- Check price
-- check portfolio
-- Candlestick charts of historical price data
-- Volume daytrading past 10 days 
+## Crypto
 
-## Improvements
-- add unit tests. Increase that coverage 
-- Portfolio should take <1 second
-- Portfolio over time
-- Update portfolio using CLI
-- Nice terminal colors for printing
-- make test to run everything in CLI and just check if it works
+Because everything is stored on the the blockchain it's quite easy to directly pull your crypto balance from the blockchain. However, every blockchain got it's own API so we are going to add more crypto over time. The advantage is that you can input your blockchain address in your crypto wallet directly in the portfolio config and all you account balance changes are automatically updated in the analysis. E.g.
+
+```
+# This address is from the algorand foundation
+my_portfolio:
+  algo-eur: 3C5IFPAZLET3FLGGFK5AXN7NISVD3OCOMEZJESCXUNUHDOIPMVKYB4DILM
+
+```
+We will add more blockchains over time. Currentlly supported blockchains are:
+- Algorand
+
 

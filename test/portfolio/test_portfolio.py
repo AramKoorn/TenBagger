@@ -25,6 +25,14 @@ def test_mix_crypto_stonks():
     assert df.shape[0] == 3
 
 
+def test_crypto_address():
+
+    portfolio = {'ibm': 50,
+                 'algo-eur': 'WKMYA6PXWIM6L3TO2T3VPR5AJUGRZXJZDU2A2TPLTT7O44YG2N3M4XUH7Y'}
+    port = Portfolio(portfolio)
+    port.unification()
+
+
 def test_currency_coverter():
     portfolio = {'mrk': 1}
     port = Portfolio(portfolio)
