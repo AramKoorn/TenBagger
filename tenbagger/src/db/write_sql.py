@@ -7,10 +7,10 @@ import pandas as pd
 
 # Connect to PostgreSQL DBMS
 conn = psycopg2.connect(host="localhost", 
-        database="financials", user="akoorn", 
+        database="portfolio", user="morty",
         password="1234")
 
-engine = create_engine('postgres://akoorn:1234@localhost:5432/financials')
+engine = create_engine('postgres://morty:1234@localhost:5432/portfolio')
 #Creating a cursor object using the cursor() method
 cursor = conn.cursor()
 df = pd.DataFrame([1, 2, 3], columns=["col"])

@@ -23,7 +23,7 @@ hypothetical_portfolio:
 
 aram:
   abbv: 19
-  mo: 11
+  mo: 25
   enb: 5
   bmy: 30
   ibm: 41
@@ -35,7 +35,7 @@ aram:
   vz: 30
   wpc: 30
   eth-usd: 2.36
-  algo-eur: 10010 
+  algo-eur: WKMYA6PXWIM6L3TO2T3VPR5AJUGRZXJZDU2A2TPLTT7O44YG2N3M4XUH7Y
   qcom: 14
   msft: 10
   tsm: 15

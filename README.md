@@ -127,4 +127,6 @@ my_portfolio:
 We will add more blockchains over time. Currentlly supported blockchains are:
 - Algorand
 
+## TODO 
+- postgres backend
 

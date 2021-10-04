@@ -1,8 +1,5 @@
 price_target_low: 
-  U: 90
-  abbv: 100
-  spce: 20
-  dot1-usd: 30
+  msft: 300
 
 price_target_high:
-  2LY.F: 1
+  msft: 30
