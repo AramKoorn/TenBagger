@@ -15,6 +15,18 @@ class Portfolio(PortfolioCrypto):
         self.portfolio = self._select()
         self.env = read_yaml('user_data/env/environment.yaml')
 
+    @property
+    def dividends(self):
+        return sum(self.df.dividends)
+
+    @property
+    def total_staking_rewards(self):
+        return sum(self.df.staking_rewards)
+
+    @property
+    def passive_income(self):
+        return sum(self.df.passive_income)
+
     def _select(self):
         if isinstance(self.name_port, dict):
             portfolio = self.name_port

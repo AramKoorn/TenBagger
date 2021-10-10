@@ -20,10 +20,12 @@ def test_mix_crypto_stonks():
     port = Portfolio(portfolio)
     port.unification()
     df = port.df
-
     assert df.passive_income.isna().sum() == 0
     assert df.shape[0] == 3
 
+    assert port.dividends
+    assert port.total_staking_rewards
+    assert port.passive_income
 
 def test_crypto_address():
 
