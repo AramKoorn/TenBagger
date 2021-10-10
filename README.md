@@ -127,6 +127,12 @@ my_portfolio:
 We will add more blockchains over time. Currentlly supported blockchains are:
 - Algorand
 
-## TODO 
-- postgres backend
+## Tasks
+- [ ] track portfolio over time using postgres as backend
+- [ ] GAK
+- [ ] Portfolio properties
+  - [ ] Total dividends
+  - [ ] Total staking rewards
+  - [ ] Total passive income
+- [ ] Pull upcoming ex dividend dates
 
