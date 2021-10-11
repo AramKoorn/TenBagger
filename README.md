@@ -135,4 +135,5 @@ We will add more blockchains over time. Currentlly supported blockchains are:
   - [ ] Total staking rewards
   - [ ] Total passive income
 - [ ] Pull upcoming ex dividend dates
+- Use textual for interactive dashboard inside terminal!
 
