@@ -29,7 +29,8 @@ INSTALL_REQUIRES = [
   "python-telegram-bot==13.7",
   'forex-python==1.6',
   "typeguard==2.12.0",
-  "termgraph==0.5.1"
+  "termgraph==0.5.1",
+  "textual==0.1.12"
 ]
 
 EXTRAS_REQUIRE = {"doc": ['nbsphinx>=0.8.5',
