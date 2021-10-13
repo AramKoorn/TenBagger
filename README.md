@@ -135,5 +135,7 @@ We will add more blockchains over time. Currentlly supported blockchains are:
   - [ ] Total staking rewards
   - [ ] Total passive income
 - [ ] Pull upcoming ex dividend dates
-- Use textual for interactive dashboard inside terminal!
-
+- [ ] Use textual for interactive dashboard inside terminal!
+- [ ] Update portfolio class
+  - [ ] portfolio.pulse()
+  - [ ] Decide on final design of columns
