@@ -130,10 +130,10 @@ We will add more blockchains over time. Currentlly supported blockchains are:
 ## Tasks
 - [ ] track portfolio over time using postgres as backend
 - [ ] GAK
-- [ ] Portfolio properties
-  - [ ] Total dividends
-  - [ ] Total staking rewards
-  - [ ] Total passive income
+- [x] Portfolio properties
+  - [x] Total dividends
+  - [x] Total staking rewards
+  - [x] Total passive income
 - [ ] Pull upcoming ex dividend dates
 - [ ] Use textual for interactive dashboard inside terminal!
 - [ ] Update portfolio class

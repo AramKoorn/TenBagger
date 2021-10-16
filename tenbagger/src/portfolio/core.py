@@ -14,6 +14,7 @@ class Portfolio(PortfolioCrypto):
         self.name_port = name_port
         self.portfolio = self._select()
         self.env = read_yaml('user_data/env/environment.yaml')
+        self.tickers = {}
 
     @property
     def dividends(self):
@@ -35,13 +36,14 @@ class Portfolio(PortfolioCrypto):
 
         return portfolio
 
-    def get_portfolio(self):
+    def initialize_portfolio(self):
 
         res = []
         day = datetime.date.today()
 
         for ticker in tqdm(self.portfolio):
             t = Ticker(ticker)
+            self.tickers[ticker] = t
             df = pd.DataFrame()
             df['date'] = [day]
             df['ticker'] = [ticker]
@@ -77,9 +79,33 @@ class Portfolio(PortfolioCrypto):
 
         self.df = pd.concat(res)
 
+    def pulse(self):
+        """
+        Queries the last prices and updates the portfolio accordingly
+
+        @return: updated portfolio DataFrame
+        """
+
+
+        # Update pricc
+        for ticker in self.df.ticker:
+            self.df.loc[self.df.ticker == ticker, 'price'] = self.tickers[ticker].last_price()
+
+        self.df['value'] = self.df.price * self.df.amount
+        self.df['percentage'] = self.df.value / self.df.value.sum()
+
+        # staking rewards
+        self.df = self.staking_rewards(self.df)
+
+        # Formatting
+        self.df['percentage'] = self.df.percentage.apply(lambda x: "{:.2%}".format(x))
+
+        # Passive income
+        self.df['passive_income'] = self.df[['dividends', 'passive_income']].max(axis=1)
+
     def unification(self):
 
-        self.get_portfolio()
+        self.initialize_portfolio()
 
         df = self.df
         # Convert to desired currency

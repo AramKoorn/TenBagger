@@ -27,6 +27,7 @@ def test_mix_crypto_stonks():
     assert port.total_staking_rewards
     assert port.passive_income
 
+
 def test_crypto_address():
 
     portfolio = {'ibm': 50,
@@ -39,3 +40,16 @@ def test_currency_coverter():
     portfolio = {'mrk': 1}
     port = Portfolio(portfolio)
     port.unification()
+
+
+def test_pulse():
+    portfolio = {'ibm': 50, 'aapl': 50}
+    port = Portfolio(portfolio)
+    port.unification()
+    df = port.df
+    columns = set(df)
+
+    # Update portflio
+    port.pulse()
+    assert columns == set(port.df)
+    
