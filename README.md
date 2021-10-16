@@ -137,5 +137,5 @@ We will add more blockchains over time. Currentlly supported blockchains are:
 - [ ] Pull upcoming ex dividend dates
 - [ ] Use textual for interactive dashboard inside terminal!
 - [ ] Update portfolio class
-  - [ ] portfolio.pulse()
+  - [x] portfolio.pulse()
   - [ ] Decide on final design of columns
