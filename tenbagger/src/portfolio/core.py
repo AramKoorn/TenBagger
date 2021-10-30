@@ -17,16 +17,34 @@ class Portfolio(PortfolioCrypto):
         self.tickers = {}
 
     @property
+    def weighted_staking_rewards(self):
+        return self.df[self.df.sector == "Crypto"].staking_rewards.sum() / self.df[
+            self.df.sector == "Crypto"].value.sum() * 100 if not None else 0
+
+    @property
+    def weighted_dividend_yield(self):
+        return self.df[self.df.sector != "Crypto"].dividends.sum() / self.df[
+            self.df.sector != "Crypto"].value.sum() * 100 if not None else 0
+
+    @property
+    def weighted_yield(self):
+        return self.df.passive_income.sum() / self.df.value.sum() * 100 if not None else 0
+
+    @property
     def dividends(self):
-        return sum(self.df.dividends)
+        return sum(self.df.dividends) if not None else 0
 
     @property
     def total_staking_rewards(self):
-        return sum(self.df.staking_rewards)
+        return sum(self.df.staking_rewards.fillna(0)) if not None else 0
 
     @property
     def passive_income(self):
-        return sum(self.df.passive_income)
+        return sum(self.df.passive_income) if not None else 0
+
+    @property
+    def total_value(self):
+        return sum(self.df.value.fillna(0)) if not None else 0
 
     def _select(self):
         if isinstance(self.name_port, dict):

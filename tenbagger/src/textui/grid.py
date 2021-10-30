@@ -9,7 +9,10 @@ from textual.app import App
 from textual.widgets import ScrollView
 from rich.live import Live
 import random
-from tenbagger.src.textui.clocl import Clock
+from tenbagger.src.textui.clocl import Clock, Summary
+from rich.panel import Panel
+from textual.widget import Widget
+from rich.columns import Columns
 
 
 class MyApp(App):
@@ -45,13 +48,13 @@ class SimpleApp(App):
     async def on_mount(self) -> None:
         #self.set_interval(1, self.refresh)
         #await self.view.dock(PortfolioWidget(name='hoi', portfolio=port).run(), edge="left")
-        await self.view.dock(Placeholder(), edge="left", size=40)
+        await self.view.dock(Summary(), edge="left", size=20)
 
         #await self.view.dock(Clock(), edge="left", size=40)
         #await self.view.dock(ScrollView(auto_width=True), edge="top")
 
         self.body = body = ScrollView(auto_width=True)
-        await self.view.dock(body, Clock(), edge="top")
+        await self.view.dock(Clock(), body, edge="top")
 
         async def add_content():
             table = Table()

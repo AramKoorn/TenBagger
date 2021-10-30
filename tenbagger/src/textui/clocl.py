@@ -8,11 +8,14 @@ from rich.table import Table
 import random
 from rich import box
 from tenbagger.src.portfolio.core import Portfolio
+from rich.panel import Panel
 
 
 port = Portfolio('my_portfolio')
 port.unification()
-
+port.total_staking_rewards
+port.passive_income
+f"{port.dividends:.2f}"
 
 def generate_table(portfolio):
 
@@ -38,6 +41,22 @@ def generate_table(portfolio):
         col.header_style = 'bright_yellow'
 
     return table
+
+
+class Summary(Widget):
+
+
+    def create_content(self):
+        content = f"[b]Portfolio Value[/b]\n[yellow]{port.total_value:.2f}[/yellow]\n" \
+                  f"[b]Passive Income[/b]\n[yellow]{port.passive_income:.2f}%[/yellow]\n" \
+                  f"[b]Dividend Yield[/b]\n[yellow]{port.weighted_dividend_yield:.2f}%[/yellow]\n" \
+                  f"[b]Staking Yield[/b]\n[yellow]{port.weighted_staking_rewards:.2f}%[/yellow]\n" \
+                  f"[b]Weighted Yield[/b]\n[yellow]{port.weighted_yield:.2f}%[/yellow]\n"
+
+        return Panel(content)
+
+    def render(self):
+        return self.create_content()
 
 
 class Clock(Widget):
