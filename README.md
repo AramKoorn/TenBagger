@@ -30,7 +30,7 @@ Portfolio overview
 tenbagger --portfolio my_portfolio
 ```
 
-![widgets](./imgs/gifs.portfolio.gif)
+![widgets](./imgs/gifs/portfolio.gif)
 
 Simulate passive income of dividend payouts and staking rewards
 
