@@ -1,6 +1,5 @@
 from tenbagger.src.portfolio.core import Portfolio
-import os
-from tenbagger.src.utils.utilities import order_by_month, make_percentage
+from tenbagger.src.utils.utilities import Ticker
 
 
 def test_portfolio_stocks_only():
@@ -52,4 +51,3 @@ def test_pulse():
     # Update portflio
     port.pulse()
     assert columns == set(port.df)
-    

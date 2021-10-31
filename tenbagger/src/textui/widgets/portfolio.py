@@ -1,18 +1,7 @@
-from textual.app import App
 from textual.widget import Widget
 from rich.table import Table
-import random
 from rich import box
-from tenbagger.src.portfolio.core import Portfolio
 from rich.panel import Panel
-
-
-# port = Portfolio('my_portfolio')
-# port.unification()
-# port.total_staking_rewards
-# port.passive_income
-# f"{port.dividends:.2f}"
-
 
 
 class SummaryPortfolio(Widget):
@@ -26,10 +15,10 @@ class SummaryPortfolio(Widget):
 
     def create_content(self):
         self.portfolio.pulse()
-        content = f"[b]Portfolio Value[/b]\n[yellow]{self.portfolio.total_value:.2f}[/yellow]\n" \
-                  f"[b]Annual Passive Income[/b]\n[yellow]{self.portfolio.passive_income:.2f}[/yellow]\n" \
-                  f"[b]Dividend Yield[/b]\n[yellow]{self.portfolio.weighted_dividend_yield:.2f}%[/yellow]\n" \
-                  f"[b]Staking Yield[/b]\n[yellow]{self.portfolio.weighted_staking_rewards:.2f}%[/yellow]\n" \
+        content = f"[b]Portfolio Value[/b]\n[yellow]{self.portfolio.total_value:.2f}[/yellow]\n\n" \
+                  f"[b]Annual Passive Income[/b]\n[yellow]{self.portfolio.passive_income:.2f}[/yellow]\n\n" \
+                  f"[b]Dividend Yield[/b]\n[yellow]{self.portfolio.weighted_dividend_yield:.2f}%[/yellow]\n\n" \
+                  f"[b]Staking Yield[/b]\n[yellow]{self.portfolio.weighted_staking_rewards:.2f}%[/yellow]\n\n" \
                   f"[b]Weighted Yield[/b]\n[yellow]{self.portfolio.weighted_yield:.2f}%[/yellow]\n"
 
         return Panel(content)
@@ -101,12 +90,5 @@ class PortfolioTable(Widget):
         return table
 
     def render(self):
-        # time = datetime.now().strftime("%c")
-        # table = Table()
-        # table.add_column("Row ID")
-        # table.add_column("Description")
-        # table.add_column("Level")
-        #
-        # table.add_row(f"{random.random():.2f}", f"description {random.random():.2f}", "[red]j")
         table = self.generate_table(portfolio=self.portfolio)
         return table

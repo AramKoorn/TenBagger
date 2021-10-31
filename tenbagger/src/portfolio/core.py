@@ -15,6 +15,8 @@ class Portfolio(PortfolioCrypto):
         self.portfolio = self._select()
         self.env = read_yaml('user_data/env/environment.yaml')
         self.tickers = {}
+        self.c = CurrencyRates()
+        self.ticker_info = {}
 
     @property
     def weighted_staking_rewards(self):
@@ -67,6 +69,7 @@ class Portfolio(PortfolioCrypto):
             df['ticker'] = [ticker]
 
             info = t.get_info()
+            self.ticker_info[ticker] = info
             df['price'] = t.last_price()
 
             #TODO: Make this nicer
@@ -107,7 +110,9 @@ class Portfolio(PortfolioCrypto):
 
         # Update pricc
         for ticker in self.df.ticker:
-            self.df.loc[self.df.ticker == ticker, 'price'] = self.tickers[ticker].last_price()
+            self.df.loc[self.df.ticker == ticker, 'price'] = self.c.convert(
+                self.ticker_info[ticker]['summaryDetail']["currency"], self.env["CURRENCY"],
+                self.tickers[ticker].last_price())
 
         self.df['value'] = self.df.price * self.df.amount
         self.df['percentage'] = self.df.value / self.df.value.sum()
@@ -127,8 +132,7 @@ class Portfolio(PortfolioCrypto):
 
         df = self.df
         # Convert to desired currency
-        c = CurrencyRates()
-        df['price'] = df.apply(lambda x: c.convert(x.currency, self.env["CURRENCY"], x.price), axis=1)
+        df['price'] = df.apply(lambda x: self.c.convert(x.currency, self.env["CURRENCY"], x.price), axis=1)
         df['currency'] = self.env["CURRENCY"]
         df['value'] = df.price * df.amount
 

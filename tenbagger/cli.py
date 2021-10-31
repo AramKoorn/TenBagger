@@ -106,6 +106,7 @@ def main():
         from tenbagger.src.portfolio.core import Portfolio
         from tenbagger.src.terminal.utils import TermPlots
         from tenbagger.src.utils.utilities import read_yaml
+        from tenbagger.src.textui.apps.portfolio import OverviewPortfolio
 
         pd.set_option("expand_frame_repr", False)
 
@@ -118,30 +119,7 @@ def main():
         # Print out portfolio
         port = Portfolio(args.portfolio)
         port.unification()
-        print(port.df.drop(columns=['circulatingSupply', 'type']))
-
-        # Print passive income
-        print(f'Total passive income: {port.df.passive_income.sum()} {env["CURRENCY"]} \n')
-        print(f'Total value stonks: {port.df[port.df.sector != "Crypto"].value.sum()} {env["CURRENCY"]} \n')
-        print(f'Total value crypto: {port.df[port.df.sector == "Crypto"].value.sum()} {env["CURRENCY"]} \n')
-        print(f'Total dividend income:  {port.df.dividends.sum()} {env["CURRENCY"]} \n')
-        print(f'Total staking rewards:  {port.df.staking_rewards.sum()} {env["CURRENCY"]} \n')
-
-        # Print portfolio
-        by_sector = make_percentage(port.df.groupby('sector').value.sum().reset_index(), 'value', 'sector')
-        TermPlots(by_sector[['sector', 'value']]).plot_bar()
-
-        # Print total value
-        print(f'Total value of portfolio: {round(port.df.value.sum(), 2) } {env["CURRENCY"]}')
-
-        # Print out Dividend yield
-        fmt = lambda x: "{:.3f}".format(x)
-        df = port.df.copy()
-        print(
-            f'Weighted dividend yield: {fmt(df[df.sector != "Crypto"].dividends.sum() / df[df.sector != "Crypto"].value.sum() * 100)}%')
-        print(
-            f'Weighted staking rewards: {fmt(df[df.sector == "Crypto"].staking_rewards.sum() / df[df.sector == "Crypto"].value.sum() * 100)}%')
-        print(f'Weighted yield portfolio: {fmt(df.passive_income.sum() / df.value.sum() * 100)}%')
+        OverviewPortfolio.run(portfolio=port)
 
     if args.tracker:
         from tenbagger.src.dashboard.trackerdash import main
