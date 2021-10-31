@@ -1,7 +1,3 @@
-from datetime import datetime
-
-from rich.align import Align
-
 from textual.app import App
 from textual.widget import Widget
 from rich.table import Table
@@ -11,66 +7,15 @@ from tenbagger.src.portfolio.core import Portfolio
 from rich.panel import Panel
 
 
-port = Portfolio('my_portfolio')
-port.unification()
-port.total_staking_rewards
-port.passive_income
-f"{port.dividends:.2f}"
-
-def generate_table(portfolio):
-
-    # Update table
-    prev_prices = dict(zip(list(portfolio.df.ticker), list(portfolio.df.price)))
-    portfolio.pulse()
-    df = portfolio.df
-
-    remove_col = ['circulatingSupply', 'date', 'type']
-    df = df.drop(columns=remove_col)
-
-    rename_col = {'ticker': 'Ticker',
-                  'price': 'Price',
-                  'yield': 'Yield',
-                  'amount': "Amount",
-                  'currency': "Currency",
-                  "sector": "Sector",
-                  "value": "Value",
-                  "staking_rewards": "Staking Rewards",
-                  "apy": "APY",
-                  "percentage": "Percentage",
-                  "dividends": "Dividends",
-                  "passive_income": "Passive Income"}
-    df = df.rename(columns=rename_col)
-
-    table = Table(title=f"[b][bright_blue]Portfolio")
-    fmt_percents = lambda x: f"{x * 100:.2f}%"
-
-    col_fmt = ['Yield', 'APY']
-    for x in col_fmt:
-        df[x] = df[x].apply(fmt_percents)
-
-    fmt_2 = lambda x: f"{x:.2f}"
-
-    for col in ['Value', 'Dividends', "Staking Rewards", "Passive Income"]:
-        df[col] = df[col].apply(fmt_2)
-
-    for col in df.columns:
-        table.add_column(col, style="magenta")
-    for row in df.values.tolist():
-        cur_row = dict(zip(list(df), row))
-        bool = cur_row["Price"] >= prev_prices[cur_row['Ticker']]
-        cur_row['Price'] = f'[bright_green]{cur_row["Price"]:.2f}' if bool else f'[bright_red]{cur_row["Price"]:.2f}'
-        table.add_row(*[str(j) for j in list(cur_row.values())])
-
-    # Some formatting
-    table.box = box.SIMPLE_HEAD
-
-    for col in table.columns:
-        col.header_style = 'bright_yellow'
-
-    return table
+# port = Portfolio('my_portfolio')
+# port.unification()
+# port.total_staking_rewards
+# port.passive_income
+# f"{port.dividends:.2f}"
 
 
-class Summary(Widget):
+
+class SummaryPortfolio(Widget):
 
     def __init__(self, portfolio):
         super().__init__(portfolio)
@@ -93,7 +38,7 @@ class Summary(Widget):
         return self.create_content()
 
 
-class Clock(Widget):
+class PortfolioTable(Widget):
 
     def __init__(self, portfolio):
         super().__init__(portfolio)
@@ -101,6 +46,59 @@ class Clock(Widget):
 
     def on_mount(self):
         self.set_interval(1, self.refresh)
+
+    @staticmethod
+    def generate_table(portfolio):
+
+        # Update table
+        prev_prices = dict(zip(list(portfolio.df.ticker), list(portfolio.df.price)))
+        portfolio.pulse()
+        df = portfolio.df
+
+        remove_col = ['circulatingSupply', 'date', 'type']
+        df = df.drop(columns=remove_col)
+
+        rename_col = {'ticker': 'Ticker',
+                      'price': 'Price',
+                      'yield': 'Yield',
+                      'amount': "Amount",
+                      'currency': "Currency",
+                      "sector": "Sector",
+                      "value": "Value",
+                      "staking_rewards": "Staking Rewards",
+                      "apy": "APY",
+                      "percentage": "Percentage",
+                      "dividends": "Dividends",
+                      "passive_income": "Passive Income"}
+        df = df.rename(columns=rename_col)
+
+        table = Table(title=f"[b][bright_blue]Portfolio")
+        fmt_percents = lambda x: f"{x * 100:.2f}%"
+
+        col_fmt = ['Yield', 'APY']
+        for x in col_fmt:
+            df[x] = df[x].apply(fmt_percents)
+
+        fmt_2 = lambda x: f"{x:.2f}"
+
+        for col in ['Value', 'Dividends', "Staking Rewards", "Passive Income"]:
+            df[col] = df[col].apply(fmt_2)
+
+        for col in df.columns:
+            table.add_column(col, style="magenta")
+        for row in df.values.tolist():
+            cur_row = dict(zip(list(df), row))
+            bool = cur_row["Price"] >= prev_prices[cur_row['Ticker']]
+            cur_row['Price'] = f'[bright_green]{cur_row["Price"]:.2f}' if bool else f'[bright_red]{cur_row["Price"]:.2f}'
+            table.add_row(*[str(j) for j in list(cur_row.values())])
+
+        # Some formatting
+        table.box = box.SIMPLE_HEAD
+
+        for col in table.columns:
+            col.header_style = 'bright_yellow'
+
+        return table
 
     def render(self):
         # time = datetime.now().strftime("%c")
@@ -110,14 +108,5 @@ class Clock(Widget):
         # table.add_column("Level")
         #
         # table.add_row(f"{random.random():.2f}", f"description {random.random():.2f}", "[red]j")
-        table = generate_table(portfolio=self.portfolio)
+        table = self.generate_table(portfolio=self.portfolio)
         return table
-
-
-class ClockApp(App):
-    async def on_mount(self):
-        await self.view.dock(Summary(portfolio=port))
-
-
-if __name__ == "__main__":
-    ClockApp.run()

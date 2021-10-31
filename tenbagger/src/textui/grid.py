@@ -9,14 +9,12 @@ from textual.app import App
 from textual.widgets import ScrollView
 from rich.live import Live
 import random
-from tenbagger.src.textui.clocl import Clock, Summary
+from tenbagger.src.textui.clocl import PortfolioTable, SummaryPortfolio
 from rich.panel import Panel
 from textual.widget import Widget
 from rich.columns import Columns
 
 
-port = Portfolio('my_portfolio')
-port.unification()
 
 class MyApp(App):
     """An example of a very simple Textual App"""
@@ -48,16 +46,20 @@ class MyApp(App):
 
 class SimpleApp(App):
 
+    def __init__(self, portfolio, *args, **kwargs):
+        self.portfolio = portfolio
+        super().__init__(*args, **kwargs)
+
     async def on_mount(self) -> None:
         #self.set_interval(1, self.refresh)
         #await self.view.dock(PortfolioWidget(name='hoi', portfolio=port).run(), edge="left")
-        await self.view.dock(Summary(portfolio=port), edge="left", size=20)
+        await self.view.dock(SummaryPortfolio(portfolio=self.portfolio), edge="left", size=20)
 
         #await self.view.dock(Clock(), edge="left", size=40)
         #await self.view.dock(ScrollView(auto_width=True), edge="top")
 
         #self.body = body = ScrollView(auto_width=True)
-        await self.view.dock(Clock(portfolio=port), edge="top")
+        await self.view.dock(PortfolioTable(portfolio=self.portfolio), edge="top")
         #
         # async def add_content():
         #     table = Table()
@@ -72,11 +74,22 @@ class SimpleApp(App):
        # await self.call_later(add_content)
 
 
-
+class MyApp(App):
+    def __init__(self, *args, custom_arg, **kwargs):
+        self.custom_arg = custom_arg
+        super().__init__(*args, **kwargs)
+    async def on_mount(self):
+        print(self.custom_arg)
+# This is the change, no () after MyApp
 
 
 # Try to put the big table in the main placeholder window
 
 
 if __name__ == '__main__':
-    SimpleApp.run(log="textual.log")
+    port = Portfolio('my_portfolio')
+    port.unification()
+
+    # MyApp.run(custom_arg=5)
+
+    SimpleApp.run(portfolio=port, log="textual.log")
