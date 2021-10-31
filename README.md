@@ -2,10 +2,8 @@
 [![codecov](https://codecov.io/gh/AramKoorn/TenBagger/branch/main/graph/badge.svg?token=O5F0TEQ0DY)](https://codecov.io/gh/AramKoorn/TenBagger)
 [![Documentation Status](https://readthedocs.org/projects/tenbagger/badge/?version=latest)](https://tenbagger.readthedocs.io/en/latest/?badge=latest)
 
-# TenBagger
-A Command Line Interface (CLI) to analyse your portfolio, stocks and crypto. Find your next TenBagger inside your terminal. This library uses the Yahoo finance API so you need to use the same ticker symbols as on Yahoo Finance.
-
-Inspired by the legend DeepFuckingValue aka Roarking Kitty.
+# TenBagger, Find your next TenBagger inside your terminal
+Why paying for expensive subscriptions to track your portfolio, dividends, crypto and technical analysis? This library aims to be am complete tool to track and analyse your portfolio and do financial analysis using the Command Line Interface (CLI). 
 
 ## Installation
 ```

@@ -15,6 +15,9 @@ from textual.widget import Widget
 from rich.columns import Columns
 
 
+port = Portfolio('my_portfolio')
+port.unification()
+
 class MyApp(App):
     """An example of a very simple Textual App"""
 
@@ -48,25 +51,25 @@ class SimpleApp(App):
     async def on_mount(self) -> None:
         #self.set_interval(1, self.refresh)
         #await self.view.dock(PortfolioWidget(name='hoi', portfolio=port).run(), edge="left")
-        await self.view.dock(Summary(), edge="left", size=20)
+        await self.view.dock(Summary(portfolio=port), edge="left", size=20)
 
         #await self.view.dock(Clock(), edge="left", size=40)
         #await self.view.dock(ScrollView(auto_width=True), edge="top")
 
-        self.body = body = ScrollView(auto_width=True)
-        await self.view.dock(Clock(), body, edge="top")
+        #self.body = body = ScrollView(auto_width=True)
+        await self.view.dock(Clock(portfolio=port), edge="top")
+        #
+        # async def add_content():
+        #     table = Table()
+        #     table.add_column("Row ID")
+        #     table.add_column("Description")
+        #     table.add_column("Level")
+        #
+        #     table.add_row(f"{random.random()}", f"description {random.random()}", "[red]j")
+        #
+        #     await body.update(table)
 
-        async def add_content():
-            table = Table()
-            table.add_column("Row ID")
-            table.add_column("Description")
-            table.add_column("Level")
-
-            table.add_row(f"{random.random()}", f"description {random.random()}", "[red]j")
-
-            await body.update(table)
-
-        await self.call_later(add_content)
+       # await self.call_later(add_content)
 
 
 

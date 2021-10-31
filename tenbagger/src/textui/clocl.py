@@ -24,14 +24,41 @@ def generate_table(portfolio):
     portfolio.pulse()
     df = portfolio.df
 
-    table = Table(title="Portfolio")
+    remove_col = ['circulatingSupply', 'date', 'type']
+    df = df.drop(columns=remove_col)
+
+    rename_col = {'ticker': 'Ticker',
+                  'price': 'Price',
+                  'yield': 'Yield',
+                  'amount': "Amount",
+                  'currency': "Currency",
+                  "sector": "Sector",
+                  "value": "Value",
+                  "staking_rewards": "Staking Rewards",
+                  "apy": "APY",
+                  "percentage": "Percentage",
+                  "dividends": "Dividends",
+                  "passive_income": "Passive Income"}
+    df = df.rename(columns=rename_col)
+
+    table = Table(title=f"[b][bright_blue]Portfolio")
+    fmt_percents = lambda x: f"{x * 100:.2f}%"
+
+    col_fmt = ['Yield', 'APY']
+    for x in col_fmt:
+        df[x] = df[x].apply(fmt_percents)
+
+    fmt_2 = lambda x: f"{x:.2f}"
+
+    for col in ['Value', 'Dividends', "Staking Rewards", "Passive Income"]:
+        df[col] = df[col].apply(fmt_2)
 
     for col in df.columns:
         table.add_column(col, style="magenta")
     for row in df.values.tolist():
         cur_row = dict(zip(list(df), row))
-        bool = cur_row["price"] >= prev_prices[cur_row['ticker']]
-        cur_row['price'] = f'[bright_green]{cur_row["price"]:.2f}' if bool else f'[bright_red]{cur_row["price"]:.2f}'
+        bool = cur_row["Price"] >= prev_prices[cur_row['Ticker']]
+        cur_row['Price'] = f'[bright_green]{cur_row["Price"]:.2f}' if bool else f'[bright_red]{cur_row["Price"]:.2f}'
         table.add_row(*[str(j) for j in list(cur_row.values())])
 
     # Some formatting
@@ -45,13 +72,20 @@ def generate_table(portfolio):
 
 class Summary(Widget):
 
+    def __init__(self, portfolio):
+        super().__init__(portfolio)
+        self.portfolio = portfolio
+
+    def on_mount(self):
+        self.set_interval(1, self.refresh)
 
     def create_content(self):
-        content = f"[b]Portfolio Value[/b]\n[yellow]{port.total_value:.2f}[/yellow]\n" \
-                  f"[b]Passive Income[/b]\n[yellow]{port.passive_income:.2f}%[/yellow]\n" \
-                  f"[b]Dividend Yield[/b]\n[yellow]{port.weighted_dividend_yield:.2f}%[/yellow]\n" \
-                  f"[b]Staking Yield[/b]\n[yellow]{port.weighted_staking_rewards:.2f}%[/yellow]\n" \
-                  f"[b]Weighted Yield[/b]\n[yellow]{port.weighted_yield:.2f}%[/yellow]\n"
+        self.portfolio.pulse()
+        content = f"[b]Portfolio Value[/b]\n[yellow]{self.portfolio.total_value:.2f}[/yellow]\n" \
+                  f"[b]Annual Passive Income[/b]\n[yellow]{self.portfolio.passive_income:.2f}[/yellow]\n" \
+                  f"[b]Dividend Yield[/b]\n[yellow]{self.portfolio.weighted_dividend_yield:.2f}%[/yellow]\n" \
+                  f"[b]Staking Yield[/b]\n[yellow]{self.portfolio.weighted_staking_rewards:.2f}%[/yellow]\n" \
+                  f"[b]Weighted Yield[/b]\n[yellow]{self.portfolio.weighted_yield:.2f}%[/yellow]\n"
 
         return Panel(content)
 
@@ -60,6 +94,11 @@ class Summary(Widget):
 
 
 class Clock(Widget):
+
+    def __init__(self, portfolio):
+        super().__init__(portfolio)
+        self.portfolio = portfolio
+
     def on_mount(self):
         self.set_interval(1, self.refresh)
 
@@ -71,13 +110,14 @@ class Clock(Widget):
         # table.add_column("Level")
         #
         # table.add_row(f"{random.random():.2f}", f"description {random.random():.2f}", "[red]j")
-        table = generate_table(port)
+        table = generate_table(portfolio=self.portfolio)
         return table
 
 
 class ClockApp(App):
     async def on_mount(self):
-        await self.view.dock(Clock())
+        await self.view.dock(Summary(portfolio=port))
 
 
-#ClockApp.run()
+if __name__ == "__main__":
+    ClockApp.run()

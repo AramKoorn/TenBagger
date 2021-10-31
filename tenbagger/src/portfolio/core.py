@@ -129,6 +129,7 @@ class Portfolio(PortfolioCrypto):
         # Convert to desired currency
         c = CurrencyRates()
         df['price'] = df.apply(lambda x: c.convert(x.currency, self.env["CURRENCY"], x.price), axis=1)
+        df['currency'] = self.env["CURRENCY"]
         df['value'] = df.price * df.amount
 
         # Get staking rewards
