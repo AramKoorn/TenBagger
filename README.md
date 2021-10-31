@@ -126,6 +126,8 @@ We will add more blockchains over time. Currentlly supported blockchains are:
 - Algorand
 
 ## Tasks
+- [ ] Use Panel/column view for company overview
+  - [ ] red/green if above or below fair value
 - [ ] track portfolio over time using postgres as backend
 - [ ] GAK
 - [x] Portfolio properties
@@ -133,7 +135,7 @@ We will add more blockchains over time. Currentlly supported blockchains are:
   - [x] Total staking rewards
   - [x] Total passive income
 - [ ] Pull upcoming ex dividend dates
-- [ ] Use textual for interactive dashboard inside terminal!
-- [ ] Update portfolio class
+- [x] Use textual for interactive dashboard inside terminal!
+- [x] Update portfolio class
   - [x] portfolio.pulse()
-  - [ ] Decide on final design of columns
+  - [x] Decide on final design of columns
