@@ -3,7 +3,7 @@
 [![Documentation Status](https://readthedocs.org/projects/tenbagger/badge/?version=latest)](https://tenbagger.readthedocs.io/en/latest/?badge=latest)
 
 # TenBagger, Find your next TenBagger inside your terminal
-Why paying for expensive subscriptions to track your portfolio, dividends, crypto and technical analysis? This library aims to be am complete tool to track and analyse your portfolio and do financial analysis using the Command Line Interface (CLI). 
+Why paying for expensive subscriptions to track your portfolio, dividends and crypto? This library aims to be a complete tool to track and analyse your financial portfolio using the Command Line Interface (CLI). All the features of TenBagger will be displayed as Textual User Interface (TUI) inside your terminal. 
 
 ## Installation
 ```
@@ -25,7 +25,7 @@ tenbagger --configure
 Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
 
 ## Usage
-Portfolio overview
+Real time overview of portfolio. All values are getting autimatically updates while the app is running. 
 ```sh
 tenbagger --portfolio my_portfolio
 ```
