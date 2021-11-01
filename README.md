@@ -25,7 +25,7 @@ tenbagger --configure
 Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
 
 ## Usage
-Real time overview of portfolio. All values are getting autimatically updates while the app is running. 
+Real-time overview of portfolio. The portfolio automatically gets updated with the real-time stock/crypto prices while the app is running.
 ```sh
 tenbagger --portfolio my_portfolio
 ```
