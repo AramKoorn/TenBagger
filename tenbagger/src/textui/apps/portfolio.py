@@ -22,7 +22,7 @@ class MyApp(App):
             table = Table(title="Demo")
 
             for i in range(20):
-                table.add_column(f"Col {i + 1}", style="magenta")
+                table.add_column(f"Col {i + 1}", style="bold white")
             for i in range(100):
                 table.add_row(*[f"cell {i},{j}" for j in range(20)])
 
@@ -38,6 +38,7 @@ class OverviewPortfolio(App):
         super().__init__(*args, **kwargs)
 
     async def on_mount(self) -> None:
+        self.set_interval(1, self.refresh)
         await self.view.dock(SummaryPortfolio(portfolio=self.portfolio), edge="left", size=20)
         await self.view.dock(PortfolioTable(portfolio=self.portfolio), edge="top")
 

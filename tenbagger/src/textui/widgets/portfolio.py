@@ -10,13 +10,10 @@ class SummaryPortfolio(Widget):
         super().__init__(portfolio)
         self.portfolio = portfolio
 
-    def on_mount(self):
-        self.set_interval(1, self.refresh)
-
     def create_content(self):
         self.portfolio.pulse()
-        content = f"[b]Portfolio Value[/b]\n[yellow]{self.portfolio.total_value:.2f}[/yellow]\n\n" \
-                  f"[b]Annual Passive Income[/b]\n[yellow]{self.portfolio.passive_income:.2f}[/yellow]\n\n" \
+        content = f"[b]Portfolio Value[/b]\n[yellow]:euro: {self.portfolio.total_value:.2f}[/yellow]\n\n" \
+                  f"[b]Annual Passive Income[/b]\n[yellow]:euro: {self.portfolio.passive_income:.2f}[/yellow]\n\n" \
                   f"[b]Dividend Yield[/b]\n[yellow]{self.portfolio.weighted_dividend_yield:.2f}%[/yellow]\n\n" \
                   f"[b]Staking Yield[/b]\n[yellow]{self.portfolio.weighted_staking_rewards:.2f}%[/yellow]\n\n" \
                   f"[b]Weighted Yield[/b]\n[yellow]{self.portfolio.weighted_yield:.2f}%[/yellow]\n"
@@ -32,9 +29,6 @@ class PortfolioTable(Widget):
     def __init__(self, portfolio):
         super().__init__(portfolio)
         self.portfolio = portfolio
-
-    def on_mount(self):
-        self.set_interval(1, self.refresh)
 
     @staticmethod
     def generate_table(portfolio):
@@ -66,15 +60,17 @@ class PortfolioTable(Widget):
 
         col_fmt = ['Yield', 'APY']
         for x in col_fmt:
+            df[x] = df[x].fillna(0)
             df[x] = df[x].apply(fmt_percents)
 
         fmt_2 = lambda x: f"{x:.2f}"
 
         for col in ['Value', 'Dividends', "Staking Rewards", "Passive Income"]:
+            df[col] = df[col].fillna(0)
             df[col] = df[col].apply(fmt_2)
 
         for col in df.columns:
-            table.add_column(col, style="magenta")
+            table.add_column(col, style="bold white")
         for row in df.values.tolist():
             cur_row = dict(zip(list(df), row))
             bool = cur_row["Price"] >= prev_prices[cur_row['Ticker']]
@@ -83,6 +79,7 @@ class PortfolioTable(Widget):
 
         # Some formatting
         table.box = box.SIMPLE_HEAD
+        table.border_style = 'bold blue'
 
         for col in table.columns:
             col.header_style = 'bright_yellow'
