@@ -10,6 +10,9 @@ class SummaryPortfolio(Widget):
         super().__init__(portfolio)
         self.portfolio = portfolio
 
+    def on_mount(self):
+        self.set_interval(5, self.refresh)
+
     def create_content(self):
         self.portfolio.pulse()
         content = f"[b]Portfolio Value[/b]\n[yellow]:euro: {self.portfolio.total_value:.2f}[/yellow]\n\n" \
@@ -29,6 +32,9 @@ class PortfolioTable(Widget):
     def __init__(self, portfolio):
         super().__init__(portfolio)
         self.portfolio = portfolio
+
+    def on_mount(self):
+        self.set_interval(5, self.refresh)
 
     @staticmethod
     def generate_table(portfolio):

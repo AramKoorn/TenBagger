@@ -38,7 +38,6 @@ class OverviewPortfolio(App):
         super().__init__(*args, **kwargs)
 
     async def on_mount(self) -> None:
-        self.set_interval(1, self.refresh)
         await self.view.dock(SummaryPortfolio(portfolio=self.portfolio), edge="left", size=20)
         await self.view.dock(PortfolioTable(portfolio=self.portfolio), edge="top")
 
