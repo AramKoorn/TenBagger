@@ -110,9 +110,8 @@ class Portfolio(PortfolioCrypto):
 
         # Update pricc
         for ticker in self.df.ticker:
-            self.df.loc[self.df.ticker == ticker, 'price'] = self.c.convert(
-                self.ticker_info[ticker]['summaryDetail']["currency"], self.env["CURRENCY"],
-                self.tickers[ticker].last_price())
+
+                self.tickers[ticker].last_price()
 
         self.df['value'] = self.df.price * self.df.amount
         self.df['percentage'] = self.df.value / self.df.value.sum()

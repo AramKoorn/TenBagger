@@ -2,6 +2,8 @@ from textual.widget import Widget
 from rich.table import Table
 from rich import box
 from rich.panel import Panel
+import random
+from datetime import datetime
 
 
 class SummaryPortfolio(Widget):
@@ -11,15 +13,18 @@ class SummaryPortfolio(Widget):
         self.portfolio = portfolio
 
     def on_mount(self):
-        self.set_interval(5, self.refresh)
+        self.set_interval(10, self.refresh)
 
     def create_content(self):
         self.portfolio.pulse()
         content = f"[b]Portfolio Value[/b]\n[yellow]:euro: {self.portfolio.total_value:.2f}[/yellow]\n\n" \
+                  f"[b]Annual Dividends[/b]\n[yellow]:euro: {self.portfolio.dividends:.2f}[/yellow]\n\n" \
+                  f"[b]Annual Staking Rewards[/b]\n[yellow]:euro: {self.portfolio.total_staking_rewards:.2f}[/yellow]\n\n" \
                   f"[b]Annual Passive Income[/b]\n[yellow]:euro: {self.portfolio.passive_income:.2f}[/yellow]\n\n" \
                   f"[b]Dividend Yield[/b]\n[yellow]{self.portfolio.weighted_dividend_yield:.2f}%[/yellow]\n\n" \
                   f"[b]Staking Yield[/b]\n[yellow]{self.portfolio.weighted_staking_rewards:.2f}%[/yellow]\n\n" \
-                  f"[b]Weighted Yield[/b]\n[yellow]{self.portfolio.weighted_yield:.2f}%[/yellow]\n"
+                  f"[b]Weighted Yield[/b]\n[yellow]{self.portfolio.weighted_yield:.2f}%[/yellow]\n" \
+                  f"[b]Random[/b]\n[yellow]{random.random()}%[/yellow]\n"
 
         return Panel(content)
 
@@ -34,7 +39,7 @@ class PortfolioTable(Widget):
         self.portfolio = portfolio
 
     def on_mount(self):
-        self.set_interval(5, self.refresh)
+        self.set_interval(10, self.refresh)
 
     @staticmethod
     def generate_table(portfolio):

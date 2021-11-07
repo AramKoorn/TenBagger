@@ -46,7 +46,7 @@ class OverviewPortfolio(App):
 
 
 if __name__ == '__main__':
-    port = Portfolio('my_portfolio')
+    port = Portfolio('aram')
     port.unification()
 
     OverviewPortfolio.run(portfolio=port, log="textual.log")

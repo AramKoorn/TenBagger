@@ -42,12 +42,18 @@ def test_currency_coverter():
 
 
 def test_pulse():
-    portfolio = {'ibm': 50, 'aapl': 50}
+    portfolio = {'ibm': 50, 'aapl': 50,}
+    portfolio = 'my_portfolio'
     port = Portfolio(portfolio)
     port.unification()
     df = port.df
     columns = set(df)
 
     # Update portflio
-    port.pulse()
+
+    for x in range(10):
+        import time
+        start = time.process_time()
+        port.pulse()
+        print(time.process_time() - start)
     assert columns == set(port.df)
