@@ -29,8 +29,7 @@ Real-time overview of portfolio. The portfolio automatically gets updated with t
 ```sh
 tenbagger --portfolio my_portfolio
 ```
-
-![widgets](./imgs/gifs/portfolio.gif)
+![Features](https://github.com/AramKoorn/TenBagger/imgs/static/portfolio.png)
 
 Simulate passive income of dividend payouts and staking rewards
 
