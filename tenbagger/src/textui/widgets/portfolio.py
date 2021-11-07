@@ -2,8 +2,6 @@ from textual.widget import Widget
 from rich.table import Table
 from rich import box
 from rich.panel import Panel
-import random
-from datetime import datetime
 
 
 class SummaryPortfolio(Widget):
@@ -24,7 +22,6 @@ class SummaryPortfolio(Widget):
                   f"[b]Dividend Yield[/b]\n[yellow]{self.portfolio.weighted_dividend_yield:.2f}%[/yellow]\n\n" \
                   f"[b]Staking Yield[/b]\n[yellow]{self.portfolio.weighted_staking_rewards:.2f}%[/yellow]\n\n" \
                   f"[b]Weighted Yield[/b]\n[yellow]{self.portfolio.weighted_yield:.2f}%[/yellow]\n" \
-                  f"[b]Random[/b]\n[yellow]{random.random()}%[/yellow]\n"
 
         return Panel(content)
 

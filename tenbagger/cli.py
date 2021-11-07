@@ -83,9 +83,10 @@ def main():
         print(f"Total dividends: {df.Dividends.sum()}")
 
     if args.overview:
+        from tenbagger.src.textui.apps.ticker import TickerApp
         from tenbagger.src.utils.utilities import Ticker
 
-        print(Ticker(args.overview).overview())
+        TickerApp.run(ticker=Ticker(args.overview))
 
     if args.notify:
         from tenbagger.src.notify.price_target import NotifyPriceTarget

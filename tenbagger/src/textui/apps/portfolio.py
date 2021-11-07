@@ -4,6 +4,8 @@ from textual import events
 from textual.app import App
 from textual.widgets import ScrollView
 from tenbagger.src.textui.widgets.portfolio import PortfolioTable, SummaryPortfolio
+from textual.widgets import Placeholder
+from tenbagger.src.textui.widgets.utils import Clock
 
 
 class MyApp(App):
@@ -38,6 +40,7 @@ class OverviewPortfolio(App):
         super().__init__(*args, **kwargs)
 
     async def on_mount(self) -> None:
+        await self.view.dock(Clock(),  size=3)
         await self.view.dock(SummaryPortfolio(portfolio=self.portfolio), edge="left", size=20)
         await self.view.dock(PortfolioTable(portfolio=self.portfolio), edge="top")
 

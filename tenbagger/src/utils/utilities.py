@@ -32,6 +32,7 @@ class Ticker:
         '''
         self.ticker_name = ticker
         self.ticker = yf.Ticker(ticker)
+        self.info = self.get_info()
 
     def get_info(self):
         """
@@ -80,21 +81,21 @@ class Ticker:
 
     def overview_crypto(self, info):
 
-        overview = {'price': self.last_price(),
+        overview = {
+         'Ticker': self.ticker_name,
+         'price': self.last_price(),
          "MarketCap": info['marketCap'],
          '52 week low': info['fiftyTwoWeekLow'],
          '52 week High': info['fiftyTwoWeekHigh'],
          }
 
-        overview = pd.DataFrame(list(zip(overview.keys(), overview.values())), columns=['Description', 'Value'])
-        overview["Value"] = np.round(overview["Value"], 3)
-        overview["Value"] = overview.Value.apply(lambda x: "{:,}".format(x))
-
         return overview
 
     def overview_stonks(self, info):
 
-        overview = {'price': self.last_price(),
+        overview = {
+         'Ticker': self.ticker_name,
+         'price': self.last_price(),
          "MarketCap": info['marketCap'],
          'Shares Outstanding': info['sharesOutstanding'],
          'Dividend Yield': info['dividendYield'],
@@ -116,10 +117,6 @@ class Ticker:
 
         overview['fair_value'] = fair_value
 
-        overview = pd.DataFrame(list(zip(overview.keys(), overview.values())), columns=['Description', 'Value'])
-        overview["Value"] = np.round(overview["Value"], 3)
-        overview["Value"] = overview.Value.apply(lambda x: "{:,}".format(x))
-
         return overview
 
     def overview(self):
@@ -128,12 +125,12 @@ class Ticker:
         :return: Dictionary of key metrics
         '''
 
-        info = self.ticker.info
+        info = self.info
 
-        if info['quoteType'] == "CRYPTOCURRENCY":
-            overview = self.overview_crypto(info)
+        if info['quoteType']['quoteType'] == "CRYPTOCURRENCY":
+            overview = self.overview_crypto({**info['summaryDetail']})
         else:
-            overview = self.overview_stonks(info)
+            overview = self.overview_stonks({**info['defaultKeyStatistics'], **info['summaryDetail']})
 
         return overview
 

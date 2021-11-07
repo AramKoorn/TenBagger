@@ -43,7 +43,6 @@ def test_currency_coverter():
 
 def test_pulse():
     portfolio = {'ibm': 50, 'aapl': 50,}
-    portfolio = 'my_portfolio'
     port = Portfolio(portfolio)
     port.unification()
     df = port.df
