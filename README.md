@@ -5,6 +5,9 @@
 # TenBagger, Find your next TenBagger inside your terminal
 Why paying for expensive subscriptions to track your portfolio, dividends and crypto? This library aims to be a complete tool to track and analyse your financial portfolio using the Command Line Interface (CLI). All the features of TenBagger will be displayed as a Textual User Interface (TUI) inside your terminal. 
 
+## Compatibility 
+Linux/macOS or any other unix based system.
+
 ## Installation
 ```
 git clone https://github.com/AramKoorn/TenBagger 
@@ -25,7 +28,8 @@ tenbagger --configure
 Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
 
 ## Usage
-Real-time overview of portfolio. The portfolio automatically gets updated with the real-time stock/crypto prices while the app is running.
+Real-time overview of portfolio. The portfolio automatically gets updated with the real-time stock/crypto prices while the app is running. The app can be closed by hitting q or CTRL+C.
+
 ```sh
 tenbagger --portfolio my_portfolio
 ```
