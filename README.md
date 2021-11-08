@@ -5,7 +5,7 @@
 # TenBagger, Find your next TenBagger inside your terminal
 Why paying for expensive subscriptions to track your portfolio, dividends and crypto? This library aims to be a complete tool to track and analyse your financial portfolio using the Command Line Interface (CLI). All the features of TenBagger will be displayed as a Textual User Interface (TUI) inside your terminal. 
 
-This library uses the [yfinance](https://github.com/ranaroussi/yfinance) API to fetch the market data. So you need to use the ticker symbols as they are on yahoo finance. This also means that the stability TenBagger is bound to the stability of the yahoo finance website.
+This library uses the [yfinance](https://github.com/ranaroussi/yfinance) API to fetch the market data. So you need to use the ticker symbols as they are on yahoo finance. This also means that the stability of TenBagger is bound to the stability of the yahoo finance website.
 
 ## Compatibility 
 Linux/macOS or any other unix based system.
