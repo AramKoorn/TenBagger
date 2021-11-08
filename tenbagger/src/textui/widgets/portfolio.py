@@ -10,8 +10,8 @@ class SummaryPortfolio(Widget):
         super().__init__(portfolio)
         self.portfolio = portfolio
 
-    def on_mount(self):
-        self.set_interval(10, self.refresh)
+    # def on_mount(self):
+    #     self.set_interval(30, self.refresh)
 
     def create_content(self):
         self.portfolio.pulse()
@@ -35,8 +35,8 @@ class PortfolioTable(Widget):
         super().__init__(portfolio)
         self.portfolio = portfolio
 
-    def on_mount(self):
-        self.set_interval(10, self.refresh)
+    # def on_mount(self):
+    #     self.set_interval(30, self.refresh)
 
     @staticmethod
     def generate_table(portfolio):

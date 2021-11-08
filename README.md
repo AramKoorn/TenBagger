@@ -5,6 +5,8 @@
 # TenBagger, Find your next TenBagger inside your terminal
 Why paying for expensive subscriptions to track your portfolio, dividends and crypto? This library aims to be a complete tool to track and analyse your financial portfolio using the Command Line Interface (CLI). All the features of TenBagger will be displayed as a Textual User Interface (TUI) inside your terminal. 
 
+This library uses the [yfinance](https://github.com/ranaroussi/yfinance) API to fetch the market data. So you need to use the ticker symbols as they are on yahoo finance. This also means that the stability TenBagger is bound to the stability of the yahoo finance website.
+
 ## Compatibility 
 Linux/macOS or any other unix based system.
 
@@ -72,11 +74,6 @@ Run tracker dashboard
 tenbagger --tracker
 ```
 
-Candlestick chart 
-```
-tenbagger --candle --ticker IBM --period 700d --interval 1d
-```
-
 ## Crypto
 
 Because everything is stored on the the blockchain it's quite easy to directly pull your crypto balance from the blockchain. However, every blockchain got it's own API so we are going to add more crypto over time. The advantage is that you can input your blockchain address in your crypto wallet directly in the portfolio config and all you account balance changes are automatically updated in the analysis. E.g.
@@ -91,7 +88,9 @@ We will add more blockchains over time. Currentlly supported blockchains are:
 - Algorand
 
 ## Tasks
-- [ ] Use Panel/column view for company overview
+- [ ] Create on click button to refresh portfolio on demand
+- [ ] Show % change compared to close yesterday
+- [x] Use Panel/column view for company overview
   - [ ] red/green if above or below fair value
 - [ ] track portfolio over time using postgres as backend
 - [ ] GAK
