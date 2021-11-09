@@ -6,28 +6,6 @@ my_portfolio:
   ibm: 10
   aapl: 20
   eth-usd: 2
-  mrk: 10
-  qcom: 5
-  bmy: 10
-  tsm: 5
-
-test:
-  o: 10
-  eth-eur: 1
-
-readme:
-  aapl: 100
-  pfe: 100
-  baba: 10
-  U: 100
-  btc-eur: 1
-  eth-eur: 10
-  algo-eur: 20000
-  mo: 100
-  tsla: 20
-  gme: 3000
-  amc: 100
-  o: 1000
 
 # You can modify the current portfolio or add a new portfolio. Make sure that you use ticker 
 # symbols as listed on yahoo finance. for instance, if you want to add a portfolio called household_portfolio that contains 5 tesla shares:
