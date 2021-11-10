@@ -83,10 +83,10 @@ class Ticker:
 
         overview = {
          'Ticker': self.ticker_name,
-         'price': self.last_price(),
-         "MarketCap": info['marketCap'],
-         '52 week low': info['fiftyTwoWeekLow'],
-         '52 week High': info['fiftyTwoWeekHigh'],
+         'price': f"${self.last_price():.2f}",
+         "MarketCap": f"{info['marketCap']:3,}",
+         '52 week low': f"{info['fiftyTwoWeekLow']:.2f}",
+         '52 week High': f"{info['fiftyTwoWeekHigh']:.2f}",
          }
 
         return overview
@@ -95,23 +95,23 @@ class Ticker:
 
         overview = {
          'Ticker': self.ticker_name,
-         'price': self.last_price(),
-         "MarketCap": info['marketCap'],
-         'Shares Outstanding': info['sharesOutstanding'],
-         'Dividend Yield': info['dividendYield'],
-         'trailingAnnualDividendYield': info['trailingAnnualDividendYield'],
-         'Short Percentage of Float': info["shortPercentOfFloat"],
-         "Trailing EPS": info['trailingEps'],
-         '52 week low': info['fiftyTwoWeekLow'],
-         '52 week High': info['fiftyTwoWeekHigh'],
-         'heldPercentInsiders': info['heldPercentInsiders'],
-         'earningsQuarterlyGrowth': info['earningsQuarterlyGrowth'],
-         'priceToSalesTrailing12Months': info['priceToSalesTrailing12Months']
+         'price': f'${self.last_price():.2f}',
+         "MarketCap": f"{info['marketCap']:3,}",
+         'Shares Outstanding': f"{info['sharesOutstanding']:3,}",
+         'Dividend Yield': f"{info['dividendYield']:.2%}",
+         'trailingAnnualDividendYield': f"{info['trailingAnnualDividendYield']:.2%}",
+         'Short Percentage of Float': f'{info["shortPercentOfFloat"]:.2%}',
+         "Trailing EPS": f"{info['trailingEps']:.2f}",
+         '52 week low': f"{info['fiftyTwoWeekLow']:.2f}",
+         '52 week High': f"{info['fiftyTwoWeekHigh']:.2f}",
+         'heldPercentInsiders': f"{info['heldPercentInsiders']:.2%}",
+         'earningsQuarterlyGrowth': f"{info['earningsQuarterlyGrowth']:.2%}",
+         'priceToSalesTrailing12Months': f"{info['priceToSalesTrailing12Months']:.2f}"
          }
 
         # Determine fair value based on dividend
         try:
-            fair_value = 100 * (info['dividendYield'] * self.last_price()) / info['fiveYearAvgDividendYield']
+            fair_value = f"${100 * (info['dividendYield'] * self.last_price()) / info['fiveYearAvgDividendYield']:.2f}"
         except:
             fair_value = None
 
