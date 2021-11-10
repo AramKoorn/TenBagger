@@ -58,7 +58,7 @@ $ tenbagger --overview aapl
 $ tenbagger --overview btc-eur
 
 ```
-![widgets](./imgs/gifs/overview.gif)
+![widgets](./imgs/gifs/overview2.gif)
 
 
 Candlestick chart

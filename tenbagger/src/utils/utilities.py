@@ -34,6 +34,9 @@ class Ticker:
         self.ticker = yf.Ticker(ticker)
         self.info = self.get_info()
 
+    def get_last_day_close(self):
+        return self.ticker.history().iloc[-2].Close
+
     def get_info(self):
         """
         Scrapes General company info from Yahoo finance. Copy pasted this from yfinance but is 3x faster.
@@ -83,7 +86,7 @@ class Ticker:
 
         overview = {
          'Ticker': self.ticker_name,
-         'price': f"${self.last_price():.2f}",
+         'price': self.last_price(),
          "MarketCap": f"{info['marketCap']:3,}",
          '52 week low': f"{info['fiftyTwoWeekLow']:.2f}",
          '52 week High': f"{info['fiftyTwoWeekHigh']:.2f}",
@@ -95,17 +98,17 @@ class Ticker:
 
         overview = {
          'Ticker': self.ticker_name,
-         'price': f'${self.last_price():.2f}',
+         'price': self.last_price(),
          "MarketCap": f"{info['marketCap']:3,}",
          'Shares Outstanding': f"{info['sharesOutstanding']:3,}",
-         'Dividend Yield': f"{info['dividendYield']:.2%}",
+         'Dividend Yield': f"{info['dividendYield']:.2%}" if info['dividendYield'] is not None else info['dividendYield'],
          'trailingAnnualDividendYield': f"{info['trailingAnnualDividendYield']:.2%}",
          'Short Percentage of Float': f'{info["shortPercentOfFloat"]:.2%}',
          "Trailing EPS": f"{info['trailingEps']:.2f}",
          '52 week low': f"{info['fiftyTwoWeekLow']:.2f}",
          '52 week High': f"{info['fiftyTwoWeekHigh']:.2f}",
          'heldPercentInsiders': f"{info['heldPercentInsiders']:.2%}",
-         'earningsQuarterlyGrowth': f"{info['earningsQuarterlyGrowth']:.2%}",
+         'earningsQuarterlyGrowth': f"{info['earningsQuarterlyGrowth']:.2%}" if info['earningsQuarterlyGrowth'] is not None else info['earningsQuarterlyGrowth'],
          'priceToSalesTrailing12Months': f"{info['priceToSalesTrailing12Months']:.2f}"
          }
 
