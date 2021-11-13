@@ -2,6 +2,7 @@ from textual.widget import Widget
 from rich.table import Table
 from rich import box
 from rich.panel import Panel
+from tenbagger.src.utils.utilities import Ticker
 
 
 class SummaryPortfolio(Widget):
@@ -35,15 +36,19 @@ class PortfolioTable(Widget):
         super().__init__(portfolio)
         self.portfolio = portfolio
 
-    # def on_mount(self):
-    #     self.set_interval(30, self.refresh)
+        # Get last prices to show % change
+        self.last_prices = {}
+        self.curr_prices = {}
+        for ticker in self.portfolio.df.ticker:
+            tick = Ticker(ticker)
+            self.last_prices[ticker] = tick.get_last_day_close()
+            self.curr_prices[ticker] = tick.last_price()
 
-    @staticmethod
-    def generate_table(portfolio):
+    def generate_table(self, portfolio):
 
         # Update table
         prev_prices = dict(zip(list(portfolio.df.ticker), list(portfolio.df.price)))
-        portfolio.pulse()
+        #portfolio.pulse()
         df = portfolio.df
 
         remove_col = ['circulatingSupply', 'date', 'type']
@@ -81,8 +86,11 @@ class PortfolioTable(Widget):
             table.add_column(col, style="bold white")
         for row in df.values.tolist():
             cur_row = dict(zip(list(df), row))
-            bool = cur_row["Price"] >= prev_prices[cur_row['Ticker']]
-            cur_row['Price'] = f'[bright_green]{cur_row["Price"]:.2f}' if bool else f'[bright_red]{cur_row["Price"]:.2f}'
+            diff_price = (self.curr_prices[cur_row['Ticker']] - self.last_prices[cur_row["Ticker"]]) / self.last_prices[cur_row["Ticker"]]
+            if diff_price >=0:
+                cur_row['Price'] = f"{cur_row['Price']:.2f} [bright_green](+{diff_price:.2%})"
+            else:
+                cur_row['Price'] = f"{cur_row['Price']:.2f} [bright_red]({diff_price:.2%})"
             table.add_row(*[str(j) for j in list(cur_row.values())])
 
         # Some formatting

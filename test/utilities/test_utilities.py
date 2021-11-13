@@ -12,9 +12,11 @@ def test_make_percentage():
 
     assert_frame_equal(left=desired.reset_index(drop=True), right=res.reset_index(drop=True))
 
+
 def test_read_yaml():
     cfg = read_yaml('user_data/env/environment.yaml')
     assert "CURRENCY" in cfg.keys()
+
 
 class TestTickerInfo:
     def test_stonk_info(self):
@@ -30,6 +32,7 @@ class TestTickerInfo:
         info = Ticker('eth-usd').get_info()
         assert info['quoteType']['quoteType'] == 'CRYPTOCURRENCY'
 
+
 class TestTickerStonk:
     def setup(self):
         self.ticker = Ticker('ibm')
@@ -43,20 +46,21 @@ class TestTickerStonk:
 
     def test_overview(self):
         overview = self.ticker.overview()
-        overview = list(overview.Description)
-        assert overview == ['price',
-                            'MarketCap',
-                            'Shares Outstanding',
-                            'Dividend Yield',
-                            'trailingAnnualDividendYield',
-                            'Short Percentage of Float',
-                            'Trailing EPS',
-                            '52 week low',
-                            '52 week High',
-                            'heldPercentInsiders',
-                            'earningsQuarterlyGrowth',
-                            'priceToSalesTrailing12Months',
-                            'fair_value']
+        assert list(overview) == [
+                                'Ticker',
+                                'price',
+                                'MarketCap',
+                                'Shares Outstanding',
+                                'Dividend Yield',
+                                'trailingAnnualDividendYield',
+                                'Short Percentage of Float',
+                                'Trailing EPS',
+                                '52 week low',
+                                '52 week High',
+                                'heldPercentInsiders',
+                                'earningsQuarterlyGrowth',
+                                'priceToSalesTrailing12Months',
+                                'fair_value']
 
 
 class TestTickerCrypto:
@@ -69,6 +73,5 @@ class TestTickerCrypto:
 
     def test_overview(self):
         overview = self.ticker.overview()
-        overview = list(overview.Description)
-        assert overview == ['price', 'MarketCap', '52 week low', '52 week High']
-
+        overview = list(overview)
+        assert overview == ['Ticker', 'price', 'MarketCap', '52 week low', '52 week High']
