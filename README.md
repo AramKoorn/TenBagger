@@ -33,9 +33,9 @@ Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
 Real-time overview of portfolio. The portfolio automatically gets updated with the real-time stock/crypto prices while the app is running. The app can be closed by hitting q or CTRL+C.
 
 ```sh
-tenbagger --portfolio my_portfolio
+tenbagger --portfolio WSB
 ```
-![Features](./imgs/static/portfolio.png)
+![Features](./imgs/static/wsb_portfolio.png)
 
 Simulate passive income of dividend payouts and staking rewards
 

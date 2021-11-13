@@ -15,7 +15,7 @@ class TickerSummary(Widget):
         self.last_day_close = self.ticker.get_last_day_close()
 
     def on_mount(self):
-        self.set_interval(1, self.refresh)
+        self.set_interval(10, self.refresh)
 
     def render(self):
         overview = self.ticker.overview()
