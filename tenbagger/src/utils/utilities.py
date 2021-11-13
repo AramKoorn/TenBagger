@@ -7,6 +7,17 @@ from bs4 import BeautifulSoup
 from requests import get
 import json
 import re
+from pathlib import Path
+import os
+
+
+def create_hidden_folder(name: str):
+
+    cwd = os.getcwd()
+    home_path = Path.home()
+    os.chdir(home_path)
+    os.mkdir(f".{name}")
+    os.chdir(cwd)
 
 
 def make_percentage(df: pd.DataFrame, value: str, groupby: str):
