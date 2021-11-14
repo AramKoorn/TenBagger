@@ -22,11 +22,24 @@ tenbagger -v
 ```
 ## Getting Started
 
-Add/modify a portfolio with
+Configuration files are in the .tenbagger folder stored in the root of the user. 
 
+Configure your portfolio
+
+```sh
+vi ~/.tenbagger/portfolio.yaml
 ```
-tenbagger --configure
+
+Configure staking rewards
+```sh
+vi ~/.tenbagger/staking.yaml
 ```
+Configure preferred currency
+
+```sh
+vi ~/.tenbagger/environment.yaml
+```
+
 Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
 
 ## Usage

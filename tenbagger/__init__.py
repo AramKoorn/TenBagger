@@ -2,6 +2,7 @@ from tenbagger.version import __version__
 import os
 from pathlib import Path
 from tenbagger.src.utils.utilities import create_hidden_folder, read_yaml, write_yaml
+import logging
 
 
 CWD = os.getcwd()
@@ -16,7 +17,7 @@ os.chdir(TENBAGGER_PATH)
 
 HIDDEN_FILES = os.listdir()  # Get files in .tenbagger
 for f in set(FILES) - set(HIDDEN_FILES):
-    os.chdir(CWD)
+    os.chdir(DIRECTORY)
     to_dump = read_yaml(f'configs/{f}')
     os.chdir(TENBAGGER_PATH)
     write_yaml(loc=f, dict=to_dump)
