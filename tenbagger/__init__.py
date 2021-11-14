@@ -1,8 +1,37 @@
 from tenbagger.version import __version__
 import os
 from pathlib import Path
-from tenbagger.src.utils.utilities import create_hidden_folder, read_yaml, write_yaml
 import logging
+
+
+def read_from_root(file: str):
+
+    cwd = os.getcwd()
+    home_path = str(Path.home()) + '/.tenbagger'
+    os.chdir(home_path)
+
+    dict = read_yaml(loc=file)
+    os.chdir(cwd)
+    return dict
+
+
+def create_hidden_folder(name: str):
+
+    cwd = os.getcwd()
+    home_path = Path.home()
+    os.chdir(home_path)
+
+    if os.path.exists(f".{name}"):
+        logging.info("Folder already exist")
+        return
+
+    os.mkdir(f".{name}")
+    os.chdir(cwd)
+
+
+def write_yaml(loc: str, dict):
+    with open(f'{loc}', 'w') as file:
+        yaml.dump(dict, file)
 
 
 CWD = os.getcwd()
