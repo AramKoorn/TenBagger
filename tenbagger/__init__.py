@@ -4,6 +4,17 @@ from pathlib import Path
 import logging
 
 
+def read_yaml(loc : str):
+    '''
+
+    :param loc: path to file
+    :return: yaml converted to a dictionary
+    '''
+
+    with open(f'{loc}') as file:
+        return yaml.load(file, Loader=yaml.FullLoader)
+
+
 def read_from_root(file: str):
 
     cwd = os.getcwd()
