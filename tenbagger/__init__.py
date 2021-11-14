@@ -50,7 +50,7 @@ def create_hidden_folder(name: str):
 
 
 CWD = os.getcwd()
-DIRECTORY = os.path.abspath(os.path.dirname(__file__))
+DIRECTORY = os.path.dirname(os.path.abspath(__file__)))
 os.chdir(DIRECTORY)
 FILES = ['staking.json', 'portfolio.json', 'environment.json']
 
