@@ -52,7 +52,7 @@ def create_hidden_folder(name: str):
 CWD = os.getcwd()
 DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 os.chdir(DIRECTORY)
-FILES = ['staking.json', 'portfolio.json', 'environment.json']
+FILES = ['staking.json', "portfolio.json", "environment.json"]
 
 HOME_PATH = Path.home()
 TENBAGGER_PATH = f'{HOME_PATH}/.tenbagger'
@@ -65,6 +65,6 @@ for f in set(FILES) - set(HIDDEN_FILES):
     print(f"current directory: {os.getcwd()}")
     to_dump = read_json(f'configs/{f}')
     os.chdir(TENBAGGER_PATH)
-    write_json(loc=f, dict=to_dump)
+    write_json(loc=f, data=to_dump)
 
 os.chdir(CWD)
