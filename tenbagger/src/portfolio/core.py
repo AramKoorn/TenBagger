@@ -1,4 +1,4 @@
-from tenbagger.src.utils.utilities import read_yaml, Ticker, make_percentage
+from tenbagger.src.utils.utilities import read_yaml, Ticker, make_percentage, read_from_root
 from tenbagger.src.portfolio.crypto import PortfolioCrypto
 import datetime
 import pandas as pd
@@ -13,7 +13,7 @@ class Portfolio(PortfolioCrypto):
         super().__init__()
         self.name_port = name_port
         self.portfolio = self._select()
-        self.env = read_yaml('user_data/env/environment.yaml')
+        self.env = read_from_root('environment.yaml')
         self.tickers = {}
         self.c = CurrencyRates()
         self.ticker_info = {}
@@ -52,7 +52,7 @@ class Portfolio(PortfolioCrypto):
         if isinstance(self.name_port, dict):
             portfolio = self.name_port
         else:
-            portfolio = read_yaml('user_data/portfolio/portfolio.yaml')[self.name_port]
+            portfolio = read_from_root('portfolio.yaml')[self.name_port]
 
         return portfolio
 
