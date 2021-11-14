@@ -48,5 +48,6 @@ setup(name='tenbagger',
       install_requires=INSTALL_REQUIRES,
       extras_require=EXTRAS_REQUIRE,
       author='Aram Koorn',
-      packages=find_packages()
+      packages=find_packages(),
+      package_data={'tenbagger': ['configs/*.json']}
       )

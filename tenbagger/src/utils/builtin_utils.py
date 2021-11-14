@@ -17,7 +17,7 @@ def read_json(loc : str):
 
 
 def write_json(data, loc):
-    with open('person.txt', 'w') as json_file:
+    with open(loc, 'w') as json_file:
         json.dump(data, json_file)
 
 
