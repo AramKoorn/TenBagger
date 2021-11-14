@@ -22,12 +22,25 @@ tenbagger -v
 ```
 ## Getting Started
 
-Add/modify a portfolio with
+Configuration files are stored in the user's root folder.
 
+Configure your portfolio
+
+```sh
+vi ~/.tenbagger/portfolio.yaml
 ```
-tenbagger --configure
+
+Configure staking rewards
+```sh
+vi ~/.tenbagger/staking.yaml
 ```
-Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
+Configure preferred currency
+
+```sh
+vi ~/.tenbagger/environment.yaml
+```
+
+Alternatively, you can change the files in the ~/.tenbagger folder with your preferred text editor.
 
 ## Usage
 Real-time overview of portfolio. The portfolio automatically gets updated with the real-time stock/crypto prices while the app is running. The app can be closed by hitting q or CTRL+C.

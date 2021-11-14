@@ -1,7 +1,22 @@
-from tenbagger.src.utils.utilities import read_yaml, order_by_month, Ticker, make_percentage
+from tenbagger.src.utils.utilities import read_from_root, read_yaml, Ticker, make_percentage, create_hidden_folder
 import pandas as pd
 import numpy as np
 from pandas._testing import assert_frame_equal
+import os
+from pathlib import Path
+
+
+def test_create_hidden_folder():
+    cwd = os.getcwd()
+    create_hidden_folder(name="test_folder")
+
+    assert os.getcwd() == cwd
+
+    os.chdir(str(Path.home()))
+    assert os.path.exists('.test_folder')
+
+    os.rmdir('.test_folder')
+    assert not os.path.exists('.test_folder')
 
 
 def test_make_percentage():
@@ -14,7 +29,7 @@ def test_make_percentage():
 
 
 def test_read_yaml():
-    cfg = read_yaml('user_data/env/environment.yaml')
+    cfg = read_from_root('environment.json')
     assert "CURRENCY" in cfg.keys()
 
 

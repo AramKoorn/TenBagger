@@ -1,12 +1,39 @@
 import yfinance as yf
 import yaml
-import numpy as np
 import datetime
 import pandas as pd
-from bs4 import BeautifulSoup
 from requests import get
 import json
+from pathlib import Path
+import os
+import logging
 import re
+import json
+
+
+def read_from_root(file: str):
+
+    cwd = os.getcwd()
+    home_path = str(Path.home()) + '/.tenbagger'
+    os.chdir(home_path)
+
+    dict = read_yaml(loc=file)
+    os.chdir(cwd)
+    return dict
+
+
+def create_hidden_folder(name: str):
+
+    cwd = os.getcwd()
+    home_path = Path.home()
+    os.chdir(home_path)
+
+    if os.path.exists(f".{name}"):
+        logging.info("Folder already exist")
+        return
+
+    os.mkdir(f".{name}")
+    os.chdir(cwd)
 
 
 def make_percentage(df: pd.DataFrame, value: str, groupby: str):
@@ -155,6 +182,11 @@ def read_yaml(loc : str):
 
     with open(f'{loc}') as file:
         return yaml.load(file, Loader=yaml.FullLoader)
+
+
+def write_yaml(loc: str, dict):
+    with open(f'{loc}', 'w') as file:
+        yaml.dump(dict, file)
 
 
 def order_by_month(df, col):

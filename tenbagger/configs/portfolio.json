@@ -1,0 +1,22 @@
+{
+  "my_portfolio":
+  {
+  "ibm": 10,
+  "aapl": 20,
+  "eth-usd": 2
+  },
+  "WSB":
+    {
+  "wish": 1000,
+  "tsla": 100,
+  "shib-eur": 100000,
+  "nvda": 100,
+  "baba": 100,
+  "bb": 100,
+  "gme": 1000,
+  "amc": 1000,
+  "intc": 1000,
+  "eth-eur": 10
+    }
+}
+
