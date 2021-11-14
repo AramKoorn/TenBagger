@@ -40,7 +40,7 @@ Configure preferred currency
 vi ~/.tenbagger/environment.yaml
 ```
 
-Alternatively, modify the portfolio.yaml in the user_data/portfolio/ folder.
+Alternatively, you can change the files in the ~/.tenbagger folder with your preferred text editor.
 
 ## Usage
 Real-time overview of portfolio. The portfolio automatically gets updated with the real-time stock/crypto prices while the app is running. The app can be closed by hitting q or CTRL+C.
