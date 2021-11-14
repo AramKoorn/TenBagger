@@ -8,6 +8,7 @@ from pathlib import Path
 import os
 import logging
 import re
+import json
 
 
 def read_from_root(file: str):
