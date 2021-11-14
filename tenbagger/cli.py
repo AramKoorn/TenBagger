@@ -1,6 +1,6 @@
 import argparse
 from tenbagger.version import __version__
-from tenbagger.src.utils.utilities import order_by_month, make_percentage
+from tenbagger.src.utils.utilities import order_by_month, make_percentage, read_from_root
 from pyfiglet import Figlet
 from tenbagger.src.configuration.configuration import Configuration
 import pandas as pd
@@ -75,7 +75,7 @@ def main():
         from tenbagger.src.utils.utilities import read_yaml
         from tenbagger.src.terminal.utils import TermPlots
 
-        portfolio = read_yaml('user_data/portfolio/portfolio.yaml')[args.dividend]
+        portfolio = read_from_root('portfolio.yaml')[args.dividend]
         df = DividendsPortfolio(portfolio).calculate()
         df = order_by_month(df.groupby(['month', 'year']).Dividends.sum().reset_index(), col='month')
         del df['year']
@@ -94,8 +94,8 @@ def main():
         from tenbagger.src.utils.utilities import read_yaml
 
         # Read configs
-        port = list(read_yaml('user_data/portfolio/portfolio.yaml').keys())
-        env = read_yaml('user_data/env/environment.yaml')
+        port = list(read_from_root('portfolio.yaml').keys())
+        env = read_from_root('environment.yaml')
 
         NotifyInsider().notify_portfolio(port)
         NotifyPriceTarget().notify_high()
@@ -106,7 +106,6 @@ def main():
         # Clean this up
         from tenbagger.src.portfolio.core import Portfolio
         from tenbagger.src.terminal.utils import TermPlots
-        from tenbagger.src.utils.utilities import read_yaml
         from tenbagger.src.textui.apps.portfolio import OverviewPortfolio
 
         pd.set_option("expand_frame_repr", False)
@@ -115,7 +114,7 @@ def main():
         print(f.renderText('Portfolio'))
 
         # Read in ENV settings
-        env = read_yaml('user_data/env/environment.yaml')
+        env = read_from_root('environment.yaml')
 
         # Print out portfolio
         port = Portfolio(args.portfolio)

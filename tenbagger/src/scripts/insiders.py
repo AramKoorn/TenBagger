@@ -1,9 +1,4 @@
 import pandas as pd
-import datetime
-import yaml
-
-def prGreen(skk):
-    print("\033[92m {}\033[00m" .format(skk))
 
 
 def format_insiders(ticker):
@@ -19,8 +14,6 @@ def format_insiders(ticker):
 
 if __name__ == "__main__":
 
-    with open(r'configs/ColorCodes.yaml') as file:
-        color_config = yaml.load(file, Loader=yaml.FullLoader)
-
     ticker = 'IBM'
     df = format_insiders(ticker)
+    print(df)

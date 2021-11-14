@@ -1,4 +1,4 @@
-from tenbagger.src.utils.utilities import read_yaml, order_by_month, Ticker, make_percentage, create_hidden_folder
+from tenbagger.src.utils.utilities import read_from_root, read_yaml, Ticker, make_percentage, create_hidden_folder
 import pandas as pd
 import numpy as np
 from pandas._testing import assert_frame_equal
@@ -29,7 +29,7 @@ def test_make_percentage():
 
 
 def test_read_yaml():
-    cfg = read_yaml('user_data/env/environment.yaml')
+    cfg = read_from_root('environment.yaml')
     assert "CURRENCY" in cfg.keys()
 
 
