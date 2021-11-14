@@ -22,7 +22,7 @@ tenbagger -v
 ```
 ## Getting Started
 
-Configuration files are in the .tenbagger folder stored in the root of the user. 
+Configuration files are stored in the user's root folder.
 
 Configure your portfolio
 
