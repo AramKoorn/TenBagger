@@ -52,7 +52,7 @@ def create_hidden_folder(name: str):
 CWD = os.getcwd()
 DIRECTORY = os.path.abspath(os.path.dirname(__file__))
 os.chdir(DIRECTORY)
-FILES = ['staking.yaml', 'portfolio.yaml', 'environment.yaml']
+FILES = ['staking.json', 'portfolio.json', 'environment.json']
 
 HOME_PATH = Path.home()
 TENBAGGER_PATH = f'{HOME_PATH}/.tenbagger'
