@@ -29,7 +29,7 @@ def test_make_percentage():
 
 
 def test_read_yaml():
-    cfg = read_from_root('environment.yaml')
+    cfg = read_from_root('environment.json')
     assert "CURRENCY" in cfg.keys()
 
 
