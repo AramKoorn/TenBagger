@@ -62,6 +62,7 @@ os.chdir(TENBAGGER_PATH)
 HIDDEN_FILES = os.listdir()  # Get files in .tenbagger
 for f in set(FILES) - set(HIDDEN_FILES):
     os.chdir(DIRECTORY)
+    logging.info(f"current directory: {os.getcwd()}")
     to_dump = read_json(f'configs/{f}')
     os.chdir(TENBAGGER_PATH)
     write_json(loc=f, dict=to_dump)
