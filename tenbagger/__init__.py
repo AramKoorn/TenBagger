@@ -1,52 +1,7 @@
 from tenbagger.version import __version__
+from tenbagger.src.utils.builtin_utils import read_from_root, read_json, create_hidden_folder, write_json
 import os
 from pathlib import Path
-import logging
-import json
-
-
-
-def read_json(loc : str):
-    '''
-
-    :param loc: path to file
-    :return: yaml converted to a dictionary
-    '''
-    with open(loc) as f:
-      data = json.load(f)
-
-    return data
-
-
-def write_json(data, loc):
-    with open('person.txt', 'w') as json_file:
-      json.dump(data, json_file)
-
-
-def read_from_root(file: str):
-
-    cwd = os.getcwd()
-    home_path = str(Path.home()) + '/.tenbagger'
-    os.chdir(home_path)
-
-    data = read_jsonl(loc=file)
-    os.chdir(cwd)
-    return data 
-
-
-def create_hidden_folder(name: str):
-
-    cwd = os.getcwd()
-    home_path = Path.home()
-    os.chdir(home_path)
-
-    if os.path.exists(f".{name}"):
-        logging.info("Folder already exist")
-        return
-
-    os.mkdir(f".{name}")
-    os.chdir(cwd)
-
 
 
 CWD = os.getcwd()
@@ -62,7 +17,6 @@ os.chdir(TENBAGGER_PATH)
 HIDDEN_FILES = os.listdir()  # Get files in .tenbagger
 for f in set(FILES) - set(HIDDEN_FILES):
     os.chdir(DIRECTORY)
-    print(f"current directory: {os.getcwd()}")
     to_dump = read_json(f'configs/{f}')
     os.chdir(TENBAGGER_PATH)
     write_json(loc=f, data=to_dump)

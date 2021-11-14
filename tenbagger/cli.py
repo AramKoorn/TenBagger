@@ -67,7 +67,7 @@ def main():
         from tenbagger.src.utils.utilities import read_yaml
         from tenbagger.src.terminal.utils import TermPlots
 
-        portfolio = read_from_root('portfolio.yaml')[args.dividend]
+        portfolio = read_from_root('portfolio.json')[args.dividend]
         df = DividendsPortfolio(portfolio).calculate()
         df = order_by_month(df.groupby(['month', 'year']).Dividends.sum().reset_index(), col='month')
         del df['year']
@@ -83,11 +83,10 @@ def main():
     if args.notify:
         from tenbagger.src.notify.price_target import NotifyPriceTarget
         from tenbagger.src.notify.insider_activity import NotifyInsider
-        from tenbagger.src.utils.utilities import read_yaml
 
         # Read configs
-        port = list(read_from_root('portfolio.yaml').keys())
-        env = read_from_root('environment.yaml')
+        port = list(read_from_root('portfolio.json').keys())
+        env = read_from_root('environment.json')
 
         NotifyInsider().notify_portfolio(port)
         NotifyPriceTarget().notify_high()
@@ -106,7 +105,7 @@ def main():
         print(f.renderText('Portfolio'))
 
         # Read in ENV settings
-        env = read_from_root('environment.yaml')
+        env = read_from_root('environment.json')
 
         # Print out portfolio
         port = Portfolio(args.portfolio)
