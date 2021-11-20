@@ -102,8 +102,6 @@ We will add more blockchains over time. Currentlly supported blockchains are:
 
 ## Tasks
 - [ ] Create on click button to refresh portfolio on demand
-- [ ] Show % change compared to close yesterday
-- [x] Use Panel/column view for company overview
   - [ ] red/green if above or below fair value
 - [ ] track portfolio over time using postgres as backend
 - [ ] GAK
@@ -112,7 +110,3 @@ We will add more blockchains over time. Currentlly supported blockchains are:
   - [x] Total staking rewards
   - [x] Total passive income
 - [ ] Pull upcoming ex dividend dates
-- [x] Use textual for interactive dashboard inside terminal!
-- [x] Update portfolio class
-  - [x] portfolio.pulse()
-  - [x] Decide on final design of columns
