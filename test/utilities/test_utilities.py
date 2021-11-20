@@ -77,6 +77,9 @@ class TestTickerStonk:
                                 'priceToSalesTrailing12Months',
                                 'fair_value']
 
+    def test_overview_non_dividend_stonk(self):
+        assert Ticker('pypl').overview()
+
 
 class TestTickerCrypto:
     def setup(self):

@@ -129,7 +129,7 @@ class Ticker:
          "MarketCap": f"{info['marketCap']:3,}",
          'Shares Outstanding': f"{info['sharesOutstanding']:3,}",
          'Dividend Yield': f"{info['dividendYield']:.2%}" if info['dividendYield'] is not None else info['dividendYield'],
-         'trailingAnnualDividendYield': f"{info['trailingAnnualDividendYield']:.2%}",
+         'trailingAnnualDividendYield':  f"{info['trailingAnnualDividendYield']:.2%}" if info['trailingAnnualDividendYield'] is not None else info['trailingAnnualDividendYield'],
          'Short Percentage of Float': f'{info["shortPercentOfFloat"]:.2%}',
          "Trailing EPS": f"{info['trailingEps']:.2f}",
          '52 week low': f"{info['fiftyTwoWeekLow']:.2f}",
