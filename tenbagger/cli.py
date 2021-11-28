@@ -78,7 +78,7 @@ def main():
         from tenbagger.src.textui.apps.ticker import TickerApp
         from tenbagger.src.utils.utilities import Ticker
 
-        TickerApp.run(ticker=Ticker(args.overview))
+        TickerApp.run(ticker=Ticker(args.overview, info=True))
 
     if args.notify:
         from tenbagger.src.notify.price_target import NotifyPriceTarget

@@ -5,6 +5,7 @@ from rich.align import Align
 from rich.panel import Panel
 from textual.app import App
 from rich.columns import Columns
+from rich.console import Console
 
 
 class TickerSummary(Widget):
@@ -30,4 +31,6 @@ class TickerSummary(Widget):
 
 
 if __name__ == '__main__':
+    c = Console()
+    c.print(":euro:")
     TickerSummary(Ticker('aapl'))

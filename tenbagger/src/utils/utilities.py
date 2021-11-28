@@ -52,14 +52,16 @@ class Ticker:
     '''
     Get Ticker information
     '''
-    def __init__(self, ticker: str):
+    def __init__(self, ticker: str, info: bool = False):
         '''
 
         :param ticker: Ticker symbol. E.g. aapl, ibm, tsla
         '''
         self.ticker_name = ticker
         self.ticker = yf.Ticker(ticker)
-        self.info = self.get_info()
+
+        if info:
+            self.info = self.get_info()
 
     def get_last_day_close(self):
         return self.ticker.history().iloc[-2].Close
