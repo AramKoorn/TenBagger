@@ -20,6 +20,14 @@ class Portfolio(PortfolioCrypto):
         self.ticker_info = {}
 
     @property
+    def total_stonks(self):
+        return self.df[self.df.sector != "Crypto"].value.sum() if not None else 0
+
+    @property
+    def total_crypto(self):
+        return self.df[self.df.sector == "Crypto"].value.sum() if not None else 0
+
+    @property
     def weighted_staking_rewards(self):
         return self.df[self.df.sector == "Crypto"].staking_rewards.sum() / self.df[
             self.df.sector == "Crypto"].value.sum() * 100 if not None else 0

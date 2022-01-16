@@ -17,6 +17,8 @@ class SummaryPortfolio(Widget):
     def create_content(self):
         self.portfolio.pulse()
         content = f"[b]Portfolio Value[/b]\n[yellow]:euro: {self.portfolio.total_value:.2f}[/yellow]\n\n" \
+                  f"[b]Stonks value[/b]\n[yellow]:euro: {self.portfolio.total_stonks:.2f}[/yellow]\n\n" \
+                  f"[b]Crypto value[/b]\n[yellow]:euro: {self.portfolio.total_crypto:.2f}[/yellow]\n\n" \
                   f"[b]Annual Dividends[/b]\n[yellow]:euro: {self.portfolio.dividends:.2f}[/yellow]\n\n" \
                   f"[b]Annual Staking Rewards[/b]\n[yellow]:euro: {self.portfolio.total_staking_rewards:.2f}[/yellow]\n\n" \
                   f"[b]Annual Passive Income[/b]\n[yellow]:euro: {self.portfolio.passive_income:.2f}[/yellow]\n\n" \
