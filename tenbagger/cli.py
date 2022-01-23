@@ -22,6 +22,9 @@ def main():
     parser.add_argument("--hoi", action="store_true")
     parser.add_argument('-v', "--version", action="version", version="%(prog)s {}".format(__version__))
 
+    # Bonds
+    parser.add_argument('-b', '--bonds')
+
     # Dividends
     parser.add_argument("--dividend")
 
@@ -44,6 +47,10 @@ def main():
     parser.add_argument("-r", "--report", action='store_true', help="Generate report to data folder")
 
     args = parser.parse_args()
+
+    if args.bonds:
+        from tenbagger.src.textui.apps.bonds import BondsApp
+        BondsApp.run(market=args.bonds)
 
     if args.algo:
         from tenbagger.src.crypto.algorand import Algorand

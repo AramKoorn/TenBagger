@@ -50,6 +50,17 @@ tenbagger --portfolio WSB
 ```
 ![Features](./imgs/static/wsb_portfolio.png)
 
+Overview of Bond markets. Currently supported:
+- United states (us)
+- Germany (germany)
+
+![Features](./imgs/static/bonds.png)
+
+```sh
+tenbagger --bonds us 
+```
+
+
 Simulate passive income of dividend payouts and staking rewards
 
 ```
