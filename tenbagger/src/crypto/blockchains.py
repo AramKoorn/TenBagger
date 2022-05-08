@@ -1,5 +1,5 @@
 from tenbagger.src.crypto.algorand import Algorand
-
+from tenbagger.src.crypto.cosmos import Cosmos
 
 class AllChains(Algorand):
     def __init__(self, token_symbol):
@@ -8,3 +8,5 @@ class AllChains(Algorand):
     def select_class(self):
         if self.token_symbol.lower() == 'algo':
             return Algorand()
+        if self.token_symbol.lower() == 'atom':
+            return Cosmos()

@@ -90,8 +90,6 @@ Candlestick chart
 tenbagger --candle --ticker ibm  --period 700d --interval 1d
 ```
 
-Get overview of latest ticker information
-
 
 Run tracker dashboard
 ```
@@ -99,17 +97,18 @@ tenbagger --tracker
 ```
 
 ## Crypto
+For some crypto we directly support the network addresses so that you don't have to update the portfolio json file when you buy or sell some of your crypto. E.g.
 
-Because everything is stored on the the blockchain it's quite easy to directly pull your crypto balance from the blockchain. However, every blockchain got it's own API so we are going to add more crypto over time. The advantage is that you can input your blockchain address in your crypto wallet directly in the portfolio config and all you account balance changes are automatically updated in the analysis. E.g.
 
 ```
-# This address is from the algorand foundation
-my_portfolio:
-  algo-eur: 3C5IFPAZLET3FLGGFK5AXN7NISVD3OCOMEZJESCXUNUHDOIPMVKYB4DILM
+my_crypto:
+  algo-eur: "3C5IFPAZLET3FLGGFK5AXN7NISVD3OCOMEZJESCXUNUHDOIPMVKYB4DILM"
+  atom-eur: "cosmos1vjnlkndnekvrnfrp5j3wtsvsezlgwfm9cmrqe9"
 
 ```
 We will add more blockchains over time. Currentlly supported blockchains are:
-- Algorand
+- Algorand (algo)
+- Cosmos (atom)
 
 ## Tasks
 - [ ] Create on click button to refresh portfolio on demand

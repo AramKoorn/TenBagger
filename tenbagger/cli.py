@@ -36,6 +36,7 @@ def main():
 
     # Algorand checkecker
     parser.add_argument("--algo", action="store_true")
+    parser.add_argument("--atom", action="store_true")
 
     # Calculator
     parser.add_argument('-s', "--scenario", action="store_true")
@@ -60,6 +61,16 @@ def main():
         # This should be an argument
         address = 'WKMYA6PXWIM6L3TO2T3VPR5AJUGRZXJZDU2A2TPLTT7O44YG2N3M4XUH7Y'
         account = algo.get_account_data(address=address)
+        print(account)
+
+    if args.atom:
+        from tenbagger.src.crypto.cosmos import Cosmos
+
+        network = Cosmos()
+
+        # This should be an argument
+        address = "cosmos1vjnlkndnekvrnfrp5j3wtsvsezlgwfm9cmrqe9"
+        account = network.get_account_data(address=address)
         print(account)
 
     if args.scenario:

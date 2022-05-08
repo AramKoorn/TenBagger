@@ -30,7 +30,8 @@ def test_mix_crypto_stonks():
 def test_crypto_address():
 
     portfolio = {'ibm': 50,
-                 'algo-eur': 'WKMYA6PXWIM6L3TO2T3VPR5AJUGRZXJZDU2A2TPLTT7O44YG2N3M4XUH7Y'}
+                 'algo-eur': 'WKMYA6PXWIM6L3TO2T3VPR5AJUGRZXJZDU2A2TPLTT7O44YG2N3M4XUH7Y',
+                 "atom-eur": "cosmos1e3x4n8e82m5ywgszuar4yzx5asyay039g0h5k3"}
     port = Portfolio(portfolio)
     port.unification()
 
