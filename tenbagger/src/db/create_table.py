@@ -3,8 +3,9 @@
 # import the PostgreSQL client for Python
 
 import psycopg2
+
 conn = psycopg2.connect(
-        database="portfolio", user='morty', password='1234', host='127.0.0.1', port= '5432'
+    database="portfolio", user="morty", password="1234", host="127.0.0.1", port="5432"
 )
 #
 # from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT

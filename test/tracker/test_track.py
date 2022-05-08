@@ -5,7 +5,7 @@ def test_tracker():
     tickers = {"sector": {"sono": "sono"}}
     df = track(tickers)
 
-    col = ['sector', 'sectorChange']
+    col = ["sector", "sectorChange"]
     assert list(df) == col
     assert df.shape == (1, 2)
 

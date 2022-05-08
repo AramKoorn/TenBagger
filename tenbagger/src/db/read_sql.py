@@ -6,11 +6,11 @@ import psycopg2
 import pandas as pd
 
 # Connect to PostgreSQL DBMS
-conn = psycopg2.connect(host="localhost", 
-        database="financials", user="akoorn", 
-        password="1234")
+conn = psycopg2.connect(
+    host="localhost", database="financials", user="akoorn", password="1234"
+)
 
-engine = create_engine('postgres://akoorn:1234@localhost:5432/financials')
+engine = create_engine("postgres://akoorn:1234@localhost:5432/financials")
 connection = engine.connect()
 
 

@@ -3,6 +3,6 @@ from tenbagger.src.crypto.algorand import Algorand
 
 
 def test_algo():
-    chain = AllChains('algo')
+    chain = AllChains("algo")
     chain = chain.select_class()
     assert isinstance(chain, Algorand)

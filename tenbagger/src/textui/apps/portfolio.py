@@ -34,22 +34,23 @@ class MyApp(App):
 
 
 class OverviewPortfolio(App):
-
     def __init__(self, portfolio, *args, **kwargs):
         self.portfolio = portfolio
         super().__init__(*args, **kwargs)
 
     async def on_mount(self) -> None:
-        await self.view.dock(Clock(),  size=3)
-        await self.view.dock(SummaryPortfolio(portfolio=self.portfolio), edge="left", size=20)
+        await self.view.dock(Clock(), size=3)
+        await self.view.dock(
+            SummaryPortfolio(portfolio=self.portfolio), edge="left", size=20
+        )
         await self.view.dock(PortfolioTable(portfolio=self.portfolio), edge="top")
 
     async def on_load(self, event):
         await self.bind("q", "quit")
 
 
-if __name__ == '__main__':
-    port = Portfolio('my_portfolio')
+if __name__ == "__main__":
+    port = Portfolio("my_portfolio")
     port.unification()
 
     OverviewPortfolio.run(portfolio=port, log="textual.log")

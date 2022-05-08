@@ -8,8 +8,8 @@ class TermPlots:
 
     def plot_bar(self):
 
-        self.df.to_csv('cache/test.csv', header=False, index=False)
-        call('termgraph cache/test.csv', shell=True)
+        self.df.to_csv("cache/test.csv", header=False, index=False)
+        call("termgraph cache/test.csv", shell=True)
 
         # Delete from cache
-        os.remove('cache/test.csv')
+        os.remove("cache/test.csv")

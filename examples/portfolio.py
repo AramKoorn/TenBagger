@@ -15,16 +15,8 @@ def main():
     print(port.df)
 
 
+if __name__ == "__main__":
 
-
-if __name__ == '__main__':
-
-    PORTFOLIO = {
-        'IBM': 10,
-        'BTC-USD': 0.5,
-        'AAPl': 2,
-        'ETH-USD': 2,
-        'TSLA': 10
-    }
+    PORTFOLIO = {"IBM": 10, "BTC-USD": 0.5, "AAPl": 2, "ETH-USD": 2, "TSLA": 10}
 
     main()

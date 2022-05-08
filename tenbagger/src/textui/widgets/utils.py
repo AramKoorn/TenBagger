@@ -11,7 +11,7 @@ class Clock(Widget):
 
     def render(self):
         time = datetime.now().strftime("%c")
-        return Panel(Align.center(time, vertical="middle", style='bold cyan'))
+        return Panel(Align.center(time, vertical="middle", style="bold cyan"))
 
 
 class ClockApp(App):

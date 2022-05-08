@@ -1,11 +1,12 @@
 import subprocess
+
 # import logging
 import telegram_send
 
 
 class Telegram:
     def send_notification(self, message):
-        subprocess.call(['telegram-send', message])
+        subprocess.call(["telegram-send", message])
 
 
 if __name__ == "__main__":

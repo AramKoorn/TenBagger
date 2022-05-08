@@ -8,7 +8,6 @@ from rich.columns import Columns
 
 
 class TickerSummary(Widget):
-
     def __init__(self, ticker):
         super().__init__(ticker)
         self.ticker = ticker
@@ -20,14 +19,18 @@ class TickerSummary(Widget):
     def render(self):
         overview = self.ticker.overview()
 
-        diff_price = (overview['price'] - self.last_day_close) / self.last_day_close
+        diff_price = (overview["price"] - self.last_day_close) / self.last_day_close
         if diff_price >= 0:
-            overview['price'] = f"${overview['price']:.2f} [bright_green](+{diff_price:.2%})"
+            overview[
+                "price"
+            ] = f"${overview['price']:.2f} [bright_green](+{diff_price:.2%})"
         else:
-            overview['price'] = f"${overview['price']:.2f} [bright_red]({diff_price:.2%})"
+            overview[
+                "price"
+            ] = f"${overview['price']:.2f} [bright_red]({diff_price:.2%})"
 
         return Columns([Panel(f"[b]{k}[/b]\n[yellow]{v}") for k, v in overview.items()])
 
 
-if __name__ == '__main__':
-    TickerSummary(Ticker('aapl'))
+if __name__ == "__main__":
+    TickerSummary(Ticker("aapl"))

@@ -97,7 +97,7 @@ if __name__ == "__main__":  # pragma: no cover
                 if random.randint(0, 10) < 1:
                     console.log(next(examples))
                 exchange_rate_dict[(select_exchange, exchange)] = 200 / (
-                        (random.random() * 320) + 1
+                    (random.random() * 320) + 1
                 )
                 if len(exchange_rate_dict) > len(exchanges) - 1:
                     exchange_rate_dict.pop(list(exchange_rate_dict.keys())[0])

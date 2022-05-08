@@ -9,10 +9,10 @@ class Cosmos:
 
     def get_account_data(self, address):
 
-        base_url = 'https://api.cosmoscan.net/account/'
+        base_url = "https://api.cosmoscan.net/account/"
         url = base_url + address
         response = get(url)
-        bs = BeautifulSoup(response.text, 'html.parser')
+        bs = BeautifulSoup(response.text, "html.parser")
 
         # data
         data = json.loads(bs.text)

@@ -4,12 +4,12 @@ from pathlib import Path
 import logging
 
 
-def read_json(loc : str):
-    '''
+def read_json(loc: str):
+    """
 
     :param loc: path to file
     :return: yaml converted to a dictionary
-    '''
+    """
     with open(loc) as f:
         data = json.load(f)
 
@@ -17,14 +17,14 @@ def read_json(loc : str):
 
 
 def write_json(data, loc):
-    with open(loc, 'w') as json_file:
+    with open(loc, "w") as json_file:
         json.dump(data, json_file)
 
 
 def read_from_root(file: str):
 
     cwd = os.getcwd()
-    home_path = str(Path.home()) + '/.tenbagger'
+    home_path = str(Path.home()) + "/.tenbagger"
     os.chdir(home_path)
 
     data = read_json(loc=file)

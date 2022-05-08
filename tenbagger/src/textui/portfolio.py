@@ -27,15 +27,19 @@ def generate_table(portfolio):
         table.add_column(col, style="magenta")
     for row in df.values.tolist():
         cur_row = dict(zip(list(df), row))
-        bool = cur_row["price"] >= prev_prices[cur_row['ticker']]
-        cur_row['price'] = f'[bright_green]{cur_row["price"]:.2f}' if bool else f'[bright_red]{cur_row["price"]:.2f}'
+        bool = cur_row["price"] >= prev_prices[cur_row["ticker"]]
+        cur_row["price"] = (
+            f'[bright_green]{cur_row["price"]:.2f}'
+            if bool
+            else f'[bright_red]{cur_row["price"]:.2f}'
+        )
         table.add_row(*[str(j) for j in list(cur_row.values())])
 
     # Some formatting
     table.box = box.SIMPLE_HEAD
 
     for col in table.columns:
-        col.header_style = 'bright_yellow'
+        col.header_style = "bright_yellow"
 
     return table
 
@@ -49,7 +53,9 @@ class PortfolioWidget(GridView):
     def generate_table(self):
 
         # Update table
-        prev_prices = dict(zip(list(self.portfolio.df.ticker), list(self.portfolio.df.price)))
+        prev_prices = dict(
+            zip(list(self.portfolio.df.ticker), list(self.portfolio.df.price))
+        )
         self.portfolio.pulse()
         df = self.portfolio.df
 
@@ -59,15 +65,19 @@ class PortfolioWidget(GridView):
             table.add_column(col, style="magenta")
         for row in df.values.tolist():
             cur_row = dict(zip(list(df), row))
-            bool = cur_row["price"] >= prev_prices[cur_row['ticker']]
-            cur_row['price'] = f'[bright_green]{cur_row["price"]:.2f}' if bool else f'[bright_red]{cur_row["price"]:.2f}'
+            bool = cur_row["price"] >= prev_prices[cur_row["ticker"]]
+            cur_row["price"] = (
+                f'[bright_green]{cur_row["price"]:.2f}'
+                if bool
+                else f'[bright_red]{cur_row["price"]:.2f}'
+            )
             table.add_row(*[str(j) for j in list(cur_row.values())])
 
         # Some formatting
         table.box = box.SIMPLE_HEAD
 
         for col in table.columns:
-            col.header_style = 'bright_yellow'
+            col.header_style = "bright_yellow"
 
         return table
 
@@ -76,18 +86,17 @@ class PortfolioWidget(GridView):
         if not table:
             table = self.generate_table()
 
-        with Live(table, refresh_per_second=1, transient=True) as live:  # update 4 times a second to feel fluid
+        with Live(
+            table, refresh_per_second=1, transient=True
+        ) as live:  # update 4 times a second to feel fluid
             while True:
                 live.update(generate_table(portfolio=self.portfolio))
 
 
 if __name__ == "__main__":  # pragma: no cover
 
-    port = Portfolio('my_portfolio')
+    port = Portfolio("my_portfolio")
     port.unification()
 
     port.df
-    PortfolioWidget(name='hoi', portfolio=port).run()
-
-
-
+    PortfolioWidget(name="hoi", portfolio=port).run()

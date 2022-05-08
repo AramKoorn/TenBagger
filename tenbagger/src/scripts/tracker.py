@@ -15,7 +15,7 @@ def track(config):
 
         res = []
         for ind, ticker in tqdm(s.items()):
-            history = yf.Ticker(ticker).history(period='2d')
+            history = yf.Ticker(ticker).history(period="2d")
 
             try:
                 close = history.Close[-1]

@@ -1,4 +1,3 @@
-
 """
 A Textual app to create a fully working calculator, modelled after MacOS Calculator.
 """
@@ -30,7 +29,7 @@ class FigletText:
         self.text = text
 
     def __rich_console__(
-            self, console: Console, options: ConsoleOptions
+        self, console: Console, options: ConsoleOptions
     ) -> RenderResult:
         """Build a Rich renderable to render the Figlet text."""
         size = min(options.max_width / 2, options.max_height)
@@ -212,4 +211,3 @@ class CalculatorApp(App):
 
 
 CalculatorApp.run(title="Calculator Test", log="textual.log")
-

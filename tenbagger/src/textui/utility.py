@@ -18,7 +18,7 @@ from rich.rule import Rule
 from rich.syntax import Syntax
 from rich.table import Table
 
-port = Portfolio('aram')
+port = Portfolio("aram")
 port.unification()
 df = port.df
 
@@ -81,6 +81,7 @@ exchanges = [
     "VND",
 ]
 
+
 def run_live():
 
     with Live(console=console) as live_table:
@@ -96,7 +97,7 @@ def run_live():
                 if random.randint(0, 10) < 1:
                     console.log(next(examples))
                 exchange_rate_dict[(select_exchange, exchange)] = 200 / (
-                        (random.random() * 320) + 1
+                    (random.random() * 320) + 1
                 )
                 if len(exchange_rate_dict) > len(exchanges) - 1:
                     exchange_rate_dict.pop(list(exchange_rate_dict.keys())[0])
@@ -145,6 +146,5 @@ class FrameToApp(App):
         await self.call_later(add_content)
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     FrameToApp.run(title="Simple App", log="textual.log")

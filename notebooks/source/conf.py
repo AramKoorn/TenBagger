@@ -1,4 +1,3 @@
-
 # Copyright Contributors to the Pyro project.
 # SPDX-License-Identifier: Apache-2.0
 
@@ -67,9 +66,9 @@ nbsphinx_allow_errors = True
 master_doc = "index"
 
 # General information about the project.
-project = u"NumPyro Tutorials"
-copyright = u"2019, Uber Technologies, Inc"
-author = u"Uber AI Labs"
+project = "NumPyro Tutorials"
+copyright = "2019, Uber Technologies, Inc"
+author = "Uber AI Labs"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -80,6 +79,7 @@ version = ""
 if "READTHEDOCS" not in os.environ:
     # if developing locally, use numpyro.__version__ as version
     from tenbagger import __version__  # noqaE402
+
     version = __version__
 
 # release version
@@ -164,8 +164,8 @@ latex_documents = [
     (
         master_doc,
         "NumPyroTutorials.tex",
-        u"Numpyro Examples and Tutorials",
-        u"Uber AI Labs",
+        "Numpyro Examples and Tutorials",
+        "Uber AI Labs",
         "manual",
     )
 ]
@@ -176,7 +176,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, "NumPyroTutorials", u"Numpyro Examples and Tutorials", [author], 1)
+    (master_doc, "NumPyroTutorials", "Numpyro Examples and Tutorials", [author], 1)
 ]
 
 
@@ -189,7 +189,7 @@ texinfo_documents = [
     (
         master_doc,
         "NumPyroTutorials",
-        u"NumPyro Examples and Tutorials",
+        "NumPyro Examples and Tutorials",
         author,
         "NumPyroTutorials",
         "One line description of project.",
