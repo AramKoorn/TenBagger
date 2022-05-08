@@ -23,7 +23,7 @@ INSTALL_REQUIRES = [
     "beautifulsoup4==4.9.3",
     "html5lib",
     "plotly==5.1.0",
-    "dash==1.20.0",
+    "dash==2.3.1",
     "dash-bootstrap-components==0.12.2",
     "tqdm==4.59.0",
     "python-telegram-bot==13.7",
